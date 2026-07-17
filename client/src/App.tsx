@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import * as Switch from '@radix-ui/react-switch'
 import {
   ArrowRight,
   BarChart3,
@@ -10,10 +9,8 @@ import {
   Layers3,
   Mail,
   Menu,
-  Moon,
   ShieldCheck,
   Sparkles,
-  Sun,
   TrendingUp,
   Users,
   X,
@@ -248,17 +245,17 @@ const pageConfigs: PageConfig[] = [
     seo: {
       title: 'Angeltors | Angel Investment, Startup Mentorship & In-House Support',
       description:
-        'Angeltors helps startups raise capital, get mentorship, in-house support, and access business advisory, legal, tech, marketing, SEO, HRMS, and accounting services.',
+        'Angeltors helps startups raise capital, get mentorship, in-house support, and access business advisory, legal, IP, tech, marketing, SEO, HRMS, and accounting services.',
       canonical: `${siteUrl}/`,
     },
     hero: {
       eyebrow: 'Angel Investment Platform',
-      title: 'Connecting Visionary Founders with Strategic Capital.',
-      subtitle: 'Invest in promising startups with smarter support',
+      title: 'Connecting Visionary Founders with Strategic Capital',
+      subtitle: 'Revolutionising private market investing — where investors find high quality deals and founders raise from right backers.',
       body:
         'Angeltors helps startups raise capital, get mentorship, in-house support, and access business advisory, legal, IP, tech, marketing, SEO, HRMS, and accounting services.',
-      primaryLabel: 'Invest With Us',
-      secondaryLabel: 'Raise Capital',
+      primaryLabel: 'For Investors',
+      secondaryLabel: 'For Founders',
       image: '/images/banner3.jpg',
       badge: 'Live portfolio signal',
     },
@@ -398,9 +395,10 @@ const pageConfigs: PageConfig[] = [
 ]
 
 const heroStats: Stat[] = [
-  { value: '12+', label: 'active deals' },
-  { value: '340+', label: 'founders onboarded' },
-  { value: '+18%', label: 'average growth' },
+  { value: '12+', label: 'Active Deals' },
+  { value: '340+', label: 'Founders Onboarded' },
+  { value: '+18%', label: 'Average Growth' },
+  { value: '715+', label: 'Numbers of Deals' },
 ]
 
 function Seo({ title, description, canonical }: SeoMeta) {
@@ -426,43 +424,8 @@ function Seo({ title, description, canonical }: SeoMeta) {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:url" content={canonical} />
-      <meta name="theme-color" content="#020617" />
+      <meta name="theme-color" content="#0a1a38" />
     </Helmet>
-  )
-}
-
-function useThemeMode() {
-  const [isDark, setIsDark] = useState(true)
-
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem('angeltors-theme')
-    const shouldUseDark = savedTheme ? savedTheme === 'dark' : true
-    setIsDark(shouldUseDark)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark)
-    document.documentElement.classList.toggle('light', !isDark)
-    window.localStorage.setItem('angeltors-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
-
-  return { isDark, setIsDark }
-}
-
-function ThemeToggle({ isDark, setIsDark }: { isDark: boolean; setIsDark: (value: boolean) => void }) {
-  return (
-    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 shadow-lg shadow-slate-950/20 backdrop-blur dark:border-white/10 dark:bg-white/5">
-      <Sun className="h-4 w-4 text-amber-300" />
-      <Switch.Root
-        checked={isDark}
-        onCheckedChange={setIsDark}
-        aria-label="Toggle dark mode"
-        className="relative h-6 w-11 rounded-full bg-slate-700/80 p-0.5 outline-none transition data-[state=checked]:bg-sky-500"
-      >
-        <Switch.Thumb className="block h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200 data-[state=checked]:translate-x-5" />
-      </Switch.Root>
-      <Moon className="h-4 w-4 text-sky-300" />
-    </div>
   )
 }
 
@@ -485,7 +448,7 @@ function SectionHeading({
       transition={{ duration: 0.55 }}
       className={clsx('max-w-3xl', center && 'mx-auto text-center')}
     >
-      <p className="text-sm font-semibold uppercase tracking-[0.32em] text-sky-400">
+      <p className="text-sm font-semibold uppercase tracking-[0.32em] text-angeltors-accent">
         {eyebrow}
       </p>
       <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -499,7 +462,6 @@ function SectionHeading({
 function MarketingPage({ page }: { page: PageConfig }) {
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
-  const { isDark, setIsDark } = useThemeMode()
 
   useEffect(() => {
     setMenuOpen(false)
@@ -509,20 +471,19 @@ function MarketingPage({ page }: { page: PageConfig }) {
   return (
     <>
       <Seo {...page.seo} />
-      <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100 transition-colors duration-300 dark:bg-slate-950">
+      <div className="relative min-h-screen overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-sky-500/20 blur-[120px]" />
-          <div className="absolute right-[-6rem] top-32 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-[100px]" />
-          <div className="absolute bottom-0 left-[-4rem] h-72 w-72 rounded-full bg-amber-400/10 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-angeltors-accent/20 blur-[120px]" />
+          <div className="absolute right-[-6rem] top-32 h-72 w-72 rounded-full bg-angeltors-accent-light/10 blur-[100px]" />
         </div>
 
-        <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl dark:bg-slate-950/70">
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-angeltors-dark/80 backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
             <Link to="/" className="group flex items-center gap-3">
               <img
                 src="/images/Angeltors_logo.png"
                 alt="Angeltors"
-                className="h-10 w-10 rounded-xl object-contain shadow-lg shadow-sky-500/10"
+                className="h-10 w-10 rounded-xl object-contain shadow-lg shadow-angeltors-accent/10"
               />
               <span className="flex flex-col leading-tight">
                 <strong className="text-sm font-semibold tracking-[0.28em] text-white">
@@ -541,7 +502,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
                     clsx(
                       'rounded-full px-4 py-2 text-sm font-medium transition',
                       isActive
-                        ? 'bg-white/10 text-white'
+                        ? 'bg-angeltors-accent/15 text-angeltors-accent'
                         : 'text-slate-300 hover:bg-white/5 hover:text-white',
                     )
                   }
@@ -552,14 +513,11 @@ function MarketingPage({ page }: { page: PageConfig }) {
             </nav>
 
             <div className="ml-auto flex items-center gap-3">
-              <div className="hidden sm:block">
-                <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
-              </div>
               <Link
                 to="/contact"
-                className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 sm:inline-flex"
+                className="hidden rounded-full bg-angeltors-accent px-5 py-2 text-sm font-semibold text-angeltors-dark transition hover:bg-angeltors-accent-light hover:-translate-y-0.5 sm:inline-flex"
               >
-                Contact sales
+                Contact Sales
               </Link>
               <button
                 type="button"
@@ -580,7 +538,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.25 }}
-                className="border-t border-white/10 bg-slate-950/95 lg:hidden"
+                className="border-t border-white/10 bg-angeltors-dark/95 lg:hidden"
               >
                 <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
                   {navItems.map((item) => (
@@ -591,7 +549,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
                         clsx(
                           'rounded-2xl px-4 py-3 text-sm font-medium transition',
                           isActive
-                            ? 'bg-white/10 text-white'
+                            ? 'bg-angeltors-accent/15 text-angeltors-accent'
                             : 'text-slate-300 hover:bg-white/5 hover:text-white',
                         )
                       }
@@ -599,12 +557,6 @@ function MarketingPage({ page }: { page: PageConfig }) {
                       {item.label}
                     </NavLink>
                   ))}
-                  <div className="mt-2 flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                    <span className="text-xs uppercase tracking-[0.24em] text-slate-400">
-                      Theme
-                    </span>
-                    <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
-                  </div>
                 </div>
               </motion.div>
             )}
@@ -612,6 +564,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
         </header>
 
         <main className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-16">
+          {/* Hero Section */}
           <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.96fr)_minmax(320px,1.04fr)] lg:gap-14">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -619,7 +572,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
               transition={{ duration: 0.6 }}
               className="max-w-2xl pt-2 lg:pt-8"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-sky-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-angeltors-accent">
                 <Sparkles className="h-4 w-4" />
                 {page.hero.eyebrow}
               </span>
@@ -639,35 +592,17 @@ function MarketingPage({ page }: { page: PageConfig }) {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to={page.key === 'home' ? '/invest-with-us' : '/contact'}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-angeltors-accent px-6 py-3 text-sm font-semibold text-angeltors-dark shadow-lg shadow-angeltors-accent/20 transition hover:-translate-y-0.5 hover:bg-angeltors-accent-light"
                 >
                   {page.hero.primaryLabel}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to={page.key === 'home' ? '/raise-capital' : '/our-services'}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   {page.hero.secondaryLabel}
                 </Link>
-              </div>
-
-              <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
-                {heroStats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: index * 0.08 }}
-                    className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl"
-                  >
-                    <p className="text-2xl font-semibold tracking-tight text-white">
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-sm text-slate-400">{stat.label}</p>
-                  </motion.div>
-                ))}
               </div>
             </motion.div>
 
@@ -677,37 +612,45 @@ function MarketingPage({ page }: { page: PageConfig }) {
               transition={{ duration: 0.65 }}
               className="relative"
             >
-              <div className="absolute -left-6 top-10 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur-xl md:block">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-2xl bg-emerald-400/15 p-3 text-emerald-300">
-                    <TrendingUp className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
-                      {page.hero.badge}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-white">+18.4% this quarter</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-angeltors-dark">
                 <img src={page.hero.image} alt="Angeltors platform visual" className="h-[26rem] w-full object-cover sm:h-[32rem]" />
-                <div className="border-t border-white/10 bg-slate-950/80 p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Platform focus</p>
-                      <p className="mt-2 text-lg font-semibold text-white">Capital, mentorship, execution</p>
-                    </div>
-                    <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300">
-                      Premium SaaS experience
-                    </div>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </section>
 
+          {/* Stats Section (like the examples) */}
+          <section className="mt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <h2 className="text-2xl font-semibold text-white sm:text-3xl">Real Numbers. Real Impact.</h2>
+            </motion.div>
+
+            <div className="mt-8 grid gap-0 md:grid-cols-4">
+              {heroStats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  className="group relative overflow-hidden rounded-none border border-white/10 bg-gradient-to-br from-angeltors-accent/30 to-angeltors-accent/10 p-8 text-center transition first:rounded-l-3xl last:rounded-r-3xl hover:-translate-y-1 hover:from-angeltors-accent/40 hover:to-angeltors-accent/20"
+                >
+                  <div className="absolute -left-4 top-1/2 h-16 w-16 -translate-y-1/2 bg-angeltors-accent/20 clip-path-[polygon(0_0,100%_50%,0_100%)]" />
+                  <p className="text-3xl font-bold tracking-tight text-white">
+                    {stat.value}
+                  </p>
+                  <p className="mt-2 text-sm uppercase tracking-[0.2em] text-slate-300">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Feature Cards */}
           <section id="about-us" className="pt-24 sm:pt-28">
             <SectionHeading
               eyebrow="Our Services"
@@ -725,9 +668,9 @@ function MarketingPage({ page }: { page: PageConfig }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: index * 0.06 }}
-                    className="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:-translate-y-1 hover:border-sky-400/30 hover:bg-white/[0.07]"
+                    className="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:-translate-y-1 hover:border-angeltors-accent/40 hover:bg-white/10"
                   >
-                    <div className="inline-flex rounded-2xl bg-gradient-to-br from-sky-500/15 to-cyan-400/10 p-3 text-sky-300">
+                    <div className="inline-flex rounded-2xl bg-gradient-to-br from-angeltors-accent/20 to-angeltors-accent-light/10 p-3 text-angeltors-accent">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mt-5 text-lg font-semibold text-white">{card.title}</h3>
@@ -738,14 +681,15 @@ function MarketingPage({ page }: { page: PageConfig }) {
             </div>
           </section>
 
-          <section className="mt-24 grid gap-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-2xl shadow-slate-950/30 lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
+          {/* Diversified Portfolio Section */}
+          <section className="mt-24 grid gap-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-angeltors-dark to-angeltors-dark-2 p-6 shadow-2xl shadow-angeltors-dark lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
             <motion.div
               initial={{ opacity: 0, x: -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55 }}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-fuchsia-300">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
                 Diversified Portfolio
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -758,14 +702,14 @@ function MarketingPage({ page }: { page: PageConfig }) {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
                 >
                   Learn More
                   <ChevronRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/learn-with-us"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   Talk to Us
                 </Link>
@@ -780,15 +724,10 @@ function MarketingPage({ page }: { page: PageConfig }) {
               className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
             >
               <img src="/images/time_to_grow.jpg" alt="Strategic investors meeting" className="h-full min-h-[22rem] w-full object-cover" />
-              <div className="absolute bottom-4 right-4 max-w-xs rounded-3xl border border-white/10 bg-slate-950/80 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur-xl">
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Portfolio strategy</p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-white">
-                  Balanced, high-growth, and long-term aligned.
-                </p>
-              </div>
             </motion.div>
           </section>
 
+          {/* Services Section */}
           <section id="our-services" className="pt-24 sm:pt-28">
             <SectionHeading
               eyebrow="What we offer"
@@ -817,6 +756,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
             </div>
           </section>
 
+          {/* FAQ Section */}
           <section className="mt-24 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <motion.div
               initial={{ opacity: 0, x: -16 }}
@@ -856,10 +796,11 @@ function MarketingPage({ page }: { page: PageConfig }) {
             </div>
           </section>
 
-          <section className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-r from-sky-500/15 via-fuchsia-500/10 to-amber-400/10 p-6 sm:p-8">
+          {/* Newsletter Section */}
+          <section className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-r from-angeltors-accent/15 via-angeltors-accent-light/10 to-angeltors-accent/10 p-6 sm:p-8">
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
                   Stay updated
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -875,11 +816,11 @@ function MarketingPage({ page }: { page: PageConfig }) {
                   type="email"
                   aria-label="Email address"
                   placeholder="Your email address"
-                  className="h-12 flex-1 rounded-full border border-white/10 bg-slate-950/70 px-5 text-sm text-white placeholder:text-slate-500 outline-none ring-0 transition focus:border-sky-400/60"
+                  className="h-12 flex-1 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-slate-500 outline-none ring-0 transition focus:border-angeltors-accent"
                 />
                 <button
                   type="submit"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
                 >
                   Subscribe
                   <Mail className="h-4 w-4" />
@@ -889,7 +830,7 @@ function MarketingPage({ page }: { page: PageConfig }) {
           </section>
         </main>
 
-        <footer className="border-t border-white/10 bg-slate-950/90">
+        <footer className="border-t border-white/10 bg-angeltors-dark/90">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_1.4fr] lg:px-8">
             <div className="max-w-md">
               <Link to="/" className="flex items-center gap-3">
