@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   const footerColumns = [
     {
       title: "Discover",
       links: [
-        { label: "About Us", href: "#about-us" },
+        { label: "About Us", href: "/about" },
         { label: "Invest with us", href: "#our-services" },
         { label: "Raise Capital", href: "#our-services" },
         { label: "Learn with us", href: "#faq" },
@@ -30,11 +32,11 @@ export default function Footer() {
     {
       title: "Policies",
       links: [
-        { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Use", href: "#" },
-        { label: "Refund Policy", href: "#" },
-        { label: "Disclaimer", href: "#" },
-        { label: "Cookies Policy", href: "#" },
+        { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms of Use", href: "/terms-of-use" },
+        { label: "Refund Policy", href: "/refund-policy" },
+        { label: "Disclaimer", href: "/disclaimer" },
+        { label: "Cookies Policy", href: "/cookies-policy" },
       ],
     },
   ];
@@ -60,7 +62,9 @@ export default function Footer() {
           <div className="mt-8 flex flex-wrap gap-3">
             {/* Facebook */}
             <a
-              href="#"
+              href="https://www.facebook.com/angeltors"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-muted transition-all duration-300 hover:border-angeltors-accent/50 hover:bg-angeltors-accent hover:text-white"
               aria-label="Facebook"
             >
@@ -70,7 +74,9 @@ export default function Footer() {
             </a>
             {/* Instagram */}
             <a
-              href="#"
+              href="https://www.instagram.com/angeltors/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-muted transition-all duration-300 hover:border-angeltors-accent/50 hover:bg-angeltors-accent hover:text-white"
               aria-label="Instagram"
             >
@@ -80,7 +86,9 @@ export default function Footer() {
             </a>
             {/* LinkedIn */}
             <a
-              href="#"
+              href="https://www.linkedin.com/company/angeltors/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-muted transition-all duration-300 hover:border-angeltors-accent/50 hover:bg-angeltors-accent hover:text-white"
               aria-label="LinkedIn"
             >
@@ -90,7 +98,9 @@ export default function Footer() {
             </a>
             {/* YouTube */}
             <a
-              href="#"
+              href="https://www.youtube.com/@Angeltors"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-muted transition-all duration-300 hover:border-angeltors-accent/50 hover:bg-angeltors-accent hover:text-white"
               aria-label="YouTube"
             >
@@ -100,7 +110,7 @@ export default function Footer() {
             </a>
             {/* WhatsApp */}
             <a
-              href="https://wa.me/YOUR_PHONE_NUMBER"
+              href="https://wa.me/919936885555"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-muted transition-all duration-300 hover:border-angeltors-accent/50 hover:bg-angeltors-accent hover:text-white"
@@ -124,16 +134,28 @@ export default function Footer() {
                 {column.title}
               </h3>
               <ul className="mt-5 space-y-3">
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-angeltors-muted transition hover:text-angeltors-accent"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {column.links.map((link) => {
+                  const isInternal = link.href.startsWith("/");
+                  return (
+                    <li key={link.label}>
+                      {isInternal ? (
+                        <Link
+                          to={link.href}
+                          className="text-sm text-angeltors-muted transition hover:text-angeltors-accent"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-sm text-angeltors-muted transition hover:text-angeltors-accent"
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
