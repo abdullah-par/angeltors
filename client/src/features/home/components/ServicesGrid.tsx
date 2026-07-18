@@ -52,7 +52,7 @@ export default function ServicesGrid() {
             whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={reducedMotion ? { duration: 0 } : { duration: 0.45, delay: index * 0.05, ease: "easeOut" }}
-            className="flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-angeltors-border-mid/85 stripe-gradient-card transition-all duration-300 ease-out hover:-translate-y-1 hover:stripe-shadow-lg stripe-shadow-sm"
+            className="flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-angeltors-border-mid/85 ag-gradient-card transition-all duration-300 ease-out hover:-translate-y-1 hover:ag-shadow-lg ag-shadow-sm"
           >
             <div className="relative overflow-hidden">
               <span className="absolute top-4 right-4 z-10 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[2px] text-angeltors-ink backdrop-blur-sm shadow-sm">

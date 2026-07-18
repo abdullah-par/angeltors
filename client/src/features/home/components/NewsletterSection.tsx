@@ -17,7 +17,7 @@ export default function NewsletterSection() {
           whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={reducedMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" }}
-          className="rounded-2xl border-[0.5px] border-angeltors-border-mid/85 stripe-gradient-card p-8 md:p-14 stripe-shadow-sm transition-all duration-300 hover:stripe-shadow-md"
+          className="rounded-2xl border-[0.5px] border-angeltors-border-mid/85 ag-gradient-card p-8 md:p-14 ag-shadow-sm transition-all duration-300 hover:ag-shadow-md"
         >
           <p className="text-sm font-semibold uppercase tracking-[3px] text-angeltors-accent">
             Stay Updated

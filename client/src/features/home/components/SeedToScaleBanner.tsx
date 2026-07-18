@@ -5,7 +5,7 @@ export default function SeedToScaleBanner() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 stripe-gradient-banner border-t-2 border-b-2 border-angeltors-border-dark/60">
+    <section className="relative overflow-hidden py-24 md:py-32 ag-gradient-banner border-t-2 border-b-2 border-angeltors-border-dark/60">
       {/* Background Image Container with light overlay */}
       <div className="absolute inset-0 z-0 opacity-5">
         <img

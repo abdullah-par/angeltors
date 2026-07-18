@@ -156,7 +156,7 @@ export default function Membership() {
                 whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col bg-white rounded-2xl overflow-hidden depth-border stripe-shadow-md hover:stripe-shadow-lg transition-shadow duration-300"
+                className="flex flex-col bg-white rounded-2xl overflow-hidden depth-border ag-shadow-md hover:ag-shadow-lg transition-shadow duration-300"
               >
                 {/* Image */}
                 <div className="h-56 sm:h-64 overflow-hidden relative bg-slate-100">

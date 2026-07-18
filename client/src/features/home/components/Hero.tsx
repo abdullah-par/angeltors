@@ -59,7 +59,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:gap-14 py-12 bg-transparent">
-      {/* Stripe-style dynamic animated background gradients */}
+      {/* Dynamic animated background gradients */}
       <motion.div
         animate={{
           x: [0, 40, -20, 0],
@@ -201,7 +201,7 @@ export default function Hero() {
             alt="Angeltors platform visual"
             className="h-[26rem] w-full object-cover sm:h-[32rem] rounded-[14px] brightness-95"
           />
-          {/* Glassmorphic Overlay Block inside the image card - Stripe theme */}
+          {/* Glassmorphic Overlay Block inside the image card */}
           <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-angeltors-border bg-white/95 p-5 shadow-sm backdrop-blur-md">
             <span className="text-[10px] font-semibold uppercase tracking-[3px] text-angeltors-accent">
               Opportunity

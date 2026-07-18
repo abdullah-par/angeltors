@@ -66,7 +66,7 @@ export default function FAQSection() {
               return (
                 <div
                   key={id}
-                  className="rounded-2xl border-[0.5px] border-angeltors-border-mid/85 stripe-gradient-card stripe-shadow-sm transition-all duration-300 hover:-translate-y-[2px] hover:stripe-shadow-md"
+                  className="rounded-2xl border-[0.5px] border-angeltors-border-mid/85 ag-gradient-card ag-shadow-sm transition-all duration-300 hover:-translate-y-[2px] hover:ag-shadow-md"
                 >
                   <button
                     type="button"

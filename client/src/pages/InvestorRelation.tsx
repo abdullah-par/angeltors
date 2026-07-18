@@ -135,7 +135,7 @@ export default function InvestorRelation() {
                 whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col bg-white rounded-2xl overflow-hidden depth-border stripe-shadow-md hover:stripe-shadow-lg transition-shadow duration-300"
+                className="flex flex-col bg-white rounded-2xl overflow-hidden depth-border ag-shadow-md hover:ag-shadow-lg transition-shadow duration-300"
               >
                 {/* Image */}
                 <div className="h-56 sm:h-64 overflow-hidden relative bg-slate-100">
@@ -173,7 +173,7 @@ export default function InvestorRelation() {
             whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-2xl p-6 sm:p-8 depth-border stripe-shadow-md space-y-6"
+            className="bg-white rounded-2xl p-6 sm:p-8 depth-border ag-shadow-md space-y-6"
           >
             <h3 className="text-lg sm:text-xl font-bold text-angeltors-ink pl-3 border-l-4 border-angeltors-accent">
               Investor Grievance Mechanism

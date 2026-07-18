@@ -79,7 +79,7 @@ export default function ContactInfo() {
                   <motion.div key={item.title} variants={reducedMotion ? {} : itemVariants}>
                     <Wrapper
                       {...wrapperProps}
-                      className="group flex gap-5 p-4 rounded-2xl bg-white border border-angeltors-border stripe-shadow-sm transition-all duration-300 hover:border-angeltors-accent/20 hover:stripe-shadow-md cursor-default"
+                      className="group flex gap-5 p-4 rounded-2xl bg-white border border-angeltors-border ag-shadow-sm transition-all duration-300 hover:border-angeltors-accent/20 hover:ag-shadow-md cursor-default"
                     >
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-angeltors-accent/8 text-angeltors-accent border border-angeltors-accent/10 transition-all duration-300 group-hover:bg-angeltors-accent group-hover:text-white group-hover:border-angeltors-accent group-hover:scale-105">
                         <Icon className="h-5 w-5" />
@@ -107,7 +107,7 @@ export default function ContactInfo() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             className="sticky top-8"
           >
-            <div className="rounded-2xl overflow-hidden depth-border stripe-shadow-lg" style={{ height: 440 }}>
+            <div className="rounded-2xl overflow-hidden depth-border ag-shadow-lg" style={{ height: 440 }}>
               {/* Map header bar */}
               <div className="flex items-center gap-2 px-4 py-3 bg-white border-b border-angeltors-border">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -130,7 +130,7 @@ export default function ContactInfo() {
             </div>
 
             {/* Address tag below map */}
-            <div className="mt-4 flex items-start gap-3 px-4 py-3 rounded-xl bg-white border border-angeltors-border stripe-shadow-sm">
+            <div className="mt-4 flex items-start gap-3 px-4 py-3 rounded-xl bg-white border border-angeltors-border ag-shadow-sm">
               <MapPin className="h-4 w-4 text-angeltors-accent mt-0.5 shrink-0" />
               <p className="text-xs text-angeltors-muted leading-relaxed">
                 11/13/4C, Tashkent Marg, Patrika Chauraha, Civil Lines, Prayagraj 211001, Uttar Pradesh, India
