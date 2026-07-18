@@ -250,12 +250,12 @@ const pageConfigs: PageConfig[] = [
     },
     hero: {
       eyebrow: 'Angel Investment Platform',
-      title: 'Connecting Visionary Founders with Strategic Capital',
-      subtitle: 'Revolutionising private market investing — where investors find high quality deals and founders raise from right backers.',
+      title: 'Empowering Early Stage Innovation Invest In Future',
+      subtitle: 'Angeltors is an Angel Investment Platform that supports high growth Startups with Seed & Early Stage Funding, Mentorship, In-House Support & access to strong network of investors & industry leaders.',
       body:
-        'Angeltors helps startups raise capital, get mentorship, in-house support, and access business advisory, legal, IP, tech, marketing, SEO, HRMS, and accounting services.',
+        'Angeltors empowers visionary founders to build impactful business by providing strategic investment & supportive network.',
       primaryLabel: 'For Investors',
-      secondaryLabel: 'For Founders',
+      secondaryLabel: 'For Startup',
       image: '/images/banner3.jpg',
       badge: 'Live portfolio signal',
     },
@@ -563,272 +563,310 @@ function MarketingPage({ page }: { page: PageConfig }) {
           </AnimatePresence>
         </header>
 
-        <main className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-16">
-          {/* Hero Section */}
-          <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.96fr)_minmax(320px,1.04fr)] lg:gap-14">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl pt-2 lg:pt-8"
-            >
-              <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-angeltors-accent">
-                <Sparkles className="h-4 w-4" />
-                {page.hero.eyebrow}
-              </span>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-angeltors-accent/20 blur-[120px]" />
+            <div className="absolute right-[-6rem] top-32 h-72 w-72 rounded-full bg-angeltors-accent-light/10 blur-[100px]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-angeltors-dark to-angeltors-dark-2" />
+          </div>
+          <main className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-16">
+            {/* Hero Section */}
+            <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.96fr)_minmax(320px,1.04fr)] lg:gap-14">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-2xl pt-2 lg:pt-8"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-angeltors-accent">
+                  <Sparkles className="h-4 w-4" />
+                  {page.hero.eyebrow}
+                </span>
 
-              <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[4.4rem] lg:leading-[1.02]">
-                {page.hero.title}
-              </h1>
+                <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[4.4rem] lg:leading-[1.02]">
+                  {page.hero.title}
+                </h1>
 
-              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
-                {page.hero.subtitle}
-              </p>
+                <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
+                  {page.hero.subtitle}
+                </p>
 
-              <p className="mt-4 max-w-xl text-base leading-8 text-slate-400 sm:text-lg">
-                {page.hero.body}
-              </p>
+                <p className="mt-4 max-w-xl text-base leading-8 text-slate-400 sm:text-lg">
+                  {page.hero.body}
+                </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to={page.key === 'home' ? '/invest-with-us' : '/contact'}
-                  className="inline-flex items-center gap-2 rounded-full bg-angeltors-accent px-6 py-3 text-sm font-semibold text-angeltors-dark shadow-lg shadow-angeltors-accent/20 transition hover:-translate-y-0.5 hover:bg-angeltors-accent-light"
-                >
-                  {page.hero.primaryLabel}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to={page.key === 'home' ? '/raise-capital' : '/our-services'}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                >
-                  {page.hero.secondaryLabel}
-                </Link>
-              </div>
-            </motion.div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    to={page.key === 'home' ? '/invest-with-us' : '/contact'}
+                    className="inline-flex items-center gap-2 rounded-full bg-angeltors-accent px-6 py-3 text-sm font-semibold text-angeltors-dark shadow-lg shadow-angeltors-accent/20 transition hover:-translate-y-0.5 hover:bg-angeltors-accent-light"
+                  >
+                    {page.hero.primaryLabel}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    to={page.key === 'home' ? '/raise-capital' : '/our-services'}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    {page.hero.secondaryLabel}
+                  </Link>
+                </div>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, x: 20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 0.65 }}
-              className="relative"
-            >
-              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-angeltors-dark">
-                <img src={page.hero.image} alt="Angeltors platform visual" className="h-[26rem] w-full object-cover sm:h-[32rem]" />
-              </div>
-            </motion.div>
-          </section>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.65 }}
+                className="relative"
+              >
+                <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-angeltors-dark">
+                  <img src={page.hero.image} alt="Angeltors platform visual" className="h-[26rem] w-full object-cover sm:h-[32rem]" />
+                </div>
+              </motion.div>
+            </section>
 
-          {/* Stats Section (like the examples) */}
-          <section className="mt-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h2 className="text-2xl font-semibold text-white sm:text-3xl">Real Numbers. Real Impact.</h2>
-            </motion.div>
+            {/* Stats Section (like the examples) */}
+            <section className="mt-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center"
+              >
+                <h2 className="text-2xl font-semibold text-white sm:text-3xl">Real Numbers. Real Impact.</h2>
+              </motion.div>
 
-            <div className="mt-8 grid gap-0 md:grid-cols-4">
-              {heroStats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="group relative overflow-hidden rounded-none border border-white/10 bg-gradient-to-br from-angeltors-accent/30 to-angeltors-accent/10 p-8 text-center transition first:rounded-l-3xl last:rounded-r-3xl hover:-translate-y-1 hover:from-angeltors-accent/40 hover:to-angeltors-accent/20"
-                >
-                  <div className="absolute -left-4 top-1/2 h-16 w-16 -translate-y-1/2 bg-angeltors-accent/20 clip-path-[polygon(0_0,100%_50%,0_100%)]" />
-                  <p className="text-3xl font-bold tracking-tight text-white">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-sm uppercase tracking-[0.2em] text-slate-300">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* Feature Cards */}
-          <section id="about-us" className="pt-24 sm:pt-28">
-            <SectionHeading
-              eyebrow="Our Services"
-              title="More Than Just Funding"
-              body="A modern support system for founders and investors that combines capital, guidance, and operational help in one place."
-            />
-
-            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {featureCards.map((card, index) => {
-                const Icon = card.icon
-                return (
-                  <motion.article
-                    key={card.title}
-                    initial={{ opacity: 0, y: 16 }}
+              <div className="mt-8 grid gap-0 md:grid-cols-4">
+                {heroStats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: index * 0.06 }}
-                    className="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:-translate-y-1 hover:border-angeltors-accent/40 hover:bg-white/10"
+                    transition={{ duration: 0.45, delay: index * 0.08 }}
+                    className="group relative overflow-hidden rounded-none border border-white/10 bg-gradient-to-br from-angeltors-accent/30 to-angeltors-accent/10 p-8 text-center transition first:rounded-l-3xl last:rounded-r-3xl hover:-translate-y-1 hover:from-angeltors-accent/40 hover:to-angeltors-accent/20"
                   >
-                    <div className="inline-flex rounded-2xl bg-gradient-to-br from-angeltors-accent/20 to-angeltors-accent-light/10 p-3 text-angeltors-accent">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-5 text-lg font-semibold text-white">{card.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-400">{card.description}</p>
-                  </motion.article>
-                )
-              })}
-            </div>
-          </section>
-
-          {/* Diversified Portfolio Section */}
-          <section className="mt-24 grid gap-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-angeltors-dark to-angeltors-dark-2 p-6 shadow-2xl shadow-angeltors-dark lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
-            <motion.div
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55 }}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
-                Diversified Portfolio
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Our commitment is to sectors with strong growth potential.
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                We focus on high-potential opportunities across technology, consumer,
-                healthcare, and emerging market segments with a disciplined support model.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
-                >
-                  Learn More
-                  <ChevronRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/learn-with-us"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                >
-                  Talk to Us
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55 }}
-              className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
-            >
-              <img src="/images/time_to_grow.jpg" alt="Strategic investors meeting" className="h-full min-h-[22rem] w-full object-cover" />
-            </motion.div>
-          </section>
-
-          {/* Services Section */}
-          <section id="our-services" className="pt-24 sm:pt-28">
-            <SectionHeading
-              eyebrow="What we offer"
-              title="Investors, Startups, Mentorship, and In-House Support."
-              body="A premium operating stack for people who need capital, guidance, and execution support in one place."
-              center
-            />
-
-            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {serviceCards.map((service, index) => (
-                <motion.article
-                  key={service.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 backdrop-blur-xl"
-                >
-                  <img src={service.image} alt={service.title} className="h-48 w-full object-cover" />
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-400">{service.description}</p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section className="mt-24 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <motion.div
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55 }}
-              className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
-            >
-              <img src="/images/strategic_partner.jpg" alt="Strategy session" className="h-full min-h-[22rem] w-full object-cover" />
-            </motion.div>
-
-            <div>
-              <SectionHeading
-                eyebrow="Learn With Us"
-                title="Frequently asked questions"
-                body="Questions from investors and founders, answered with the kind of clarity expected in a modern fintech product."
-              />
-
-              <div className="mt-8 space-y-3">
-                {faqItems.map((item, index) => (
-                  <motion.details
-                    key={item.question}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="group rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-white">
-                      {item.question}
-                      <ChevronRight className="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-90" />
-                    </summary>
-                    <p className="mt-3 pr-6 text-sm leading-7 text-slate-400">{item.answer}</p>
-                  </motion.details>
+                    <div className="absolute -left-4 top-1/2 h-16 w-16 -translate-y-1/2 bg-angeltors-accent/20 clip-path-[polygon(0_0,100%_50%,0_100%)]" />
+                    <p className="text-3xl font-bold tracking-tight text-white">
+                      {stat.value}
+                    </p>
+                    <p className="mt-2 text-sm uppercase tracking-[0.2em] text-slate-300">{stat.label}</p>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-          </section>
+            </section>
+          </main>
+        </div>
 
-          {/* Newsletter Section */}
-          <section className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-r from-angeltors-accent/15 via-angeltors-accent-light/10 to-angeltors-accent/10 p-6 sm:p-8">
-            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
-                  Stay updated
-                </p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Join the Angeltors network
-                </h2>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                  Get updates on startups, investment opportunities, and founder support built for a premium SaaS experience.
-                </p>
+          {/* Feature Cards */}
+          <section id="about-us" className="bg-stone-100 text-gray-800">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+              <div className="grid items-start gap-12 lg:grid-cols-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-pink-700">
+                    Let's Invest In Innovative Startups.
+                  </p>
+                  <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl leading-snug">
+                    Join the Angeltors, Where Innovation Meets Opportunity.
+                  </h2>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="space-y-6 text-gray-700"
+                >
+                  <p className="text-base leading-relaxed">
+                    Angeltors group as a Valuable partner for both Startups & Investors/Founders.
+                  </p>
+                  <p className="text-base leading-relaxed">
+                    Angeltors: Don't look on company, they look on ambitious founders.
+                  </p>
+                </motion.div>
               </div>
 
-              <form className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
-                <input
-                  type="email"
-                  aria-label="Email address"
-                  placeholder="Your email address"
-                  className="h-12 flex-1 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-slate-500 outline-none ring-0 transition focus:border-angeltors-accent"
-                />
-                <button
-                  type="submit"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
-                >
-                  Subscribe
-                  <Mail className="h-4 w-4" />
-                </button>
-              </form>
+              <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {featureCards.map((card, index) => {
+                  const Icon = card.icon
+                  return (
+                    <motion.article
+                      key={card.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: index * 0.06 }}
+                      className="group"
+                    >
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl text-4xl text-gray-800">
+                        <Icon className="h-10 w-10" />
+                      </div>
+                      <h3 className="mt-6 text-2xl font-bold text-gray-900">{card.title}</h3>
+                      <p className="mt-3 text-base leading-relaxed text-gray-600 text-justify">{card.description}</p>
+                    </motion.article>
+                  )
+                })}
+              </div>
             </div>
           </section>
-        </main>
+
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-angeltors-dark to-angeltors-dark-2" />
+            <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+              {/* Diversified Portfolio Section */}
+              <section className="grid gap-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-angeltors-dark to-angeltors-dark-2 p-6 shadow-2xl shadow-angeltors-dark lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
+                <motion.div
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55 }}
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
+                    Diversified Portfolio
+                  </p>
+                  <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                    Our commitment is to sectors with strong growth potential.
+                  </h2>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                    We focus on high-potential opportunities across technology, consumer,
+                    healthcare, and emerging market segments with a disciplined support model.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
+                    >
+                      Learn More
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      to="/learn-with-us"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    >
+                      Talk to Us
+                    </Link>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55 }}
+                  className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
+                >
+                  <img src="/images/time_to_grow.jpg" alt="Strategic investors meeting" className="h-full min-h-[22rem] w-full object-cover" />
+                </motion.div>
+              </section>
+
+              {/* Services Section */}
+              <section id="our-services" className="mt-24">
+                <SectionHeading
+                  eyebrow="What we offer"
+                  title="Investors, Startups, Mentorship, and In-House Support."
+                  body="A premium operating stack for people who need capital, guidance, and execution support in one place."
+                  center
+                />
+
+                <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                  {serviceCards.map((service, index) => (
+                    <motion.article
+                      key={service.title}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: index * 0.05 }}
+                      className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 backdrop-blur-xl"
+                    >
+                      <img src={service.image} alt={service.title} className="h-48 w-full object-cover" />
+                      <div className="p-6">
+                        <h3 className="text-lg font-semibold text-white">{service.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-slate-400">{service.description}</p>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </section>
+
+              {/* FAQ Section */}
+              <section className="mt-24 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+                <motion.div
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55 }}
+                  className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5"
+                >
+                  <img src="/images/strategic_partner.jpg" alt="Strategy session" className="h-full min-h-[22rem] w-full object-cover" />
+                </motion.div>
+
+                <div>
+                  <SectionHeading
+                    eyebrow="Learn With Us"
+                    title="Frequently asked questions"
+                    body="Questions from investors and founders, answered with the kind of clarity expected in a modern fintech product."
+                  />
+
+                  <div className="mt-8 space-y-3">
+                    {faqItems.map((item, index) => (
+                      <motion.details
+                        key={item.question}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.05 }}
+                        className="group rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
+                      >
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-white">
+                          {item.question}
+                          <ChevronRight className="h-4 w-4 shrink-0 text-slate-400 transition group-open:rotate-90" />
+                        </summary>
+                        <p className="mt-3 pr-6 text-sm leading-7 text-slate-400">{item.answer}</p>
+                      </motion.details>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Newsletter Section */}
+              <section className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-r from-angeltors-accent/15 via-angeltors-accent-light/10 to-angeltors-accent/10 p-6 sm:p-8">
+                <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-angeltors-accent">
+                      Stay updated
+                    </p>
+                    <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                      Join the Angeltors network
+                    </h2>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+                      Get updates on startups, investment opportunities, and founder support built for a premium SaaS experience.
+                    </p>
+                  </div>
+
+                  <form className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+                    <input
+                      type="email"
+                      aria-label="Email address"
+                      placeholder="Your email address"
+                      className="h-12 flex-1 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-slate-500 outline-none ring-0 transition focus:border-angeltors-accent"
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-angeltors-dark transition hover:-translate-y-0.5"
+                    >
+                      Subscribe
+                      <Mail className="h-4 w-4" />
+                    </button>
+                  </form>
+                </div>
+              </section>
+            </div>
+          </div>
 
         <footer className="border-t border-white/10 bg-angeltors-dark/90">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_1.4fr] lg:px-8">
