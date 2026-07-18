@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { useScrollProgress } from "../hooks/useScrollProgress";
-import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function ScrollProgress() {
   const progress = useScrollProgress();

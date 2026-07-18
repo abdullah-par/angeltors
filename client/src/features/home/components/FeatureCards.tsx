@@ -1,7 +1,7 @@
 import { Globe, Layers, Shield, TrendingUp, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import { useReducedMotion } from "../hooks/useReducedMotion";
-import BorderGlow from "./BorderGlow";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import BorderGlow from "@/components/common/BorderGlow";
 
 export default function FeatureCards() {
   const reducedMotion = useReducedMotion();

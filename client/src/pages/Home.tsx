@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import ScrollProgress from "../components/ScrollProgress";
-import Hero from "../components/Hero";
-import StatsSection from "../components/StatsSection";
-import FeatureCards from "../components/FeatureCards";
-import BuildFutureBanner from "../components/BuildFutureBanner";
-import ServicesGrid from "../components/ServicesGrid";
-import SeedToScaleBanner from "../components/SeedToScaleBanner";
-import FAQSection from "../components/FAQSection";
-import TestimonialBanner from "../components/TestimonialBanner";
-import NewsletterSection from "../components/NewsletterSection";
-import FloatingButtons from "../components/FloatingButtons";
+import ScrollProgress from "../layouts/components/ScrollProgress";
+import Hero from "../features/home/components/Hero";
+import StatsSection from "../features/home/components/StatsSection";
+import FeatureCards from "../features/home/components/FeatureCards";
+import BuildFutureBanner from "../features/home/components/BuildFutureBanner";
+import ServicesGrid from "../features/home/components/ServicesGrid";
+import SeedToScaleBanner from "../features/home/components/SeedToScaleBanner";
+import FAQSection from "../features/home/components/FAQSection";
+import TestimonialBanner from "../features/home/components/TestimonialBanner";
+import NewsletterSection from "../features/home/components/NewsletterSection";
+import FloatingButtons from "../layouts/components/FloatingButtons";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sparkles, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 function Typewriter() {
   const words = ["Let's Grow", "Let's Invest", "Let's Partner", "Let's Go"];
