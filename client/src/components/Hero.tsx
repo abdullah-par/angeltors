@@ -99,7 +99,7 @@ export default function Hero() {
               key={el.type}
               initial={initial}
               animate={animate}
-              transition={transition}
+              transition={transition} 
             >
               {el.type === "eyebrow" && (
                 <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/5 px-4 py-2 text-xs font-semibold uppercase tracking-[3px] text-angeltors-accent">
