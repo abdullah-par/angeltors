@@ -3,10 +3,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'angeltors-dark': '#0a1a38',
-        'angeltors-dark-2': '#0d2147',
-        'angeltors-accent': '#18b0ff',
-        'angeltors-accent-light': '#5ecfff',
+        'angeltors-bg': '#F6F9FC',
+        'angeltors-band': '#FFFFFF',
+        'angeltors-ink': '#0A2540',
+        'angeltors-ink-on': '#FFFFFF',
+        'angeltors-muted': '#425466',
+        'angeltors-border': '#E6EBF1',
+        'angeltors-accent': '#635BFF',
+        'angeltors-accent-light': '#7a73ff',
+        'angeltors-cyan': '#00d4ff',
       }
     }
   }
