@@ -21,7 +21,7 @@ export default function TestimonialBanner() {
           whileInView={reducedMotion ? {} : { opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={reducedMotion ? { duration: 0 } : { duration: 0.7, ease: "easeOut" }}
-          className="relative rounded-2xl border border-angeltors-border bg-white p-8 md:p-16 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+          className="relative rounded-2xl depth-border bg-white p-8 md:p-16 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
         >
           {/* Decorative quote icon */}
           <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex h-16 w-16 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-accent shadow-sm">

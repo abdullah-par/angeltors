@@ -61,7 +61,7 @@ export default function BuildFutureBanner() {
             transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
             className="relative"
           >
-            <div className="overflow-hidden rounded-2xl border border-angeltors-border bg-white p-2 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="overflow-hidden rounded-2xl depth-border bg-white p-2 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
               <img
                 src="/images/time-to-grow.jpg"
                 alt="Visionary founders and investors meeting"

@@ -32,7 +32,7 @@ function StatCard({ stat, index, isInView, reducedMotion }: StatCardProps) {
         delay: index * 0.08,
         ease: "easeOut",
       }}
-      className="relative overflow-hidden rounded-2xl border border-angeltors-border bg-white p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+      className="relative overflow-hidden rounded-2xl depth-border bg-white p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
     >
       <p className="text-4xl font-extrabold tracking-tight text-angeltors-ink">
         {isInView ? count : 0}

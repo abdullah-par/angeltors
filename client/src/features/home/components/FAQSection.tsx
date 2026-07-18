@@ -48,7 +48,7 @@ export default function FAQSection() {
           whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={reducedMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" }}
-          className="overflow-hidden rounded-2xl border border-angeltors-border bg-white p-2 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+          className="overflow-hidden rounded-2xl depth-border bg-white p-2 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
         >
           <img
             src="/images/LearnWithUs.jpg"

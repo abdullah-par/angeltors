@@ -26,7 +26,7 @@ export default function Footer() {
         { label: "Sign Up", href: "#contact" },
         { label: "Pitch To Us", href: "#contact" },
         { label: "Blog Post", href: "#contact" },
-        { label: "Investor Relation", href: "#contact" },
+        { label: "Investor Relation", href: "/investor-relation" },
       ],
     },
     {

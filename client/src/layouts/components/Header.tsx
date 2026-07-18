@@ -329,19 +329,14 @@ export default function Header() {
               Log in
             </a>
 
-            <motion.a
-              href={ctaHref}
+            <Link
+              to="/membership"
               ref={ctaRef}
-              onMouseMove={handleCtaMouseMove}
-              onMouseLeave={handleCtaMouseLeave}
-              style={reducedMotion ? {} : { x: magneticOffset.x, y: magneticOffset.y }}
-              animate={{ x: magneticOffset.x, y: magneticOffset.y }}
-              transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 20 }}
-              className="hidden rounded-full bg-angeltors-accent px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 inline-flex items-center gap-1.5 hover:brightness-90 hover:-translate-y-[2px] hover:shadow-md xl:inline-flex animate-none"
+              className="hidden rounded-full bg-angeltors-accent px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 inline-flex items-center gap-1.5 hover:brightness-90 hover:-translate-y-[2px] hover:shadow-md xl:inline-flex"
             >
               <span>Membership</span>
               <ChevronRight className="h-4 w-4" />
-            </motion.a>
+            </Link>
 
             <button
               type="button"
@@ -429,14 +424,14 @@ export default function Header() {
                   >
                     Log in
                   </a>
-                  <a
-                    href={ctaHref}
+                  <Link
+                    to="/membership"
                     onClick={() => setMenuOpen(false)}
                     className="flex justify-center items-center rounded-xl bg-angeltors-accent py-3 text-sm font-semibold text-white hover:brightness-90 gap-1.5"
                   >
                     <span>Membership</span>
                     <ChevronRight className="h-4 w-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

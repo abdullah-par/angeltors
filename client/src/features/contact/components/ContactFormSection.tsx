@@ -230,7 +230,7 @@ export default function ContactFormSection() {
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
           className="mx-auto max-w-3xl"
         >
-          <div className="rounded-2xl border border-angeltors-border bg-angeltors-bg stripe-shadow-lg overflow-hidden">
+          <div className="rounded-2xl depth-border bg-angeltors-bg stripe-shadow-lg overflow-hidden">
 
             <AnimatePresence mode="wait">
               {status === "success" ? (

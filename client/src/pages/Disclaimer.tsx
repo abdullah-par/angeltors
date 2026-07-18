@@ -79,7 +79,7 @@ export default function Disclaimer() {
       {/* Content Section */}
       <section className="bg-angeltors-bg py-16 md:py-24 text-angeltors-muted">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl border border-angeltors-border p-8 md:p-12 stripe-shadow-md space-y-8">
+          <div className="bg-white rounded-2xl depth-border p-8 md:p-12 stripe-shadow-md space-y-8">
             
             <p className="text-sm font-semibold text-angeltors-muted">
               Last updated: March 05, 2025

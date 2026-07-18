@@ -107,7 +107,7 @@ export default function ContactInfo() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             className="sticky top-8"
           >
-            <div className="rounded-2xl overflow-hidden border border-angeltors-border stripe-shadow-lg" style={{ height: 440 }}>
+            <div className="rounded-2xl overflow-hidden depth-border stripe-shadow-lg" style={{ height: 440 }}>
               {/* Map header bar */}
               <div className="flex items-center gap-2 px-4 py-3 bg-white border-b border-angeltors-border">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-400" />

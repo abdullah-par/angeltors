@@ -80,7 +80,7 @@ function Card({ badge, title, bg, dark = false, image, imageAlt, imageLeft = fal
 
   return (
     <div
-      className="rounded-2xl border border-angeltors-border overflow-hidden shadow-md"
+      className="rounded-2xl depth-border overflow-hidden shadow-md"
       style={{ background: bg ?? '#ffffff' }}
     >
       <div className={`grid lg:grid-cols-2 min-h-[72vh] ${imageLeft ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>

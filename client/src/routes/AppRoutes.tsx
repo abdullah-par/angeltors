@@ -8,6 +8,8 @@ import TermsOfUse from "../pages/TermsOfUse";
 import RefundPolicy from "../pages/RefundPolicy";
 import Disclaimer from "../pages/Disclaimer";
 import CookiesPolicy from "../pages/CookiesPolicy";
+import InvestorRelation from "../pages/InvestorRelation";
+import Membership from "../pages/Membership";
 
 export default function AppRoutes() {
   return (
@@ -21,6 +23,8 @@ export default function AppRoutes() {
         <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
+        <Route path="/investor-relation" element={<InvestorRelation />} />
+        <Route path="/membership" element={<Membership />} />
       </Route>
     </Routes>
   );
