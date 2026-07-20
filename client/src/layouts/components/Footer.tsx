@@ -25,7 +25,7 @@ export default function Footer() {
       links: [
         { label: "Sign Up", href: "#contact" },
         { label: "Pitch To Us", href: "#contact" },
-        { label: "Blog Post", href: "#contact" },
+        { label: "Blog Post", href: "/learn" },
         { label: "Investor Relation", href: "/investor-relation" },
       ],
     },
@@ -49,7 +49,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_2fr] lg:gap-24 mb-16">
           <div className="flex flex-col justify-between max-w-sm">
             <div>
-              <a href="#hero" className="flex items-center select-none group">
+              <a href="\" className="flex items-center select-none group">
                 <img 
                   src="/images/Angeltors_logo.png" 
                   alt="Angeltors" 

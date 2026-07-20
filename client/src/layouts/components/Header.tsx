@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Learn With Us",
-    href: "#faq",
+    href: "/learn",
   },
   { label: "Contact", href: "/contact" },
 ];

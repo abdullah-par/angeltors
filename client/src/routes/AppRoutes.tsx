@@ -16,7 +16,8 @@ const InvestorRelation = lazy(() => import("../pages/InvestorRelation"));
 const RaiseCapital = lazy(() => import("../pages/RaiseCapital"));
 const Membership = lazy(() => import("../pages/Membership"));
 const Services = lazy(() => import("../pages/Services"));
-
+const Learn = lazy(() => import("../pages/Learn"));
+const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 export default function AppRoutes() {
   return (
     <Routes>
@@ -34,6 +35,8 @@ export default function AppRoutes() {
         <Route path="/membership" element={<Membership />} />
         <Route path="/invest-with-us" element={<InvestWithUs />} />
         <Route path="/raise-capital" element={<RaiseCapital />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/learn/:slug" element={<BlogDetails />} />
       </Route>
     </Routes>
   );
