@@ -33,30 +33,18 @@ export default function Home() {
 
       <ScrollProgress />
       
-      <div className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-16">
-        <Hero />
+      <Hero />
+      <div className="px-4 sm:px-6 lg:px-8 mb-20">
         <StatsSection />
       </div>
 
       <FeatureCards />
-
       <BuildFutureBanner />
-
-      <div className="mx-auto max-w-7xl px-4 py-24 lg:py-32 sm:px-6 lg:px-8">
-        <ServicesGrid />
-      </div>
-
+      <ServicesGrid />
       <SeedToScaleBanner />
-
-      <div className="mx-auto max-w-7xl px-4 py-24 lg:py-32 sm:px-6 lg:px-8">
-        <FAQSection />
-      </div>
-
+      <FAQSection />
       <TestimonialBanner />
-
-      <div className="pb-24 pt-12">
-        <NewsletterSection />
-      </div>
+      <NewsletterSection />
 
       <FloatingButtons />
     </>

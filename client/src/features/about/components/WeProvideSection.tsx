@@ -54,33 +54,34 @@ interface CardProps {
 
 function Card({ badge, title, bg, dark = false, image, imageAlt, imageLeft = false, children }: CardProps) {
   const textBase = dark ? 'text-white' : 'text-angeltors-ink';
-  const textMuted = dark ? 'text-slate-300' : 'text-angeltors-muted';
-  const badgeBg = dark ? 'bg-white/10 border-white/20 text-angeltors-cyan' : 'bg-angeltors-accent/8 border-angeltors-accent/15 text-angeltors-accent';
+  const textMuted = dark ? 'text-slate-300' : 'text-slate-500';
+  const badgeBg = dark ? 'bg-white/10 border-white/20 text-angeltors-cyan' : 'bg-white border-slate-200/60 text-angeltors-accent shadow-sm';
 
   const textCol = (
-    <div className="p-10 lg:p-14 flex flex-col justify-center gap-6">
-      <span className={`inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[3px] w-fit ${badgeBg}`}>
+    <div className="p-10 lg:p-16 flex flex-col justify-center gap-8">
+      <span className={`inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-bold uppercase tracking-[3px] w-fit ${badgeBg}`}>
         {badge}
       </span>
-      <h3 className={`text-2xl sm:text-3xl font-extrabold tracking-[-0.02em] leading-tight ${textBase}`}>
+      <h3 className={`text-4xl sm:text-5xl font-black tracking-tighter leading-[1.1] ${textBase}`}>
         {title}
       </h3>
-      <div className={`space-y-4 text-sm leading-relaxed ${textMuted}`}>
+      <div className={`space-y-5 text-[17px] font-medium leading-relaxed ${textMuted}`}>
         {children}
       </div>
     </div>
   );
 
   const imgCol = (
-    <div className="relative overflow-hidden min-h-[280px] lg:min-h-0">
-      <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover" />
-      {dark && <div className="absolute inset-0 bg-gradient-to-r from-angeltors-ink/60 to-transparent" />}
+    <div className="relative overflow-hidden min-h-[300px] lg:min-h-0 m-4 lg:m-6 rounded-[2rem] shadow-sm">
+      <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 hover:scale-105" />
+      {dark && <div className="absolute inset-0 bg-gradient-to-r from-angeltors-ink/40 to-transparent" />}
+      {!dark && <div className="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-white/10 pointer-events-none" />}
     </div>
   );
 
   return (
     <div
-      className="rounded-2xl depth-border overflow-hidden shadow-md"
+      className="rounded-[3rem] border border-slate-200/60 overflow-hidden shadow-xl"
       style={{ background: bg ?? '#ffffff' }}
     >
       <div className={`grid lg:grid-cols-2 min-h-[72vh] ${imageLeft ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
@@ -97,21 +98,23 @@ export default function WeProvideSection() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="bg-white">
+    <section className="bg-slate-50 border-t border-slate-200/50">
       {/* ── Section Header ── */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center">
         <motion.div
           initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-4"
+          className="space-y-6"
         >
-          <p className="text-xs font-bold uppercase tracking-[4px] text-angeltors-accent">We Provide</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-angeltors-ink max-w-3xl mx-auto leading-tight">
-            Specialization in Developing Investment Strategy
+          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
+            We Provide
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-angeltors-ink max-w-3xl mx-auto leading-[0.95]">
+            Specialization in Developing Investment Strategy.
           </h2>
-          <p className="text-base text-angeltors-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed pt-2">
             From seed funding to strategic mentorship, we provide a comprehensive ecosystem designed to help founders build category-defining companies.
           </p>
         </motion.div>

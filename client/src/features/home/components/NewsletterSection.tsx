@@ -10,40 +10,47 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white relative">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <section id="contact" className="py-32 md:py-40 bg-white relative">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
-          initial={reducedMotion ? {} : { opacity: 0, y: 16 }}
+          initial={reducedMotion ? {} : { opacity: 0, y: 30 }}
           whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={reducedMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" }}
-          className="rounded-2xl border-[0.5px] border-angeltors-border-mid/85 ag-gradient-card p-8 md:p-14 ag-shadow-sm transition-all duration-300 hover:ag-shadow-md"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="rounded-[3.5rem] bg-angeltors-ink p-12 md:p-24 shadow-2xl relative overflow-hidden"
         >
-          <p className="text-sm font-semibold uppercase tracking-[3px] text-angeltors-accent">
-            Stay Updated
-          </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-[-0.03em] leading-[1.05] text-angeltors-ink sm:text-4xl">
-            Subscribe to our Newsletter
-          </h2>
-          <p className="mt-4 mx-auto max-w-xl text-base leading-relaxed text-angeltors-muted">
-            Get the latest updates, curated investment opportunities, and industry insights delivered directly to your inbox.
-          </p>
+          {/* Abstract glows inside the newsletter block */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-angeltors-cyan/20 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-angeltors-accent/20 blur-[100px] rounded-full pointer-events-none -translate-x-1/3 translate-y-1/3" />
+          
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-cyan/20 bg-angeltors-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-cyan mb-6 shadow-sm">
+              Stay Updated
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-white">
+              Subscribe to our Newsletter
+            </h2>
+            
+            <p className="mt-6 mx-auto max-w-2xl text-lg md:text-xl leading-relaxed text-slate-400 font-medium">
+              Get the latest updates, curated investment opportunities, and industry insights delivered directly to your inbox.
+            </p>
 
-          <form onSubmit={handleSubmit} className="mt-10 flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              required
-              className="flex-1 rounded-full border border-angeltors-border bg-white px-6 py-3.5 text-sm text-angeltors-ink placeholder-angeltors-muted focus:border-angeltors-accent focus:outline-none focus:ring-1 focus:ring-angeltors-accent shadow-sm"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-angeltors-accent px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 inline-flex items-center justify-center gap-1.5 hover:brightness-90 hover:-translate-y-[2px] hover:shadow-md"
-            >
-              <span>Subscribe</span>
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </form>
+            <form onSubmit={handleSubmit} className="mt-12 flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                required
+                className="flex-1 rounded-full border-2 border-white/10 bg-white/5 px-8 py-5 text-base font-medium text-white placeholder-white/40 focus:border-white focus:bg-white/10 focus:outline-none transition-all shadow-inner"
+              />
+              <button
+                type="submit"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-white px-10 py-5 text-base font-bold text-angeltors-ink overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_30px_rgb(0,0,0,0.12)] shrink-0"
+              >
+                <span className="relative z-10 flex items-center gap-2">Subscribe <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
+              </button>
+            </form>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -18,7 +18,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#hero" },
+  { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   {
     label: "Invest With Us",
@@ -78,8 +78,8 @@ const navItems: NavItem[] = [
 ];
 
 /** Resolve a nav href based on current page.
- *  - On home: `#hero` stays `#hero`
- *  - On other pages: `#hero` → `/#hero`, `/contact` stays `/contact`
+ *  - On home: `#our-services` stays `#our-services`
+ *  - On other pages: `#our-services` → `/#our-services`, `/contact` stays `/contact`
  */
 function resolveHref(href: string, isHome: boolean): string {
   if (href.startsWith("/")) return href;
@@ -88,6 +88,9 @@ function resolveHref(href: string, isHome: boolean): string {
 
 /** True if the given nav item should be considered "active" */
 function isItemActive(item: NavItem, activeHash: string, pathname: string, isHome: boolean): boolean {
+  if (item.href === "/") {
+    return isHome && activeHash === "/";
+  }
   if (!isHome) {
     // On a named page route, match by pathname
     return item.href === pathname;
@@ -171,30 +174,31 @@ export default function Header() {
   const ctaHref = isHome ? "#contact" : "/#contact";
 
   return (
-    <div className="sticky top-0 z-50 w-full px-4 pt-4 sm:px-6 lg:px-8 pointer-events-none">
+    <div className="sticky top-0 z-50 w-full px-4 pt-6 sm:px-6 lg:px-8 pointer-events-none">
       <motion.header
-        className="mx-auto max-w-7xl rounded-2xl border transition-all duration-300 pointer-events-auto"
+        className="mx-auto max-w-7xl rounded-[2rem] transition-all duration-500 pointer-events-auto"
         initial={false}
         animate={{
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.4)",
-          backdropFilter: "blur(16px)",
-          borderColor: scrolled ? "rgba(230, 235, 244, 0.8)" : "rgba(230, 235, 244, 0)",
-          boxShadow: scrolled ? "0 10px 30px -10px rgba(50, 50, 93, 0.08)" : "none",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.5)",
+          backdropFilter: scrolled ? "blur(24px)" : "blur(12px)",
+          borderColor: scrolled ? "rgba(226, 232, 240, 0.8)" : "rgba(226, 232, 240, 0.4)",
+          borderWidth: "1px",
+          boxShadow: scrolled ? "0 20px 40px -15px rgba(0, 0, 0, 0.05)" : "0 4px 6px -1px rgba(0, 0, 0, 0.02)",
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="flex items-center gap-4 px-4 py-3 sm:px-6">
+        <div className="flex items-center gap-4 px-5 py-3 sm:px-6">
           {/* Logo — always goes home */}
-          <Link to="/" className="flex items-center select-none shrink-0">
+          <Link to="/" className="flex items-center select-none shrink-0 group">
             <img
               src="/images/Angeltors_logo.png"
               alt="Angeltors"
-              className="h-10 sm:h-12 w-auto object-contain bg-white rounded-lg px-2 py-0.5 shadow-sm border border-angeltors-border"
+              className="h-10 sm:h-12 w-auto object-contain bg-white rounded-xl px-2 py-0.5 shadow-sm border border-slate-200/60 transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="ml-4 hidden flex-1 items-center justify-center gap-0.5 xl:flex">
+          <nav className="ml-6 hidden flex-1 items-center justify-center gap-1 lg:flex">
             {navItems.map((item) => {
               const active = isItemActive(item, activeHash, location.pathname, isHome);
               const href = resolveHref(item.href, isHome);
@@ -204,20 +208,23 @@ export default function Header() {
               return (
                 <div
                   key={item.label}
-                  className="relative"
+                  className="relative group"
                   onMouseEnter={() => item.dropdown && setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   {isPageLink ? (
                     <Link
                       to={href}
-                      className={`relative px-3.5 py-2 text-xs xl:text-sm font-semibold transition-colors duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1 ${
-                        active ? "" : "hover:bg-neutral-500/5"
+                      onClick={() => {
+                        if (href === "/") window.scrollTo(0, 0);
+                      }}
+                      className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
+                        active ? "" : "hover:bg-slate-100/80 text-slate-500 hover:text-angeltors-ink"
                       }`}
                     >
                       <span
                         className={`relative z-10 transition-colors duration-300 ${
-                          active ? "text-white" : "text-angeltors-muted hover:text-angeltors-ink"
+                          active ? "text-white" : ""
                         }`}
                       >
                         {item.label}
@@ -225,8 +232,8 @@ export default function Header() {
                       {active && (
                         <motion.div
                           layoutId="activeNavIndicator"
-                          className="absolute inset-0 rounded-full bg-angeltors-accent"
-                          transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 30 }}
+                          className="absolute inset-0 rounded-full bg-angeltors-ink"
+                          transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 30 }}
                         />
                       )}
                     </Link>
@@ -234,15 +241,15 @@ export default function Header() {
                     // Hash link on a non-home page → regular <a> with /#hash
                     <a
                       href={href}
-                      className="relative px-3.5 py-2 text-xs xl:text-sm font-semibold transition-colors duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1 hover:bg-neutral-500/5"
+                      className="relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 text-slate-500 hover:bg-slate-100/80 hover:text-angeltors-ink"
                     >
-                      <span className="relative z-10 text-angeltors-muted hover:text-angeltors-ink transition-colors duration-300">
+                      <span className="relative z-10 transition-colors duration-300">
                         {item.label}
                       </span>
                       {item.dropdown && (
                         <ChevronDown
-                          className={`h-3 w-3 relative z-10 text-angeltors-muted transition-transform duration-300 ${
-                            openDropdown === item.label ? "rotate-180" : ""
+                          className={`h-3.5 w-3.5 relative z-10 transition-transform duration-300 ${
+                            openDropdown === item.label ? "rotate-180 text-angeltors-ink" : ""
                           }`}
                         />
                       )}
@@ -251,29 +258,29 @@ export default function Header() {
                     // Hash link on home page — scroll-spy active state
                     <a
                       href={href}
-                      className={`relative px-3.5 py-2 text-xs xl:text-sm font-semibold transition-colors duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1 ${
-                        !active ? "hover:bg-neutral-500/5" : ""
+                      className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
+                        !active ? "hover:bg-slate-100/80 text-slate-500 hover:text-angeltors-ink" : ""
                       }`}
                     >
                       <span
                         className={`relative z-10 transition-colors duration-300 ${
-                          active ? "text-white" : "text-angeltors-muted hover:text-angeltors-ink"
+                          active ? "text-white" : ""
                         }`}
                       >
                         {item.label}
                       </span>
                       {item.dropdown && (
                         <ChevronDown
-                          className={`h-3 w-3 relative z-10 transition-transform duration-300 ${
-                            active ? "text-white" : "text-angeltors-muted"
+                          className={`h-3.5 w-3.5 relative z-10 transition-transform duration-300 ${
+                            active ? "text-white/80" : ""
                           } ${openDropdown === item.label ? "rotate-180" : ""}`}
                         />
                       )}
                       {active && !item.dropdown && (
                         <motion.div
                           layoutId="activeNavIndicator"
-                          className="absolute inset-0 rounded-full bg-angeltors-accent"
-                          transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 30 }}
+                          className="absolute inset-0 rounded-full bg-angeltors-ink"
+                          transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 30 }}
                         />
                       )}
                     </a>
@@ -283,13 +290,13 @@ export default function Header() {
                   <AnimatePresence>
                     {item.dropdown && openDropdown === item.label && (
                       <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                        transition={{ duration: 0.18, ease: "easeOut" }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[22rem] rounded-xl border border-angeltors-border bg-white p-4 shadow-lg backdrop-blur-md"
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[24rem] rounded-[2rem] border border-slate-200/60 bg-white p-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] backdrop-blur-xl"
                       >
-                        <ul className="flex flex-col gap-2">
+                        <ul className="flex flex-col gap-1">
                           {item.dropdown.map((subItem) => {
                             const SubIcon = subItem.icon;
                             const subHref = resolveHref(subItem.href, isHome);
@@ -297,15 +304,15 @@ export default function Header() {
                               <li key={subItem.title}>
                                 <a
                                   href={subHref}
-                                  className="flex items-start gap-3 rounded-lg p-2.5 transition hover:bg-neutral-50"
+                                  className="group flex items-start gap-4 rounded-[1.25rem] p-4 transition-all duration-300 hover:bg-slate-50"
                                   onClick={() => setOpenDropdown(null)}
                                 >
-                                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-angeltors-accent/5 text-angeltors-accent">
-                                    <SubIcon className="h-4.5 w-4.5" />
+                                  <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 group-hover:bg-angeltors-accent group-hover:text-white transition-colors duration-300 shadow-sm">
+                                    <SubIcon className="h-5 w-5" />
                                   </div>
                                   <div className="leading-tight">
-                                    <span className="block text-sm font-semibold text-angeltors-ink">{subItem.title}</span>
-                                    <span className="mt-1 block text-xs leading-normal text-angeltors-muted">{subItem.description}</span>
+                                    <span className="block text-sm font-bold text-angeltors-ink group-hover:text-angeltors-accent transition-colors duration-300">{subItem.title}</span>
+                                    <span className="mt-1 block text-sm font-medium leading-relaxed text-slate-500">{subItem.description}</span>
                                   </div>
                                 </a>
                               </li>
@@ -321,10 +328,10 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTAs */}
-          <div className="ml-auto flex items-center gap-5 shrink-0">
+          <div className="ml-auto flex items-center gap-3 shrink-0">
             <a
               href={ctaHref}
-              className="hidden rounded-full border border-angeltors-navy-light/25 bg-angeltors-navy-light/5 text-angeltors-navy-light px-5 py-2.5 text-xs xl:text-sm font-semibold transition-all duration-300 hover:bg-angeltors-navy-light hover:text-white hover:-translate-y-[2px] xl:inline-flex items-center shadow-sm"
+              className="hidden rounded-full px-5 py-2.5 text-sm font-bold text-slate-500 transition-all duration-300 hover:text-angeltors-ink hover:bg-slate-100 lg:inline-flex items-center"
             >
               Log in
             </a>
@@ -332,16 +339,16 @@ export default function Header() {
             <Link
               to="/membership"
               ref={ctaRef}
-              className="hidden rounded-full bg-angeltors-accent px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 inline-flex items-center gap-1.5 hover:brightness-90 hover:-translate-y-[2px] hover:shadow-md xl:inline-flex"
+              className="hidden rounded-full bg-angeltors-ink px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_10px_-2px_rgba(0,0,0,0.3)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_20px_-4px_rgba(0,0,0,0.4)] lg:inline-flex items-center gap-2 group"
             >
               <span>Membership</span>
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-ink transition hover:bg-angeltors-band xl:hidden"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200/60 bg-white text-angeltors-ink transition hover:bg-slate-50 lg:hidden shadow-sm"
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
             >
@@ -357,10 +364,10 @@ export default function Header() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25 }}
-              className="border-t border-angeltors-border bg-white rounded-b-2xl xl:hidden"
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="border-t border-slate-200/60 bg-white/95 backdrop-blur-xl rounded-b-[2rem] lg:hidden overflow-hidden"
             >
-              <div className="flex flex-col gap-1 px-4 py-4 sm:px-6">
+              <div className="flex flex-col gap-2 px-5 py-6">
                 {navItems.map((item, index) => {
                   const active = isItemActive(item, activeHash, location.pathname, isHome);
                   const href = resolveHref(item.href, isHome);
@@ -371,11 +378,14 @@ export default function Header() {
                       {isPageLink ? (
                         <Link
                           to={href}
-                          onClick={() => setMenuOpen(false)}
-                          className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors duration-200 ${
+                          onClick={() => {
+                            setMenuOpen(false);
+                            if (href === "/") window.scrollTo(0, 0);
+                          }}
+                          className={`rounded-2xl px-5 py-4 text-base font-bold transition-colors duration-200 ${
                             active
-                              ? "text-white bg-angeltors-accent"
-                              : "text-angeltors-muted hover:bg-angeltors-band hover:text-angeltors-ink"
+                              ? "text-white bg-angeltors-ink"
+                              : "text-slate-500 hover:bg-slate-50 hover:text-angeltors-ink"
                           }`}
                         >
                           {item.label}
@@ -387,10 +397,10 @@ export default function Header() {
                           animate={reducedMotion ? {} : { opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.04, ease: "easeOut" }}
                           onClick={() => setMenuOpen(false)}
-                          className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors duration-200 ${
+                          className={`rounded-2xl px-5 py-4 text-base font-bold transition-colors duration-200 ${
                             active
-                              ? "text-white bg-angeltors-accent"
-                              : "text-angeltors-muted hover:bg-angeltors-band hover:text-angeltors-ink"
+                              ? "text-white bg-angeltors-ink"
+                              : "text-slate-500 hover:bg-slate-50 hover:text-angeltors-ink"
                           }`}
                         >
                           {item.label}
@@ -398,13 +408,13 @@ export default function Header() {
                       )}
 
                       {item.dropdown && (
-                        <div className="pl-6 flex flex-col gap-1.5 mt-1 mb-2 border-l border-angeltors-border ml-4">
+                        <div className="pl-6 flex flex-col gap-2 mt-2 mb-4 border-l-2 border-slate-100 ml-6">
                           {item.dropdown.map((sub) => (
                             <a
                               key={sub.title}
                               href={resolveHref(sub.href, isHome)}
                               onClick={() => setMenuOpen(false)}
-                              className="text-xs font-semibold text-angeltors-muted hover:text-angeltors-ink py-1.5"
+                              className="text-sm font-bold text-slate-400 hover:text-angeltors-ink py-2 transition-colors"
                             >
                               {sub.title}
                             </a>
@@ -416,21 +426,21 @@ export default function Header() {
                 })}
 
                 {/* Mobile CTAs */}
-                <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-angeltors-border">
+                <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-slate-200/60">
                   <a
                     href={ctaHref}
                     onClick={() => setMenuOpen(false)}
-                    className="flex justify-center items-center rounded-xl border border-angeltors-navy-light/20 bg-angeltors-navy-light/5 py-3 text-sm font-semibold text-angeltors-navy-light hover:bg-angeltors-navy-light hover:text-white transition-all duration-300"
+                    className="flex justify-center items-center rounded-2xl border border-slate-200/60 bg-white py-4 text-base font-bold text-angeltors-ink hover:bg-slate-50 transition-all duration-300"
                   >
                     Log in
                   </a>
                   <Link
                     to="/membership"
                     onClick={() => setMenuOpen(false)}
-                    className="flex justify-center items-center rounded-xl bg-angeltors-accent py-3 text-sm font-semibold text-white hover:brightness-90 gap-1.5"
+                    className="flex justify-center items-center rounded-2xl bg-angeltors-ink py-4 text-base font-bold text-white transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] gap-2"
                   >
                     <span>Membership</span>
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight className="h-5 w-5" />
                   </Link>
                 </div>
               </div>

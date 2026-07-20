@@ -91,55 +91,37 @@ export default function SectorsSection() {
   const active = sectors.find((s) => s.id === activeId)!;
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Dark background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/ab1.jpg"
-          alt=""
-          className="h-full w-full object-cover object-center scale-105"
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-angeltors-ink/82" />
-        {/* Subtle texture */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <section className="relative overflow-hidden bg-white py-32 border-t border-slate-200/50">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-12 space-y-4"
+          className="text-center mb-16 space-y-6"
         >
-          <p className="text-xs font-bold uppercase tracking-[4px] text-angeltors-cyan">We Provide</p>
-          <h2 className="text-3xl sm:text-4xl md:text-[2.6rem] font-extrabold tracking-[-0.03em] text-white leading-tight">
-            Strategically Allocating Capital<br className="hidden sm:block" /> Across High-Growth Sectors
+          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
+            Focus Areas
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-angeltors-ink max-w-4xl mx-auto leading-[0.95]">
+            Strategically Allocating Capital<br className="hidden sm:block" /> Across High-Growth Sectors.
           </h2>
         </motion.div>
 
-        {/* Tab pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Tab pills (Apple Style) */}
+        <div className="flex flex-wrap justify-center gap-2 mb-16 p-2 rounded-full bg-slate-100 max-w-fit mx-auto border border-slate-200/60 shadow-inner">
           {sectors.map((sector) => (
             <button
               key={sector.id}
               onClick={() => setActiveId(sector.id)}
-              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 border ${
+              className={`relative rounded-full px-6 py-3 text-[14px] font-bold transition-all duration-300 ${
                 activeId === sector.id
-                  ? 'bg-white text-angeltors-ink border-white shadow-md scale-105'
-                  : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30'
+                  ? 'text-angeltors-ink shadow-sm bg-white'
+                  : 'text-slate-500 hover:text-angeltors-ink hover:bg-slate-200/50'
               }`}
             >
-              {sector.label}
+              <span className="relative z-10">{sector.label}</span>
             </button>
           ))}
         </div>
@@ -148,39 +130,41 @@ export default function SectorsSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeId}
-            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
-            animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
-            exit={reducedMotion ? {} : { opacity: 0, y: -18 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="grid gap-8 lg:grid-cols-2 items-center"
+            initial={reducedMotion ? {} : { opacity: 0, scale: 0.98, y: 20 }}
+            animate={reducedMotion ? {} : { opacity: 1, scale: 1, y: 0 }}
+            exit={reducedMotion ? {} : { opacity: 0, scale: 0.98, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-[3rem] p-4 lg:p-6 border border-slate-200/60 shadow-xl"
           >
             {/* Image */}
-            <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <div className="overflow-hidden rounded-[2.5rem] shadow-sm relative group h-[400px] lg:h-[550px]">
+              <div className="absolute inset-0 z-10 bg-gradient-to-tr from-black/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <img
                 src={active.image}
                 alt={active.label}
-                className="h-72 w-full object-cover lg:h-[400px] transition-transform duration-500 hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
               />
             </div>
 
             {/* Text */}
-            <div className="space-y-6">
+            <div className="space-y-8 p-6 lg:p-10">
               <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-                  {active.label}{' '}
-                  <span className="text-angeltors-cyan">({active.percentage})</span>
+                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter text-angeltors-ink leading-tight flex items-baseline gap-4">
+                  {active.label}
+                  <span className="text-2xl text-angeltors-accent font-extrabold px-3 py-1 bg-angeltors-accent/10 rounded-xl">
+                    {active.percentage}
+                  </span>
                 </h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {active.blocks.map((block) => (
                   <div
                     key={block.heading}
-                    className="rounded-xl border border-white/10 p-5 space-y-2"
-                    style={{ background: 'rgba(255,255,255,0.05)' }}
+                    className="space-y-2 border-l-2 border-angeltors-cyan pl-5"
                   >
-                    <p className="text-xs font-bold uppercase tracking-[2px] text-angeltors-cyan">{block.heading}</p>
-                    <p className="text-sm text-slate-300 leading-relaxed">{block.body}</p>
+                    <p className="text-xs font-bold uppercase tracking-[2.5px] text-angeltors-ink">{block.heading}</p>
+                    <p className="text-[16px] text-slate-500 font-medium leading-relaxed">{block.body}</p>
                   </div>
                 ))}
               </div>

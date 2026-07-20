@@ -1,60 +1,74 @@
 import { motion } from "framer-motion";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Sparkles } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Link } from "react-router-dom";
 
 export default function ContactHero() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-angeltors-ink text-white">
-      {/* Animated background blobs */}
+    <section className="relative overflow-hidden bg-white py-32 lg:py-40">
+      {/* Dynamic animated background gradients */}
       <motion.div
-        animate={reducedMotion ? {} : { x: [0, 18, -12, 0], y: [0, -18, 8, 0], scale: [1, 1.06, 0.95, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-24 right-1/3 h-96 w-96 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(0,55,158,0.5) 0%, transparent 70%)" }}
-      />
-      <motion.div
-        animate={reducedMotion ? {} : { x: [0, -14, 10, 0], y: [0, 14, -8, 0], scale: [1, 0.95, 1.05, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        className="absolute bottom-0 left-1/4 h-64 w-64 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%)" }}
-      />
-
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+        animate={{
+          x: [0, 30, -20, 0],
+          y: [0, -30, 20, 0],
+          scale: [1, 1.1, 0.95, 1],
         }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-0 right-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-angeltors-accent/20 blur-[130px] mix-blend-multiply opacity-60 pointer-events-none"
+      />
+      <motion.div
+        animate={{
+          x: [0, -20, 30, 0],
+          y: [0, 30, -20, 0],
+          scale: [1, 0.9, 1.05, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 left-1/4 -z-10 h-[450px] w-[450px] rounded-full bg-angeltors-cyan/15 blur-[120px] mix-blend-multiply opacity-50 pointer-events-none"
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-24 text-center">
+      {/* Modern dot pattern background */}
+      <div className="absolute inset-0 -z-20 h-full w-full bg-[url('/grid-pattern.svg')] opacity-[0.03]"></div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+          initial={reducedMotion ? {} : { opacity: 0, y: 24 }}
           animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-5"
+          className="mx-auto max-w-3xl space-y-8"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.03em] leading-tight text-white">
-            Contact Us
-          </h1>
-
-          {/* Decorative accent line */}
           <div className="flex justify-center">
-            <div className="h-1 w-16 rounded-full bg-angeltors-cyan opacity-80" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
+              <Sparkles className="h-4 w-4" />
+              We're Here to Help
+            </span>
           </div>
 
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-angeltors-ink tracking-tighter leading-[0.95]">
+            Let's build something <br className="hidden sm:block" /> incredible together.
+          </h1>
+
+          <p className="text-lg md:text-xl text-slate-500 leading-relaxed font-medium max-w-2xl mx-auto">
+            Whether you're looking for early-stage funding, strategic mentorship, or simply want to learn more about our network, we'd love to hear from you.
+          </p>
+
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex justify-center items-center gap-2 text-sm font-medium text-slate-400">
-            <a href="/" className="flex items-center gap-1.5 hover:text-angeltors-cyan transition-colors duration-200">
-              <Home className="h-3.5 w-3.5" />
+          <nav aria-label="Breadcrumb" className="mt-8 flex justify-center items-center gap-2 text-sm font-bold text-slate-400">
+            <Link to="/" className="flex items-center gap-1.5 hover:text-angeltors-ink transition-colors duration-200">
+              <Home className="h-4 w-4" />
               Home
-            </a>
-            <ChevronRight className="h-4 w-4 text-slate-600" />
-            <span className="text-angeltors-cyan font-semibold">Contact</span>
+            </Link>
+            <ChevronRight className="h-4 w-4 text-slate-300" />
+            <span className="text-angeltors-ink">Contact</span>
           </nav>
         </motion.div>
       </div>

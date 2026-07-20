@@ -5,26 +5,19 @@ export default function TestimonialBanner() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-28 md:py-36 ag-gradient-banner border-t-2 border-b-2 border-angeltors-border-dark/60">
-      {/* Background Image Container with very low opacity */}
-      <div className="absolute inset-0 z-0 opacity-5">
-        <img
-          src="/images/testimonial.jpg"
-          alt="Angeltors testimonial backdrop"
-          className="h-full w-full object-cover object-center scale-105"
-        />
-      </div>
+    <section className="relative overflow-hidden py-32 md:py-40 bg-slate-50 border-t border-slate-200/60">
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
-          initial={reducedMotion ? {} : { opacity: 0, scale: 0.97, y: 15 }}
+          initial={reducedMotion ? {} : { opacity: 0, scale: 0.97, y: 30 }}
           whileInView={reducedMotion ? {} : { opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={reducedMotion ? { duration: 0 } : { duration: 0.7, ease: "easeOut" }}
-          className="relative rounded-2xl depth-border bg-white p-8 md:p-16 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={reducedMotion ? { duration: 0 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-[3rem] bg-white border border-slate-200/60 p-10 md:p-20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] group"
         >
           {/* Decorative quote icon */}
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex h-16 w-16 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-accent shadow-sm">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex h-20 w-20 items-center justify-center rounded-full bg-white border border-slate-200/60 text-angeltors-accent shadow-xl group-hover:scale-110 transition-transform duration-500">
             <svg
               className="h-8 w-8 fill-current"
               viewBox="0 0 24 24"
@@ -34,16 +27,16 @@ export default function TestimonialBanner() {
             </svg>
           </div>
 
-          <p className="font-serif text-lg md:text-2xl lg:text-3xl leading-relaxed text-angeltors-ink font-light italic text-justify sm:text-center">
+          <p className="text-2xl md:text-4xl lg:text-5xl leading-snug md:leading-tight text-angeltors-ink font-bold tracking-tight text-center">
             "Unlocking potential with Angeltors — we cultivate a vibrant ecosystem where visionary founders, strategic investors, and industry leaders converge to nurture innovation, drive growth, and shape the future of the startup ecosystem."
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-angeltors-border" />
-            <span className="text-xs uppercase tracking-[3px] font-semibold text-angeltors-accent">
+          <div className="mt-12 flex items-center justify-center gap-4">
+            <div className="h-px w-12 bg-slate-200" />
+            <span className="text-sm uppercase tracking-widest font-bold text-slate-500">
               Angeltors Ecosystem
             </span>
-            <div className="h-px w-8 bg-angeltors-border" />
+            <div className="h-px w-12 bg-slate-200" />
           </div>
         </motion.div>
       </div>
