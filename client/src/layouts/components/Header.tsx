@@ -20,59 +20,18 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
+  { label: "Our Services", href: "/services" },
   {
     label: "Invest With Us",
     href: "/invest-with-us",
-    dropdown: [
-      {
-        title: "Portfolio Diligence",
-        href: "#our-services",
-        description: "Discover curated investments and diligence summaries.",
-        icon: CircleDashed,
-      },
-      {
-        title: "Investor Protocols",
-        href: "#our-services",
-        description: "Review rules, timelines, and pool allocation structures.",
-        icon: CircleAlert,
-      },
-    ],
   },
   {
     label: "Raise Capital",
-    href: "#our-services",
-    dropdown: [
-      {
-        title: "Founder Pathways",
-        href: "#our-services",
-        description: "Accelerate your pathway to early-stage seed rounds.",
-        icon: CircleAlert,
-      },
-      {
-        title: "Strategic Support",
-        href: "#our-services",
-        description: "Get assistance with legal systems and operational scale.",
-        icon: CircleCheck,
-      },
-    ],
+    href: "/raise-capital",
   },
   {
     label: "Learn With Us",
     href: "#faq",
-    dropdown: [
-      {
-        title: "FAQ & Frameworks",
-        href: "#faq",
-        description: "Get answers to key criteria and timeline processes.",
-        icon: CircleDashed,
-      },
-      {
-        title: "Blogs & News",
-        href: "#contact",
-        description: "Ecosystem insights, updates, and research stories.",
-        icon: CircleCheck,
-      },
-    ],
   },
   { label: "Contact", href: "/contact" },
 ];

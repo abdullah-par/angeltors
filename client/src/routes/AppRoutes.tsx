@@ -1,16 +1,21 @@
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import DefaultLayout from "../layouts/DefaultLayout";
-import Home from "../pages/Home";
-import Contact from "../pages/Contact";
-import About from "../pages/About";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import TermsOfUse from "../pages/TermsOfUse";
-import RefundPolicy from "../pages/RefundPolicy";
-import Disclaimer from "../pages/Disclaimer";
-import CookiesPolicy from "../pages/CookiesPolicy";
-import InvestorRelation from "../pages/InvestorRelation";
-import Membership from "../pages/Membership";
-import InvestWithUs from "../pages/InvestWithUs";
+
+// Lazy load pages for better performance
+const Home = lazy(() => import("../pages/Home"));
+const About = lazy(() => import("../pages/About"));
+const Contact = lazy(() => import("../pages/Contact"));
+const TermsOfUse = lazy(() => import("../pages/TermsOfUse"));
+const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy"));
+const Disclaimer = lazy(() => import("../pages/Disclaimer"));
+const CookiesPolicy = lazy(() => import("../pages/CookiesPolicy"));
+const RefundPolicy = lazy(() => import("../pages/RefundPolicy"));
+const InvestWithUs = lazy(() => import("../pages/InvestWithUs"));
+const InvestorRelation = lazy(() => import("../pages/InvestorRelation"));
+const RaiseCapital = lazy(() => import("../pages/RaiseCapital"));
+const Membership = lazy(() => import("../pages/Membership"));
+const Services = lazy(() => import("../pages/Services"));
 
 export default function AppRoutes() {
   return (
@@ -18,6 +23,7 @@ export default function AppRoutes() {
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
@@ -27,6 +33,7 @@ export default function AppRoutes() {
         <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/membership" element={<Membership />} />
         <Route path="/invest-with-us" element={<InvestWithUs />} />
+        <Route path="/raise-capital" element={<RaiseCapital />} />
       </Route>
     </Routes>
   );

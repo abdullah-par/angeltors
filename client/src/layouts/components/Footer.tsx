@@ -6,8 +6,8 @@ export default function Footer() {
       title: "Discover",
       links: [
         { label: "About Us", href: "/about" },
-        { label: "Invest with us", href: "#our-services" },
-        { label: "Raise Capital", href: "#our-services" },
+        { label: "Invest with us", href: "/invest-with-us" },
+        { label: "Raise Capital", href: "/raise-capital" },
         { label: "Learn with us", href: "#faq" },
       ],
     },
