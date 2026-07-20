@@ -117,8 +117,8 @@ export default function SectorsSection() {
         <motion.div
           initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-12 space-y-4"
         >
           <p className="text-xs font-bold uppercase tracking-[4px] text-angeltors-cyan">We Provide</p>

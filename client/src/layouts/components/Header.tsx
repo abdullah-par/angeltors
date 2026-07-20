@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
   { label: "About Us", href: "/about" },
   {
     label: "Invest With Us",
-    href: "#our-services",
+    href: "/invest-with-us",
     dropdown: [
       {
         title: "Portfolio Diligence",

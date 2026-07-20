@@ -48,8 +48,8 @@ export default function AboutIntro() {
           <motion.div
             initial={reducedMotion ? {} : { opacity: 0, x: -24 }}
             whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-7"
           >
             <div className="space-y-3">
@@ -65,8 +65,8 @@ export default function AboutIntro() {
                   key={i}
                   initial={reducedMotion ? {} : { opacity: 0, y: 10 }}
                   whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.45 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className="text-base leading-relaxed text-angeltors-muted"
                 >
                   {para}
@@ -96,8 +96,8 @@ export default function AboutIntro() {
           <motion.div
             initial={reducedMotion ? {} : { opacity: 0, x: 24 }}
             whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.12 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
             className="grid grid-cols-3 grid-rows-2 gap-3"
           >
             {gridImages.map((img, i) => (
@@ -105,8 +105,8 @@ export default function AboutIntro() {
                 key={img.src}
                 initial={reducedMotion ? {} : { opacity: 0, scale: 0.93 }}
                 whileInView={reducedMotion ? {} : { opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.12 + i * 0.07, duration: 0.4 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.12 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className={`overflow-hidden rounded-xl ${img.className}`}
                 style={{ aspectRatio: img.className.includes('row-span-2') ? undefined : '1/1' }}
               >

@@ -10,6 +10,7 @@ import Disclaimer from "../pages/Disclaimer";
 import CookiesPolicy from "../pages/CookiesPolicy";
 import InvestorRelation from "../pages/InvestorRelation";
 import Membership from "../pages/Membership";
+import InvestWithUs from "../pages/InvestWithUs";
 
 export default function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ export default function AppRoutes() {
         <Route path="/cookies-policy" element={<CookiesPolicy />} />
         <Route path="/investor-relation" element={<InvestorRelation />} />
         <Route path="/membership" element={<Membership />} />
+        <Route path="/invest-with-us" element={<InvestWithUs />} />
       </Route>
     </Routes>
   );
