@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import ChatbotWidget from "./ChatbotWidget";
 
 export default function FloatingButtons() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -23,8 +24,8 @@ export default function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
+      
       {/* Back to Top Button */}
       <AnimatePresence>
         {showScrollTop && (
@@ -34,7 +35,7 @@ export default function FloatingButtons() {
             animate={reducedMotion ? {} : { opacity: 1, scale: 1 }}
             exit={reducedMotion ? {} : { opacity: 0, scale: 0.8 }}
             transition={reducedMotion ? { duration: 0 } : { duration: 0.25, ease: "easeOut" }}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-accent shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-angeltors-accent/50"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-angeltors-border bg-white text-angeltors-accent shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-angeltors-accent/50 pointer-events-auto"
             aria-label="Back to top"
           >
             <svg
@@ -50,6 +51,12 @@ export default function FloatingButtons() {
           </motion.button>
         )}
       </AnimatePresence>
+
+      {/* Chatbot Floating Icon & Window */}
+      <div className="pointer-events-auto">
+        <ChatbotWidget />
+      </div>
+
     </div>
   );
 }
