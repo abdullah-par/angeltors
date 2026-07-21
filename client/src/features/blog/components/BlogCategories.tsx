@@ -11,24 +11,41 @@ export default function BlogCategories({ categories }: BlogCategoriesProps) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="py-8 bg-white border-y border-slate-200/50">
+    // No border-top — hugs the hero bottom border directly
+    <section className="py-0 bg-white border-b border-slate-200/60 relative z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={reducedMotion ? {} : { opacity: 0, y: 10 }}
-          whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-wrap items-center gap-3 md:gap-4"
+          initial={reducedMotion ? {} : { opacity: 0, y: -8 }}
+          animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="flex items-center gap-1 overflow-x-auto scrollbar-none py-3"
         >
-          <span className="text-sm font-bold text-slate-500 uppercase tracking-widest mr-2">Topics:</span>
-          {categories.map((category) => (
-            <Link
+          {/* "All" pill — active state placeholder */}
+          <Link
+            to="/learn"
+            className="flex-shrink-0 inline-flex items-center rounded-full bg-angeltors-ink px-4 py-1.5 text-xs font-black text-white transition-all hover:bg-angeltors-accent"
+          >
+            All
+          </Link>
+
+          {/* Divider */}
+          <div className="w-px h-5 bg-slate-200 mx-2 flex-shrink-0" />
+
+          {categories.map((category, i) => (
+            <motion.div
               key={category.id}
-              to={`/learn?category=${category.slug}`}
-              className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-5 py-2 text-sm font-bold text-angeltors-ink transition-all hover:border-angeltors-accent/30 hover:bg-angeltors-accent/5 hover:text-angeltors-accent hover:shadow-sm"
+              initial={reducedMotion ? {} : { opacity: 0, x: -6 }}
+              animate={reducedMotion ? {} : { opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.04, ease: "easeOut" }}
+              className="flex-shrink-0"
             >
-              {category.name}
-            </Link>
+              <Link
+                to={`/learn?category=${category.slug}`}
+                className="inline-flex items-center rounded-full border border-slate-200 bg-transparent px-4 py-1.5 text-xs font-bold text-slate-600 transition-all duration-200 hover:border-angeltors-accent/40 hover:bg-angeltors-accent/8 hover:text-angeltors-accent whitespace-nowrap"
+              >
+                {category.name}
+              </Link>
+            </motion.div>
           ))}
         </motion.div>
       </div>

@@ -53,7 +53,6 @@ export default function Learn() {
       <BlogCategories categories={mockCategories} />
       <LatestArticlesGrid posts={latestPosts} />
       <PopularTopics />
-      <WhyLearnWithUs />
       <NewsletterCTA />
     </div>
   );

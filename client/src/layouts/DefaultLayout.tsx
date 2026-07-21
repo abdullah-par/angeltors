@@ -16,7 +16,7 @@ export default function DefaultLayout() {
       <main className="flex-1 w-full">
         <Outlet />
       </main>
-      <Footer />
+      {pathname === "/" && <Footer />}
     </div>
   );
 }

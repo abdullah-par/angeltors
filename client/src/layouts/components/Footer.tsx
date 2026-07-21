@@ -77,7 +77,7 @@ export default function Footer() {
               </a>
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/angeltors/"
+                href="https://www.instagram.com/angeltorsrays"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-200/60 text-slate-400 transition-all duration-300 hover:border-angeltors-accent hover:bg-angeltors-accent hover:text-white shadow-sm hover:shadow-md hover:-translate-y-1"

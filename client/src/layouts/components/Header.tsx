@@ -65,20 +65,35 @@ export default function Header() {
   const [activeHash, setActiveHash] = useState(navItems[0].href);
   const reducedMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const lastScrollY = useRef(0);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // Scroll listener for header background
+  // Scroll listener for header background and visibility
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100 && !menuOpen) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    
+    // Initial check
     onScroll();
+    
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [menuOpen]);
 
   // Magnetic button logic
   const ctaRef = useRef<HTMLAnchorElement>(null);
@@ -138,6 +153,8 @@ export default function Header() {
         className="mx-auto max-w-7xl rounded-[2rem] transition-all duration-500 pointer-events-auto"
         initial={false}
         animate={{
+          y: isVisible ? 0 : -150,
+          opacity: isVisible ? 1 : 0,
           backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.5)",
           backdropFilter: scrolled ? "blur(24px)" : "blur(12px)",
           borderColor: scrolled ? "rgba(226, 232, 240, 0.8)" : "rgba(226, 232, 240, 0.4)",
