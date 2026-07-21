@@ -65,7 +65,7 @@ export default function InvestWithUs() {
     { title: "Streamlined Process", desc: "Discover, evaluate, and invest in high-potential startups through a seamless platform.", icon: Zap },
     { title: "Rigorous Diligence", desc: "Leverage expert analysis to mitigate risk and maximize potential outcomes.", icon: ShieldCheck },
     { title: "Transparent Reporting", desc: "Track your portfolio's progress with crystal clear, real-time insights.", icon: Eye },
-    { title: "Strategic Selection", desc: "Access a curated pipeline featuring the top 1% of market-disrupting startups.", icon: Target },
+    { title: "Strategic Selection", desc: "Access a carefully curated pipeline of vetted, high-potential startups.", icon: Target },
   ];
 
   const investmentProcess = [
@@ -92,12 +92,6 @@ export default function InvestWithUs() {
     { name: "SaaS", icon: Cloud },
     { name: "EV & Mobility", icon: Car },
     { name: "EdTech", icon: GraduationCap },
-  ];
-
-  const testimonials = [
-    { quote: "Angeltors transformed how I access early-stage deals. The diligence is unparalleled.", name: "Sarah Jenkins", role: "Partner, Vertex Cap", img: "https://i.pravatar.cc/150?u=sarah" },
-    { quote: "The platform's streamlined process allows me to build a diversified portfolio effortlessly.", name: "Michael Chen", role: "Angel Investor", img: "https://i.pravatar.cc/150?u=michael" },
-    { quote: "I've gained access to the top 1% of startups before they even hit the mainstream radar.", name: "Elena Rodriguez", role: "Tech Founder", img: "https://i.pravatar.cc/150?u=elena" },
   ];
 
   const faqs = [
@@ -174,52 +168,19 @@ export default function InvestWithUs() {
             </button>
           </motion.div>
 
-          <motion.div
-            initial={reducedMotion ? {} : { opacity: 0 }}
-            animate={reducedMotion ? {} : { opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6"
-          >
-            Trusted By Investors From
-          </motion.div>
-
-          <motion.div
-            initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
-            animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale"
-          >
-            {/* Mock Logos */}
-            <Building2 className="w-10 h-10" />
-            <Layers className="w-10 h-10" />
-            <Grid className="w-10 h-10" />
-            <Box className="w-10 h-10" />
-            <Triangle className="w-10 h-10" />
-          </motion.div>
         </div>
       </section>
 
-      {/* 2. TRUST METRICS */}
+      {/* 2. COMMUNITY CALLOUT */}
       <section className="py-24 bg-angeltors-ink relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.05]" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x divide-white/10">
-            {[
-              { label: "Capital Raised", value: "₹50Cr+" },
-              { label: "Startups", value: "250+" },
-              { label: "Investors", value: "500+" },
-              { label: "Success Rate", value: "85%" },
-            ].map((metric, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-2">
-                  {metric.value}
-                </div>
-                <div className="text-sm md:text-base font-bold text-angeltors-cyan uppercase tracking-widest">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
+            A Curated Network of Investors & Founders
+          </h2>
+          <p className="text-lg text-slate-400 font-medium max-w-2xl mx-auto">
+            Angeltors brings together angel investors, HNIs, startups, and mentors from across India — focused on early-stage, high-potential opportunities.
+          </p>
         </div>
       </section>
 
@@ -438,63 +399,7 @@ export default function InvestWithUs() {
         </div>
       </section>
 
-      {/* 7. FEATURED STARTUPS */}
-      <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight mb-6">
-              Featured Startups
-            </h2>
-            <p className="text-xl text-slate-500 font-medium">
-              A glimpse into the caliber of our pipeline.
-            </p>
-          </div>
-
-          <motion.div
-            initial={reducedMotion ? {} : { opacity: 0, y: 40 }}
-            whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="rounded-[3rem] bg-white border border-slate-200 shadow-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12"
-          >
-            <div className="w-full md:w-1/3 aspect-square rounded-[2rem] bg-gradient-to-br from-slate-100 to-slate-200 border border-slate-200 flex items-center justify-center shadow-inner relative overflow-hidden">
-               <div className="absolute inset-0 bg-[url('/images/Startup.jpg')] bg-cover bg-center mix-blend-overlay opacity-30" />
-               <BrainCircuit className="w-24 h-24 text-angeltors-ink relative z-10" />
-            </div>
-            
-            <div className="w-full md:w-2/3 space-y-8">
-              <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-angeltors-accent/10 text-angeltors-accent text-sm font-bold mb-4">
-                  Healthcare Technology
-                </div>
-                <h3 className="text-4xl font-extrabold text-angeltors-ink mb-4">Aura Health AI</h3>
-                <p className="text-lg text-slate-500 font-medium">
-                  Revolutionizing personalized medicine using proprietary machine learning models.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-3 gap-6 py-6 border-y border-slate-100">
-                <div>
-                  <div className="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Funding</div>
-                  <div className="text-2xl font-black text-angeltors-ink">$2.5M Seed</div>
-                </div>
-                <div>
-                  <div className="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Target ROI</div>
-                  <div className="text-2xl font-black text-angeltors-ink">5x - 10x</div>
-                </div>
-                <div>
-                  <div className="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Stage</div>
-                  <div className="text-2xl font-black text-angeltors-ink">Early Comm.</div>
-                </div>
-              </div>
-
-              <button className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-angeltors-ink text-white font-bold hover:scale-105 transition-transform">
-                View Profile <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* 7. FEATURED STARTUPS — removed: no verified startup profiles available yet */}
 
       {/* 8. COMPARISON TABLE */}
       <section className="py-32 md:py-40 bg-white relative overflow-hidden border-t border-slate-100">
@@ -506,6 +411,14 @@ export default function InvestWithUs() {
             <p className="text-xl text-slate-500 font-medium">
               Traditional vs Angel Investment.
             </p>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="mb-8 flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-sm text-amber-800 font-medium">
+            <span className="mt-0.5 shrink-0 text-amber-500">ⓘ</span>
+            <span>
+              <strong>Illustrative comparison only.</strong> The figures in this table (e.g. "20%–30%" target returns) are general industry benchmarks widely cited in angel-investing literature and are <em>not</em> Angeltors-specific results, guaranteed returns, or financial advice. Past performance of any asset class does not guarantee future results. Please consult a SEBI-registered investment adviser before making any investment decisions.
+            </span>
           </div>
 
           <div className="rounded-[2.5rem] bg-slate-50 border border-slate-200/60 overflow-hidden shadow-sm">
@@ -554,37 +467,7 @@ export default function InvestWithUs() {
         </div>
       </section>
 
-      {/* 10. TESTIMONIALS */}
-      <section className="py-32 md:py-40 bg-white relative overflow-hidden border-t border-slate-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight mb-6">
-              Investor Testimonials
-            </h2>
-            <p className="text-xl text-slate-500 font-medium">
-              Hear from our community of successful investors.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((test, idx) => (
-              <div key={idx} className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 relative">
-                <div className="text-6xl text-slate-200 absolute top-8 left-8 font-serif leading-none">"</div>
-                <p className="text-xl text-angeltors-ink font-medium leading-relaxed relative z-10 mb-10 pt-6">
-                  {test.quote}
-                </p>
-                <div className="flex items-center gap-4">
-                  <img src={test.img} alt={test.name} className="w-16 h-16 rounded-full shadow-sm" />
-                  <div>
-                    <div className="font-bold text-angeltors-ink text-lg">{test.name}</div>
-                    <div className="text-slate-500 font-medium">{test.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 10. TESTIMONIALS — removed: no verified quotes available yet */}
 
       {/* 11. FAQ */}
       <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden border-t border-slate-200/60">
@@ -632,7 +515,7 @@ export default function InvestWithUs() {
                 Ready to Build <br /> Your Portfolio?
               </h2>
               <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-14 font-medium">
-                Join 200+ Investors currently building their wealth.
+                Backed by a growing network of investors and founders across India.
               </p>
               <button
                 type="button"

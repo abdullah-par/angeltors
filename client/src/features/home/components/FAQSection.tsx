@@ -1,32 +1,53 @@
-import { ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Plus, Minus } from "lucide-react";
 
 const faqItems = [
   {
     question: "What is Angel Investing?",
-    answer: "Angel investing is a form of private equity financing where individual high-net-worth individuals (angels) invest their own money in early-stage, high-growth potential companies.",
+    answer:
+      "Angel investing is a form of private equity financing where individual high-net-worth individuals (angels) invest their own money in early-stage, high-growth potential companies.",
   },
   {
     question: "Who are Angel Investors?",
-    answer: "Angel investors are typically successful entrepreneurs, business executives, or high-net-worth individuals who have accumulated wealth and are looking to invest in promising startups.",
+    answer:
+      "Angel investors are typically successful entrepreneurs, business executives, or high-net-worth individuals who have accumulated wealth and are looking to invest in promising startups.",
   },
   {
     question: "What is the focus of Angel Investing at Angeltors?",
-    answer: "Angeltors focuses on investing in high-growth, early-stage startups with strong potential for significant impact. We prioritize companies with innovative solutions, experienced founding teams, and a clear path to market dominance.",
+    answer:
+      "Angeltors focuses on investing in high-growth, early-stage startups with strong potential for significant impact. We prioritize companies with innovative solutions, experienced founding teams, and a clear path to market.",
   },
   {
     question: "How can I become an Angel Investor with Angeltors?",
-    answer: "To become an investor with Angeltors, please contact us through the contact information provided on our website. We will guide you through the process and provide you with more information on investment opportunities.",
+    answer:
+      "To become an investor with Angeltors, please contact us through our website. We will guide you through the process and provide you with more information on investment opportunities.",
   },
   {
     question: "What are the benefits of Angel Investing?",
-    answer: "• High potential returns: Early-stage investments can generate significant returns if the company succeeds.\n• Impact investing: Angel investors can support innovative companies that address societal challenges and create a positive impact.\n• Mentorship and guidance: Many angel investors provide mentorship and guidance to portfolio companies, leveraging their experience and industry connections.\n• Networking opportunities: Angel investing provides access to a network of entrepreneurs, investors, and industry leaders.\n• Personal satisfaction: The opportunity to contribute to the growth of promising companies and support innovation can be personally rewarding.",
+    answer:
+      "Key benefits include high potential returns on early-stage investments, the ability to support innovative companies, mentorship opportunities, access to a strong investor network, and personal satisfaction from contributing to meaningful ventures.",
   },
   {
-    question: "How can I become an Angel Investor?",
-    answer: "• Build wealth: Accumulate sufficient wealth to invest in early-stage companies.\n• Gain relevant experience: Develop an understanding of the startup ecosystem, investment principles, and due diligence processes.\n• Join an angel investment group: Consider joining an angel investment group to gain access to deal flow, mentorship, and a supportive community.\n• Network with entrepreneurs: Build relationships with entrepreneurs and other investors in the startup ecosystem.\n• Conduct thorough due diligence: Carefully evaluate investment opportunities and conduct thorough due diligence before making any investment decisions.",
+    question: "How can startups apply for funding?",
+    answer:
+      "Startups can apply by visiting our Raise Capital page, submitting their details, and our team will review the application. We evaluate factors such as market opportunity, founding team strength, and stage of growth.",
+  },
+  {
+    question: "What sectors does Angeltors focus on?",
+    answer:
+      "We focus on high-growth sectors including HiTech & Nano Tech, Pharma & BioTech, EV & Green Energy, Lifestyle & Beauty, and Retail & FMCG — all with strong long-term tailwinds.",
+  },
+  {
+    question: "Does Angeltors offer mentorship to startups?",
+    answer:
+      "Yes. Beyond capital, Angeltors connects startups with experienced mentors, industry experts, and in-house advisory support to help them navigate challenges and scale effectively.",
+  },
+  {
+    question: "How do I contact the Angeltors team?",
+    answer:
+      "You can reach us via our Contact page or email us directly at connect@angeltors.com. Our team typically responds within 1–2 business days.",
   },
 ];
 
@@ -35,97 +56,94 @@ export default function FAQSection() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="faq" className="py-32 md:py-40 bg-white relative">
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
-      
+    <section id="faq" className="py-24 md:py-32 bg-slate-50 relative">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent mb-6 shadow-sm">
-            FAQ's
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-angeltors-ink">
-            Ask Your Questions
+
+        {/* Header Row — title left, support text right */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-angeltors-ink max-w-xs leading-[1.05]">
+            Frequently asked questions
           </h2>
+          <p className="text-base text-slate-500 font-medium max-w-sm">
+            We are here to help you with any questions you may have. If you
+            don't find what you need, please contact us at{" "}
+            <a
+              href="mailto:connect@angeltors.com"
+              className="text-angeltors-accent font-semibold hover:underline"
+            >
+              connect@angeltors.com
+            </a>
+          </p>
         </div>
 
-        <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] items-start">
-          {/* Left Side: Sticky Notes Image */}
-          <motion.div
-            initial={reducedMotion ? {} : { opacity: 0, x: -20 }}
-            whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden rounded-[2.5rem] bg-white border border-slate-200/60 p-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
-          >
-            <img
-              src="/images/LearnWithUs.jpg"
-              alt="Collaboration and sticky notes session"
-              className="rounded-[2rem] h-[30rem] w-full object-cover transition-transform duration-700 hover:scale-105"
-            />
-          </motion.div>
+        {/* FAQ Grid — 3 columns on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {faqItems.map((item) => {
+            const id = item.question;
+            const isOpen = openId === id;
 
-          {/* Right Side: Accordion */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              {faqItems.map((item, index) => {
-                const id = item.question;
-                const isOpen = openId === id;
-                return (
-                  <div
-                    key={id}
-                    className={`rounded-[1.5rem] border ${isOpen ? 'border-angeltors-accent shadow-md bg-white' : 'border-slate-200/60 bg-slate-50 shadow-sm'} transition-all duration-300 overflow-hidden`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenId(isOpen ? null : id)}
-                      className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-all"
-                    >
-                      <span className={`text-lg md:text-xl font-bold tracking-tight ${isOpen ? 'text-angeltors-accent' : 'text-angeltors-ink'}`}>{item.question}</span>
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${isOpen ? 'bg-angeltors-accent text-white' : 'bg-slate-200 text-slate-500'}`}>
-                        <ChevronRight className={
-                          "h-5 w-5 transition-transform duration-300 " +
-                          (isOpen ? "rotate-90" : "")
-                        } />
-                      </span>
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={reducedMotion ? {} : { height: 0, opacity: 0 }}
-                          animate={reducedMotion ? {} : { height: "auto", opacity: 1 }}
-                          exit={reducedMotion ? {} : { height: 0, opacity: 0 }}
-                          transition={
-                            reducedMotion
-                              ? { duration: 0 }
-                              : {
-                                  height: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
-                                  opacity: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
-                                }
-                          }
-                          className="overflow-hidden"
-                        >
-                          <div className="px-8 pb-8 text-base leading-relaxed text-slate-500 font-medium whitespace-pre-line border-t border-slate-100 pt-6">
-                            {item.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Read More FAQ's button at the bottom right */}
-            <div className="flex justify-end pt-6">
-              <a
-                href="#contact"
-                className="group inline-flex items-center justify-center gap-3 rounded-full bg-white border border-slate-200/60 px-8 py-4 text-sm font-bold text-angeltors-ink transition-all duration-300 hover:bg-slate-50 hover:border-slate-300 shadow-sm hover:shadow-md"
+            return (
+              <motion.div
+                key={id}
+                layout
+                className={`rounded-2xl border bg-white p-6 cursor-pointer transition-all duration-300 ${
+                  isOpen
+                    ? "border-angeltors-accent/40 shadow-md"
+                    : "border-slate-200/80 hover:border-slate-300 hover:shadow-sm"
+                }`}
+                onClick={() => setOpenId(isOpen ? null : id)}
               >
-                <span>Read More FAQ's</span>
-                <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
+                <div className="flex items-start justify-between gap-4">
+                  <h3
+                    className={`text-sm font-bold leading-snug transition-colors duration-200 ${
+                      isOpen ? "text-angeltors-accent" : "text-angeltors-ink"
+                    }`}
+                  >
+                    {item.question}
+                  </h3>
+                  <span
+                    className={`shrink-0 mt-0.5 transition-colors duration-200 ${
+                      isOpen ? "text-angeltors-accent" : "text-slate-400"
+                    }`}
+                  >
+                    {isOpen ? (
+                      <Minus className="w-4 h-4" />
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
+                  </span>
+                </div>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={reducedMotion ? {} : { height: 0, opacity: 0 }}
+                      animate={
+                        reducedMotion ? {} : { height: "auto", opacity: 1 }
+                      }
+                      exit={reducedMotion ? {} : { height: 0, opacity: 0 }}
+                      transition={
+                        reducedMotion
+                          ? { duration: 0 }
+                          : {
+                              height: {
+                                duration: 0.35,
+                                ease: [0.16, 1, 0.3, 1],
+                              },
+                              opacity: { duration: 0.25 },
+                            }
+                      }
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-4 text-sm text-slate-500 font-medium leading-relaxed border-t border-slate-100 pt-4">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -4,10 +4,10 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const heroStats = [
-  { value: 12, suffix: "+", label: "Active Deals" },
-  { value: 340, suffix: "+", label: "Founders Onboarded" },
-  { value: 18, suffix: "%", label: "Average Growth" },
-  { value: 715, suffix: "+", label: "Numbers of Deals" },
+  { value: 20, suffix: "+", label: "Angel Investors" },
+  { value: 5, suffix: "+", label: "Startups Onboarded" },
+  { value: 36, suffix: "+", label: "Blog Posts Published" },
+  { value: 35, suffix: "+", label: "Newsletter Subscribers" },
 ];
 
 interface StatCardProps {
@@ -65,7 +65,7 @@ export default function StatsSection() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-cyan/20 bg-angeltors-cyan/10 px-5 py-2 text-sm font-bold uppercase tracking-widest text-angeltors-cyan shadow-sm backdrop-blur-sm">
-            Real Numbers. Real Impact.
+            Our Growing Ecosystem
           </div>
         </motion.div>
 

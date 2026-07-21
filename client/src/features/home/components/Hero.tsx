@@ -176,8 +176,8 @@ export default function Hero() {
                 <div className="h-10 w-10 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-extrabold text-slate-600 shadow-sm">A3</div>
               </div>
               <div className="leading-tight pr-2">
-                <span className="block text-sm font-extrabold text-angeltors-ink tracking-tight">340+ Founders</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Active in Ecosystem</span>
+                <span className="block text-sm font-extrabold text-angeltors-ink tracking-tight">Growing Network</span>
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Founders & Investors</span>
               </div>
             </motion.div>
 
@@ -194,8 +194,8 @@ export default function Hero() {
                 </svg>
               </div>
               <div className="leading-tight pr-2">
-                <span className="block text-sm font-extrabold text-angeltors-ink tracking-tight">18% Avg. ROI</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Outperforming Index</span>
+                <span className="block text-sm font-extrabold text-angeltors-ink tracking-tight">High-Growth Focus</span>
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Early-Stage Deals</span>
               </div>
             </motion.div>
 

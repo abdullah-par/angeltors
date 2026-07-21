@@ -6,7 +6,6 @@ const sectors = [
   {
     id: 'hitech',
     label: 'HiTech & Nano Tech',
-    percentage: '35%',
     image: '/images/HiTech.jpg',
     blocks: [
       {
@@ -22,7 +21,6 @@ const sectors = [
   {
     id: 'pharma',
     label: 'Pharma & BioTech',
-    percentage: '20%',
     image: '/images/Pharma_BioTech.jpg',
     blocks: [
       {
@@ -38,7 +36,6 @@ const sectors = [
   {
     id: 'ev',
     label: 'EV & Green Energy',
-    percentage: '15%',
     image: '/images/EV_Green_Energy.jpg',
     blocks: [
       {
@@ -54,7 +51,6 @@ const sectors = [
   {
     id: 'lifestyle',
     label: 'Lifestyle & Beauty',
-    percentage: '18%',
     image: '/images/Lifestyle_Beauty.jpg',
     blocks: [
       {
@@ -70,7 +66,6 @@ const sectors = [
   {
     id: 'retail',
     label: 'Retail & FMCG',
-    percentage: '12%',
     image: '/images/Retail_FMCG.jpg',
     blocks: [
       {
@@ -149,11 +144,8 @@ export default function SectorsSection() {
             {/* Text */}
             <div className="space-y-8 p-6 lg:p-10">
               <div>
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter text-angeltors-ink leading-tight flex items-baseline gap-4">
+                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter text-angeltors-ink leading-tight">
                   {active.label}
-                  <span className="text-2xl text-angeltors-accent font-extrabold px-3 py-1 bg-angeltors-accent/10 rounded-xl">
-                    {active.percentage}
-                  </span>
                 </h3>
               </div>
 
