@@ -7,7 +7,6 @@ import BuildFutureBanner from "../features/home/components/BuildFutureBanner";
 import ServicesGrid from "../features/home/components/ServicesGrid";
 import SeedToScaleBanner from "../features/home/components/SeedToScaleBanner";
 import FAQSection from "../features/home/components/FAQSection";
-import TestimonialBanner from "../features/home/components/TestimonialBanner";
 import NewsletterSection from "../features/home/components/NewsletterSection";
 import FloatingButtons from "../layouts/components/FloatingButtons";
 
@@ -43,8 +42,11 @@ export default function Home() {
       <ServicesGrid />
       <SeedToScaleBanner />
       <FAQSection />
-      <TestimonialBanner />
-      <NewsletterSection />
+      <section className="py-14 md:py-16 bg-slate-50 border-t border-slate-200/60">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <NewsletterSection />
+        </div>
+      </section>
 
       <FloatingButtons />
     </>

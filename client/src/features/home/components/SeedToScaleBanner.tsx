@@ -5,7 +5,7 @@ export default function SeedToScaleBanner() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-32 md:py-40 bg-angeltors-ink">
+    <section className="relative overflow-hidden py-16 md:py-20 bg-angeltors-ink">
       {/* Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-angeltors-cyan/20 blur-[150px] rounded-full pointer-events-none" />
       
@@ -26,10 +26,7 @@ export default function SeedToScaleBanner() {
           transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8 flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-cyan/20 bg-angeltors-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-cyan shadow-sm backdrop-blur-sm">
-            From Seed To Scale
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-white mb-6">
             Angeltors, Your Strategic Partner : Time to invest, time to build, time to Succeed
           </h2>
           <p className="mx-auto max-w-3xl text-lg md:text-xl leading-relaxed text-slate-400 font-medium">

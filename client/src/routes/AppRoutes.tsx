@@ -18,9 +18,11 @@ const Membership = lazy(() => import("../pages/Membership"));
 const Services = lazy(() => import("../pages/Services"));
 const Learn = lazy(() => import("../pages/Learn"));
 const BlogDetails = lazy(() => import("../pages/BlogDetails"));
+const Login = lazy(() => import("../pages/Login"));
 export default function AppRoutes() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

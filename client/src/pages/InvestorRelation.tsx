@@ -83,7 +83,7 @@ export default function InvestorRelation() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-12 text-center">
           <motion.div
             initial={reducedMotion ? {} : { opacity: 0, y: 22 }}
             animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function InvestorRelation() {
       </section>
 
       {/* Main Content Section */}
-      <section className="bg-[#F8FAFC] py-16 md:py-24">
+      <section className="bg-[#F8FAFC] py-16 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
           
           {/* Section Header */}

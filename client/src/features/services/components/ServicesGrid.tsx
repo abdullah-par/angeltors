@@ -83,7 +83,7 @@ export default function ServicesGrid() {
   ];
 
   return (
-    <section className="bg-angeltors-ink py-24 relative overflow-hidden">
+    <section className="bg-angeltors-ink py-12 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03]" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">

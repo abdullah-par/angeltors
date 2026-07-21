@@ -38,32 +38,28 @@ export default function FeatureCards() {
   ];
 
   return (
-    <section id="about-us" className="py-32 md:py-40 bg-slate-50 relative overflow-hidden">
+    <section className="relative overflow-hidden py-14 md:py-16 bg-slate-50 border-t border-slate-200/60">
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] items-center mb-24 md:mb-32">
+        <div className="max-w-4xl mx-auto text-center mb-24 md:mb-32 space-y-8">
           <motion.div
-            initial={reducedMotion ? {} : { opacity: 0, x: -20 }}
-            whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
+            initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+            whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent mb-6 shadow-sm">
-              Let's Invest In Innovative Startups
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-angeltors-ink">
               Join the Angeltors, Where Innovation Meets Opportunity.
             </h2>
           </motion.div>
 
           <motion.div
-            initial={reducedMotion ? {} : { opacity: 0, x: 20 }}
-            whileInView={reducedMotion ? {} : { opacity: 1, x: 0 }}
+            initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+            whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-slate-500 space-y-6 max-w-xl text-lg md:text-xl font-medium leading-relaxed"
+            transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed space-y-4"
           >
             <p>
               Angeltors group as a Valuable partner for both Startups & Investors/Founders.

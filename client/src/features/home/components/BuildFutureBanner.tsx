@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function BuildFutureBanner() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-32 md:py-40 bg-angeltors-ink">
+    <section className="relative overflow-hidden py-16 md:py-20 bg-angeltors-ink">
       {/* Abstract Background Glows */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-angeltors-cyan/10 blur-[120px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-angeltors-accent/10 blur-[100px] rounded-full pointer-events-none -translate-x-1/3 translate-y-1/3" />
@@ -30,10 +31,6 @@ export default function BuildFutureBanner() {
             transition={reducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-cyan/20 bg-angeltors-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-cyan shadow-sm backdrop-blur-sm">
-              Build The Future
-            </div>
-            
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-white">
               It's time to grow together : with visionary Founders and strategic Investors
             </h2>
@@ -43,18 +40,18 @@ export default function BuildFutureBanner() {
             </p>
             
             <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a
-                href="#about-us"
+              <Link
+                to="/learn"
                 className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-bold text-angeltors-ink overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center gap-2">Read More <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-angeltors-ink border border-white/20 px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-white/5 hover:border-white/30 w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center gap-2">Contact Us <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
-              </a>
+              </Link>
             </div>
           </motion.div>
 

@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-12 text-center">
           <motion.div
             initial={reducedMotion ? {} : { opacity: 0, y: 22 }}
             animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
       </section>
 
       {/* Content Section */}
-      <section className="bg-angeltors-bg py-16 md:py-24 text-angeltors-muted">
+      <section className="bg-angeltors-bg py-16 md:py-12 text-angeltors-muted">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl depth-border p-8 md:p-12 ag-shadow-md space-y-8">
             

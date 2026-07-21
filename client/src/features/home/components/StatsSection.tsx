@@ -52,22 +52,19 @@ export default function StatsSection() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-angeltors-ink relative overflow-hidden rounded-[3rem] shadow-2xl mt-16 md:mt-24 border border-angeltors-navy-light/30">
+    <section ref={ref} className="py-14 md:py-16 bg-angeltors-ink relative overflow-hidden rounded-[2rem] shadow-2xl mt-10 md:mt-14 border border-angeltors-navy-light/30">
       {/* Background glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[300px] bg-angeltors-accent/10 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.05]" />
       
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
-          animate={isInView && !reducedMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-cyan/20 bg-angeltors-cyan/10 px-5 py-2 text-sm font-bold uppercase tracking-widest text-angeltors-cyan shadow-sm backdrop-blur-sm">
-            Our Growing Ecosystem
-          </div>
-        </motion.div>
+      {/* Giant Background Text Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0 px-4">
+        <h2 className="text-[15vw] sm:text-[12vw] md:text-[10vw] font-black uppercase tracking-tighter leading-[0.85] text-center bg-gradient-to-b from-slate-100 via-slate-400 to-slate-800 bg-clip-text text-transparent opacity-10">
+          Our Growing <br /> Ecosystem
+        </h2>
+      </div>
+      
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
           {heroStats.map((stat, index) => (

@@ -206,7 +206,7 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section className="py-32 bg-slate-50 border-t border-slate-200/50">
+    <section className="py-16 bg-slate-50 border-t border-slate-200/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
@@ -244,7 +244,7 @@ export default function ContactFormSection() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center justify-center text-center gap-6 py-24 px-8"
+                    className="flex flex-col items-center justify-center text-center gap-6 py-12 px-8"
                   >
                     <div className="flex h-24 w-24 items-center justify-center rounded-full bg-emerald-50 border border-emerald-100 shadow-inner">
                       <CheckCircle className="h-12 w-12 text-emerald-500" />

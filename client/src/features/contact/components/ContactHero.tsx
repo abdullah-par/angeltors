@@ -7,7 +7,7 @@ export default function ContactHero() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-white py-32 lg:py-40">
+    <section className="relative overflow-hidden bg-white py-16 lg:py-20">
       {/* Dynamic animated background gradients */}
       <motion.div
         animate={{

@@ -56,15 +56,15 @@ export default function FAQSection() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-slate-50 relative">
+    <section id="faq" className="py-14 md:py-16 bg-slate-50 relative">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Header Row — title left, support text right */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-angeltors-ink max-w-xs leading-[1.05]">
+        {/* Header Row — title top, support text bottom */}
+        <div className="flex flex-col gap-4 mb-12">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-angeltors-ink leading-[1.05]">
             Frequently asked questions
           </h2>
-          <p className="text-base text-slate-500 font-medium max-w-sm">
+          <p className="text-base text-slate-500 font-medium max-w-2xl">
             We are here to help you with any questions you may have. If you
             don't find what you need, please contact us at{" "}
             <a

@@ -37,14 +37,11 @@ export default function ServicesGrid() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="our-services" className="py-32 md:py-40 bg-white relative overflow-hidden">
+    <section id="our-services" className="py-16 md:py-20 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-24 md:mb-32">
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent mb-6 shadow-sm">
-            What we offer
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] text-angeltors-ink mb-6">
             Investors, Startups, Mentorship, and In-House Support.
           </h2>

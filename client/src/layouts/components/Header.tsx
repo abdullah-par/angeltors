@@ -144,32 +144,37 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
 
-  // CTA target: go to home's contact section when not on home
+  // CTA target: go to home's contact section when not on home (used elsewhere if needed)
   const ctaHref = isHome ? "#contact" : "/#contact";
+  const loginHref = "/login";
 
   return (
-    <div className="sticky top-0 z-50 w-full px-4 pt-6 sm:px-6 lg:px-8 pointer-events-none">
+    <div className="sticky top-4 z-50 w-full px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center">
       <motion.header
-        className="mx-auto max-w-7xl rounded-[2rem] transition-all duration-500 pointer-events-auto"
+        layout
+        className="rounded-full pointer-events-auto overflow-visible flex items-center justify-between"
         initial={false}
         animate={{
           y: isVisible ? 0 : -150,
           opacity: isVisible ? 1 : 0,
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.5)",
-          backdropFilter: scrolled ? "blur(24px)" : "blur(12px)",
-          borderColor: scrolled ? "rgba(226, 232, 240, 0.8)" : "rgba(226, 232, 240, 0.4)",
+          scale: scrolled ? 0.98 : 1,
+          padding: scrolled ? "4px 8px" : "8px 16px",
+          backgroundColor: scrolled ? "rgba(15, 23, 42, 0.95)" : "rgba(15, 23, 42, 0.85)", // dark pill
+          color: "#fff",
+          backdropFilter: "blur(24px)",
+          borderColor: "rgba(255, 255, 255, 0.1)",
           borderWidth: "1px",
-          boxShadow: scrolled ? "0 20px 40px -15px rgba(0, 0, 0, 0.05)" : "0 4px 6px -1px rgba(0, 0, 0, 0.02)",
+          boxShadow: scrolled ? "0 20px 40px -15px rgba(0, 0, 0, 0.3)" : "0 8px 20px -10px rgba(0, 0, 0, 0.2)",
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="flex items-center gap-4 px-5 py-3 sm:px-6">
+        <div className="flex items-center gap-4 px-2 py-1">
           {/* Logo — always goes home */}
           <Link to="/" className="flex items-center select-none shrink-0 group">
             <img
               src="/images/Angeltors_logo.png"
               alt="Angeltors"
-              className="h-10 sm:h-12 w-auto object-contain bg-white rounded-xl px-2 py-0.5 shadow-sm border border-slate-200/60 transition-transform duration-300 group-hover:scale-105"
+              className="h-9 sm:h-10 w-auto object-contain bg-white rounded-full px-3 py-1.5 shadow-sm transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
@@ -194,21 +199,16 @@ export default function Header() {
                       onClick={() => {
                         if (href === "/") window.scrollTo(0, 0);
                       }}
-                      className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
-                        active ? "" : "hover:bg-slate-100/80 text-slate-500 hover:text-angeltors-ink"
+                      className={`relative px-4 py-2 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
+                        active ? "bg-white/10 text-white" : "text-slate-300 hover:text-white hover:bg-white/5"
                       }`}
                     >
-                      <span
-                        className={`relative z-10 transition-colors duration-300 ${
-                          active ? "text-white" : ""
-                        }`}
-                      >
+                      <span className="relative z-10 transition-colors duration-300">
                         {item.label}
                       </span>
                       {active && (
                         <motion.div
-                          layoutId="activeNavIndicator"
-                          className="absolute inset-0 rounded-full bg-angeltors-ink"
+                          className="absolute inset-0 rounded-full bg-white/10"
                           transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 30 }}
                         />
                       )}
@@ -217,7 +217,7 @@ export default function Header() {
                     // Hash link on a non-home page → regular <a> with /#hash
                     <a
                       href={href}
-                      className="relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 text-slate-500 hover:bg-slate-100/80 hover:text-angeltors-ink"
+                      className="relative px-4 py-2 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 text-slate-300 hover:text-white hover:bg-white/5"
                     >
                       <span className="relative z-10 transition-colors duration-300">
                         {item.label}
@@ -234,15 +234,11 @@ export default function Header() {
                     // Hash link on home page — scroll-spy active state
                     <a
                       href={href}
-                      className={`relative px-4 py-2.5 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
-                        !active ? "hover:bg-slate-100/80 text-slate-500 hover:text-angeltors-ink" : ""
+                      className={`relative px-4 py-2 text-sm font-bold transition-all duration-300 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 ${
+                        active ? "bg-white/10 text-white" : "text-slate-300 hover:text-white hover:bg-white/5"
                       }`}
                     >
-                      <span
-                        className={`relative z-10 transition-colors duration-300 ${
-                          active ? "text-white" : ""
-                        }`}
-                      >
+                      <span className="relative z-10 transition-colors duration-300">
                         {item.label}
                       </span>
                       {item.dropdown && (
@@ -254,8 +250,7 @@ export default function Header() {
                       )}
                       {active && !item.dropdown && (
                         <motion.div
-                          layoutId="activeNavIndicator"
-                          className="absolute inset-0 rounded-full bg-angeltors-ink"
+                          className="absolute inset-0 rounded-full bg-white/10"
                           transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 30 }}
                         />
                       )}
@@ -305,17 +300,17 @@ export default function Header() {
 
           {/* Desktop CTAs */}
           <div className="ml-auto flex items-center gap-3 shrink-0">
-            <a
-              href={ctaHref}
-              className="hidden rounded-full px-5 py-2.5 text-sm font-bold text-slate-500 transition-all duration-300 hover:text-angeltors-ink hover:bg-slate-100 lg:inline-flex items-center"
+            <Link
+              to={loginHref}
+              className="hidden rounded-full px-5 py-2 text-sm font-bold transition-all duration-300 lg:inline-flex items-center text-slate-300 hover:text-white hover:bg-white/5"
             >
               Log in
-            </a>
+            </Link>
 
             <Link
               to="/membership"
               ref={ctaRef}
-              className="hidden rounded-full bg-angeltors-ink px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_10px_-2px_rgba(0,0,0,0.3)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_20px_-4px_rgba(0,0,0,0.4)] lg:inline-flex items-center gap-2 group"
+              className="relative inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-bold overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-sm bg-white text-angeltors-ink hover:shadow-lg"
             >
               <span>Membership</span>
               <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

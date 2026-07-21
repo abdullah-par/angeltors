@@ -172,7 +172,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 2. COMMUNITY CALLOUT */}
-      <section className="py-24 bg-angeltors-ink relative overflow-hidden">
+      <section className="py-12 bg-angeltors-ink relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.05]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
@@ -185,7 +185,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 3. WHY EARLY STAGE (Alternating Timeline) */}
-      <section className="py-32 md:py-40 bg-white relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-white relative overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="mb-24 md:mb-32 flex flex-col items-center text-center">
@@ -260,7 +260,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 4. WHY ANGELTORS (4 Premium Cards) */}
-      <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden border-y border-slate-200/60">
+      <section className="py-16 md:py-20 bg-slate-50 relative overflow-hidden border-y border-slate-200/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mb-24 text-center flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight mb-6 max-w-3xl leading-[1.05]">
@@ -300,7 +300,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 5. INVESTMENT PROCESS (Numbered Timeline) */}
-      <section className="py-32 md:py-40 bg-white relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-white relative overflow-hidden">
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
           
           <div className="text-center mb-24 flex flex-col items-center">
@@ -344,7 +344,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 6. INVESTOR BENEFITS (Radial Layout / Grid) */}
-      <section className="py-32 md:py-40 bg-angeltors-ink relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-angeltors-ink relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03]" />
         
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -402,7 +402,7 @@ export default function InvestWithUs() {
       {/* 7. FEATURED STARTUPS — removed: no verified startup profiles available yet */}
 
       {/* 8. COMPARISON TABLE */}
-      <section className="py-32 md:py-40 bg-white relative overflow-hidden border-t border-slate-100">
+      <section className="py-16 md:py-20 bg-white relative overflow-hidden border-t border-slate-100">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight mb-6">
@@ -439,7 +439,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 9. INDUSTRIES */}
-      <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden border-t border-slate-200/60">
+      <section className="py-16 md:py-20 bg-slate-50 relative overflow-hidden border-t border-slate-200/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight mb-6">
@@ -470,7 +470,7 @@ export default function InvestWithUs() {
       {/* 10. TESTIMONIALS — removed: no verified quotes available yet */}
 
       {/* 11. FAQ */}
-      <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden border-t border-slate-200/60">
+      <section className="py-16 md:py-20 bg-slate-50 relative overflow-hidden border-t border-slate-200/60">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-24 flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-angeltors-ink tracking-tight leading-[1.05] mb-6">
@@ -505,7 +505,7 @@ export default function InvestWithUs() {
       </section>
 
       {/* 12. FINAL CTA */}
-      <section className="py-32 md:py-40 bg-white relative overflow-hidden border-t border-slate-100">
+      <section className="py-16 md:py-20 bg-white relative overflow-hidden border-t border-slate-100">
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-[3rem] md:rounded-[4rem] bg-white border border-white p-16 md:p-24 text-center shadow-[0_20px_80px_-20px_rgba(0,0,0,0.08)] overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-gradient-to-r from-angeltors-accent/10 via-angeltors-cyan/10 to-angeltors-accent/10 blur-[100px] rounded-full pointer-events-none" />

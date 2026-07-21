@@ -29,7 +29,7 @@ export default function RaiseCapitalHowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="bg-slate-50 py-24 border-b border-slate-200/50">
+    <section id="how-it-works" className="bg-slate-50 py-12 border-b border-slate-200/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">

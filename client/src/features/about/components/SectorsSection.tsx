@@ -86,7 +86,7 @@ export default function SectorsSection() {
   const active = sectors.find((s) => s.id === activeId)!;
 
   return (
-    <section className="relative overflow-hidden bg-white py-32 border-t border-slate-200/50">
+    <section className="relative overflow-hidden bg-white py-16 border-t border-slate-200/50">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -96,9 +96,7 @@ export default function SectorsSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 space-y-6"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
-            Focus Areas
-          </div>
+
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-angeltors-ink max-w-4xl mx-auto leading-[0.95]">
             Strategically Allocating Capital<br className="hidden sm:block" /> Across High-Growth Sectors.
           </h2>

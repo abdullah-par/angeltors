@@ -50,15 +50,14 @@ export default function Hero() {
   const reducedMotion = useReducedMotion();
 
   const heroElements = [
-    { type: "eyebrow", delay: 0 },
-    { type: "headline", delay: 80 },
-    { type: "subheadline", delay: 160 },
-    { type: "body", delay: 240 },
-    { type: "buttons", delay: 320 },
+    { type: "headline", delay: 0 },
+    { type: "subheadline", delay: 80 },
+    { type: "body", delay: 160 },
+    { type: "buttons", delay: 240 },
   ];
 
   return (
-    <section id="hero" className="relative py-32 lg:py-40 bg-white overflow-hidden">
+    <section id="hero" className="relative py-16 lg:py-20 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Dynamic animated background gradients */}
         <motion.div
@@ -105,13 +104,6 @@ export default function Hero() {
                 animate={animate}
                 transition={transition} 
               >
-                {el.type === "eyebrow" && (
-                  <span className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/30 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
-                    <Sparkles className="h-4 w-4" />
-                    Angel Investment Platform
-                  </span>
-                )}
-
                 {el.type === "headline" && (
                   <div className="mt-8">
                     <h1 className="text-5xl sm:text-7xl font-black text-angeltors-ink tracking-tighter leading-[0.95] pb-1">

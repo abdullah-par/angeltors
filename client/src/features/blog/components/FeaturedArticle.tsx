@@ -20,7 +20,7 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+    <section className="py-16 sm:py-12 bg-white relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(30,180,100,0.04)_0%,_transparent_60%)] pointer-events-none" />
 

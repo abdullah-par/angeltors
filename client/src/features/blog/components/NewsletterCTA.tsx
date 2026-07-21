@@ -20,7 +20,7 @@ export default function NewsletterCTA() {
   };
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-12 bg-white relative overflow-hidden">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={reducedMotion ? {} : { opacity: 0, scale: 0.95 }}

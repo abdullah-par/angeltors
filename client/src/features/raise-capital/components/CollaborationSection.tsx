@@ -37,7 +37,7 @@ export default function CollaborationSection() {
     <section className="relative bg-white pb-32">
       
       {/* Dark Banner */}
-      <div className="bg-angeltors-ink py-24 mb-20 relative overflow-hidden">
+      <div className="bg-angeltors-ink py-12 mb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03]" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.h2 

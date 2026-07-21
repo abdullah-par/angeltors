@@ -55,7 +55,7 @@ export default function RaiseCapitalWhyChoose() {
   ];
 
   return (
-    <section className="bg-white py-24 lg:py-32 border-b border-slate-200/50">
+    <section className="bg-white py-12 lg:py-16 border-b border-slate-200/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">
