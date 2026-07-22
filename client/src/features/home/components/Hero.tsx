@@ -94,15 +94,15 @@ export default function Hero() {
           {heroElements.map((el) => {
             const initial = reducedMotion ? {} : { opacity: 0, y: 24 };
             const animate = reducedMotion ? {} : { opacity: 1, y: 0 };
-            const transition = reducedMotion
+            const transition = (reducedMotion
               ? { duration: 0 }
-              : { duration: 0.5, delay: el.delay / 1000, ease: "easeOut" };
+              : { duration: 0.5, delay: el.delay / 1000, ease: "easeOut" }) as any;
             return (
               <motion.div
                 key={el.type}
                 initial={initial}
                 animate={animate}
-                transition={transition} 
+                transition={transition}
               >
                 {el.type === "headline" && (
                   <div className="mt-8">

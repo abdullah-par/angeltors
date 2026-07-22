@@ -56,7 +56,7 @@ export default function NewsletterCTA() {
               <button
                 type="submit"
                 disabled={status !== "idle"}
-                className="inline-flex items-center justify-center rounded-full bg-angeltors-accent px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#1a9c4c] focus:outline-none focus:ring-2 focus:ring-angeltors-accent focus:ring-offset-2 focus:ring-offset-angeltors-ink disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
+                className="inline-flex items-center justify-center rounded-full bg-angeltors-accent px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:bg-white hover:text-angeltors-ink focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-angeltors-ink disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap shadow-md"
               >
                 {status === "submitting" ? "Subscribing..." : status === "success" ? "Subscribed!" : "Subscribe"}
               </button>

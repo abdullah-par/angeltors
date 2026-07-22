@@ -1,35 +1,35 @@
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import BlogHero from "@/features/blog/components/BlogHero";
-import FeaturedArticle from "@/features/blog/components/FeaturedArticle";
 import BlogCategories from "@/features/blog/components/BlogCategories";
 import LatestArticlesGrid from "@/features/blog/components/LatestArticlesGrid";
 import PopularTopics from "@/features/blog/components/PopularTopics";
-import WhyLearnWithUs from "@/features/blog/components/WhyLearnWithUs";
 import NewsletterCTA from "@/features/blog/components/NewsletterCTA";
 import { mockBlogs, mockCategories } from "@/features/blog/data/blogs";
 
 // Admin flag — set to false for production.
-// Replace with a real auth check when backend is ready.
 const isAdmin = false;
 
 export default function Learn() {
+  const [searchParams] = useSearchParams();
+  const activeCategorySlug = searchParams.get("category");
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [activeCategorySlug]);
 
   // Sort by date descending so newest posts appear first
   const sortedBlogs = [...mockBlogs].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 
-  // Use the most recent featured article as the hero feature
-  const featuredPost =
-    sortedBlogs.find((post) => post.featured) ?? sortedBlogs[0];
-
-  // Remaining posts for the grid (exclude the featured one)
-  const latestPosts = sortedBlogs.filter(
-    (post) => post.id !== featuredPost.id
-  );
+  // Filter posts by active category if selected
+  const filteredPosts = activeCategorySlug
+    ? sortedBlogs.filter(
+        (post) =>
+          post.category.slug.toLowerCase() === activeCategorySlug.toLowerCase()
+      )
+    : sortedBlogs;
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
@@ -49,9 +49,8 @@ export default function Learn() {
       )}
 
       <BlogHero />
-      <FeaturedArticle post={featuredPost} />
       <BlogCategories categories={mockCategories} />
-      <LatestArticlesGrid posts={latestPosts} />
+      <LatestArticlesGrid posts={filteredPosts} />
       <PopularTopics />
       <NewsletterCTA />
     </div>

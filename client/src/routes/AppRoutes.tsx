@@ -19,10 +19,18 @@ const Services = lazy(() => import("../pages/Services"));
 const Learn = lazy(() => import("../pages/Learn"));
 const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+
+function BuggyTestComponent(): React.ReactNode {
+  throw new Error("Previewing ErrorBoundary UI");
+}
+
 export default function AppRoutes() {
   return (
     <Routes>
+      <Route path="/test-error" element={<BuggyTestComponent />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
