@@ -1,4 +1,4 @@
-import { apiFetch, ApiResponse } from './api';
+import { apiFetch, ApiResponse, USE_MOCK_FALLBACK } from './api';
 
 export interface LoginPayload {
   email: string;
@@ -36,18 +36,21 @@ export async function loginUser(
     return response;
   }
 
-  // Seam for development authorization test
-  await new Promise((res) => setTimeout(res, 1000));
-  return {
-    success: true,
-    data: {
-      token: 'demo-jwt-token-angeltors',
-      user: {
-        id: 'user-1',
-        email: credentials.email,
+  if (USE_MOCK_FALLBACK) {
+    await new Promise((res) => setTimeout(res, 1000));
+    return {
+      success: true,
+      data: {
+        token: 'demo-jwt-token-angeltors',
+        user: {
+          id: 'user-1',
+          email: credentials.email,
+        },
       },
-    },
-  };
+    };
+  }
+
+  return response;
 }
 
 export async function registerUser(
@@ -62,17 +65,21 @@ export async function registerUser(
     return response;
   }
 
-  await new Promise((res) => setTimeout(res, 1000));
-  return {
-    success: true,
-    data: {
-      token: 'demo-jwt-token-angeltors',
-      user: {
-        id: 'user-new',
-        email: payload.email,
-        fullName: payload.fullName,
-        role: payload.role,
+  if (USE_MOCK_FALLBACK) {
+    await new Promise((res) => setTimeout(res, 1000));
+    return {
+      success: true,
+      data: {
+        token: 'demo-jwt-token-angeltors',
+        user: {
+          id: 'user-new',
+          email: payload.email,
+          fullName: payload.fullName,
+          role: payload.role,
+        },
       },
-    },
-  };
+    };
+  }
+
+  return response;
 }

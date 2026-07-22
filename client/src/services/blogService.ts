@@ -1,4 +1,4 @@
-import { apiFetch } from './api';
+import { apiFetch, USE_MOCK_FALLBACK } from './api';
 import { mockBlogs } from '@/features/blog/data/blogs';
 import { BlogPost } from '@/features/blog/types/blog';
 
@@ -9,15 +9,19 @@ export async function fetchBlogPosts(category?: string): Promise<BlogPost[]> {
     return response.data;
   }
 
-  if (!category || category.toLowerCase() === 'all') {
-    return mockBlogs;
+  if (USE_MOCK_FALLBACK) {
+    if (!category || category.toLowerCase() === 'all') {
+      return mockBlogs;
+    }
+
+    return mockBlogs.filter(
+      (b: BlogPost) =>
+        b.category.name.toLowerCase() === category.toLowerCase() ||
+        b.category.slug.toLowerCase() === category.toLowerCase()
+    );
   }
 
-  return mockBlogs.filter(
-    (b: BlogPost) =>
-      b.category.name.toLowerCase() === category.toLowerCase() ||
-      b.category.slug.toLowerCase() === category.toLowerCase()
-  );
+  return [];
 }
 
 export async function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -27,6 +31,10 @@ export async function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null
     return response.data;
   }
 
-  const found = mockBlogs.find((b: BlogPost) => b.slug === slug);
-  return found || null;
+  if (USE_MOCK_FALLBACK) {
+    const found = mockBlogs.find((b: BlogPost) => b.slug === slug);
+    return found || null;
+  }
+
+  return null;
 }

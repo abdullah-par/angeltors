@@ -1,4 +1,4 @@
-import { apiFetch, ApiResponse } from './api';
+import { apiFetch, ApiResponse, USE_MOCK_FALLBACK } from './api';
 
 export interface ContactPayload {
   name: string;
@@ -20,12 +20,15 @@ export async function submitContactForm(
     return response;
   }
 
-  // Simulated successful local response seam for development
-  await new Promise((res) => setTimeout(res, 1200));
-  return {
-    success: true,
-    data: { message: 'Thank you for reaching out! Our team will contact you shortly.' },
-  };
+  if (USE_MOCK_FALLBACK) {
+    await new Promise((res) => setTimeout(res, 1200));
+    return {
+      success: true,
+      data: { message: 'Thank you for reaching out! Our team will contact you shortly.' },
+    };
+  }
+
+  return response;
 }
 
 export async function subscribeNewsletter(
@@ -40,9 +43,13 @@ export async function subscribeNewsletter(
     return response;
   }
 
-  await new Promise((res) => setTimeout(res, 800));
-  return {
-    success: true,
-    data: { message: 'Subscribed successfully!' },
-  };
+  if (USE_MOCK_FALLBACK) {
+    await new Promise((res) => setTimeout(res, 800));
+    return {
+      success: true,
+      data: { message: 'Subscribed successfully!' },
+    };
+  }
+
+  return response;
 }

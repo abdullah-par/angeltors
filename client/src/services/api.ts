@@ -3,6 +3,9 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.angeltors.com/v1';
 
+export const USE_MOCK_FALLBACK =
+  import.meta.env.DEV || import.meta.env.VITE_USE_MOCK_API === 'true';
+
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
