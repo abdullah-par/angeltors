@@ -4,9 +4,15 @@ import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Eye, EyeOff, Sparkles, Zap, ShieldCheck, Target, User, Mail, Lock, ArrowRight, Rocket, TrendingUp, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { registerUser } from "@/services/authService";
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState<"founder" | "investor" | "other">("founder");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -14,9 +20,26 @@ export default function Register() {
     agreeToTerms: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Front-end handler - when backend is ready, dispatch registration payload
+    setLoading(true);
+    setError("");
+
+    const res = await registerUser({
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      role,
+      agreeToTerms: formData.agreeToTerms,
+    });
+
+    setLoading(false);
+
+    if (res.success) {
+      navigate("/");
+    } else {
+      setError(res.error || "Registration failed. Please try again.");
+    }
   };
 
   const highlights = [

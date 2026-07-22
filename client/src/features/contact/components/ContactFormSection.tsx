@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, ChevronDown, User, Mail, Phone, Briefcase, MessageSquare } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { submitContactForm } from "@/services/contactService";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
@@ -194,9 +195,22 @@ export default function ContactFormSection() {
       return;
     }
     setStatus("loading");
-    // Simulate API call
-    await new Promise((res) => setTimeout(res, 1800));
-    setStatus("success");
+    
+    // Call service layer for API submission
+    const res = await submitContactForm({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      userType: form.profile,
+      message: form.message,
+    });
+
+    if (res.success) {
+      setStatus("success");
+    } else {
+      setErrors({ message: res.error || "Submission failed. Please try again." });
+      setStatus("idle");
+    }
   };
 
   const handleReset = () => {

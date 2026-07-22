@@ -1,9 +1,30 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { loginUser } from "@/services/authService";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const res = await loginUser({ email, password: "demo-password" });
+    setLoading(false);
+
+    if (res.success) {
+      navigate("/");
+    } else {
+      setError(res.error || "Login failed. Please try again.");
+    }
+  };
   return (
     <>
       <Helmet>
@@ -135,7 +156,10 @@ export default function Login() {
             </div>
 
             {/* Email Input */}
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {error && (
+                <p className="text-xs font-bold text-red-500 text-center">{error}</p>
+              )}
               <div className="relative mt-2">
                 <label 
                   htmlFor="email" 
@@ -147,16 +171,19 @@ export default function Login() {
                   type="email" 
                   id="email" 
                   required
-                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3.5 text-angeltors-ink placeholder-transparent focus:border-angeltors-accent focus:outline-none focus:ring-0 transition-colors"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3.5 text-angeltors-ink focus:border-angeltors-accent focus:outline-none transition-colors"
                 />
               </div>
 
               {/* Continue Button */}
               <button 
                 type="submit" 
-                className="w-full rounded-full bg-angeltors-ink py-4 text-[15px] font-medium text-white transition-all hover:bg-angeltors-ink/90 active:scale-[0.98] shadow-sm"
+                disabled={loading}
+                className="w-full rounded-full bg-angeltors-ink py-4 text-[15px] font-medium text-white transition-all hover:bg-angeltors-ink/90 active:scale-[0.98] shadow-sm disabled:opacity-50 cursor-pointer"
               >
-                Continue
+                {loading ? "Signing in..." : "Continue"}
               </button>
             </form>
 
