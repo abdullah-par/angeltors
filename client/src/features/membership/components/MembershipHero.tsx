@@ -38,7 +38,7 @@ export default function MembershipHero() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 border border-white/20 text-white font-bold hover:bg-white/10 transition-colors">
-                Talk to our Team
+                Talk to Us
               </Link>
             </div>
           </motion.div>
