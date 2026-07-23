@@ -29,7 +29,7 @@ export default function RaiseCapitalCTA() {
           
           <div className="shrink-0">
             <Link
-              to="/contact"
+              to="/membership"
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-[16px] font-bold text-angeltors-ink transition-all duration-300 hover:bg-slate-100 shadow-md hover:scale-105"
             >
               <span>Apply to raise capital</span>

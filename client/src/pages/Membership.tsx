@@ -83,7 +83,7 @@ export default function Membership() {
               Submit your application today. Our team will review your profile and get back to you with the next steps.
             </p>
             <Link
-              to="/contact"
+              to="/register"
               className="inline-flex items-center gap-2 px-10 py-5 bg-white text-angeltors-ink font-bold rounded-full text-lg hover:bg-slate-100 hover:scale-105 transition-all shadow-xl"
             >
               Apply Now

@@ -130,17 +130,17 @@ export default function Hero() {
                 {el.type === "buttons" && (
                   <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                     <a
-                      href="#our-services"
+                      href="/membership"
                       className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-angeltors-ink px-10 py-4 text-base font-bold text-white overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_20px_-6px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_15px_30px_-10px_rgba(0,0,0,0.6)] w-full sm:w-auto"
                     >
                       <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <span className="relative z-10 flex items-center gap-2">For Investors <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
+                      <span className="relative z-10 flex items-center gap-2">Explore <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
                     </a>
                     <a
-                      href="#our-services"
+                      href="/about"
                       className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-white border border-slate-200/60 px-10 py-4 text-base font-bold text-angeltors-ink transition-all duration-300 hover:bg-slate-50 hover:border-slate-300 shadow-sm hover:shadow-md w-full sm:w-auto"
                     >
-                      <span className="relative z-10 flex items-center gap-2">For Startups <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
+                      <span className="relative z-10 flex items-center gap-2">About Us<ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
                     </a>
                   </div>
                 )}

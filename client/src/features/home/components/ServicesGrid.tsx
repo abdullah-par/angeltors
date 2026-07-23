@@ -80,7 +80,7 @@ export default function ServicesGrid() {
                 </p>
                 <div className="mt-10 pt-8 border-t border-slate-100">
                   <a
-                    href="#contact"
+                    href="/register"
                     className="inline-flex w-full items-center justify-center rounded-full bg-angeltors-ink py-4 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_20px_-6px_rgba(0,0,0,0.5)] gap-2 group/btn"
                   >
                     <span>{service.actionLabel}</span>

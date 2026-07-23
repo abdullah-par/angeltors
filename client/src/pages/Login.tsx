@@ -216,11 +216,6 @@ export default function Login() {
                 <img src="https://www.svgrepo.com/show/448234/linkedin.svg" className="w-5 h-5" alt="LinkedIn" />
                 Continue with LinkedIn
               </button>
-              
-              <button className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white py-3.5 text-[15px] font-medium text-slate-700 transition-colors hover:bg-slate-50">
-                <img src="https://www.svgrepo.com/show/511330/apple-173.svg" className="w-5 h-5" alt="Apple" />
-                Continue with Apple
-              </button>
             </div>
 
             {/* Footer Links (from Image 2) */}

@@ -175,39 +175,6 @@ export default function Register() {
               <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-angeltors-ink">
                 Create Your Account
               </h1>
-              <p className="text-slate-500 text-sm font-medium">
-                Welcome to Angeltors. Select your profile type to get started.
-              </p>
-            </div>
-
-            {/* Interactive Role Cards */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              {[
-                { id: "founder", label: "Founder", desc: "Raise capital", icon: Rocket },
-                { id: "investor", label: "Investor", desc: "Back startups", icon: TrendingUp },
-                { id: "other", label: "Partner", desc: "Ecosystem", icon: Building2 },
-              ].map((item) => {
-                const RoleIcon = item.icon;
-                const isSelected = role === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setRole(item.id as any)}
-                    className={`flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
-                      isSelected
-                        ? "border-angeltors-ink bg-angeltors-ink text-white shadow-md scale-[1.02]"
-                        : "border-slate-200 bg-slate-50/60 text-slate-600 hover:border-slate-300 hover:bg-white"
-                    }`}
-                  >
-                    <RoleIcon className={`w-5 h-5 mb-1.5 ${isSelected ? "text-angeltors-accent" : "text-slate-400"}`} />
-                    <span className="text-xs font-black tracking-tight">{item.label}</span>
-                    <span className={`text-[10px] font-bold ${isSelected ? "text-slate-300" : "text-slate-400"}`}>
-                      {item.desc}
-                    </span>
-                  </button>
-                );
-              })}
             </div>
 
             {/* Registration Form */}

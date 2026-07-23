@@ -132,7 +132,7 @@ export default function ServicesGrid() {
         
         <div className="flex justify-center">
           <Link
-            to="/contact"
+            to="/register"
             className="inline-flex items-center justify-center rounded-lg bg-white px-10 py-4 text-[16px] font-bold text-angeltors-ink transition-all duration-300 hover:bg-slate-100 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
           >
             Sign Up
