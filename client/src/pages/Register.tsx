@@ -22,12 +22,41 @@ export default function Register() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
+    const nameTrimmed = formData.fullName.trim();
+    const emailTrimmed = formData.email.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nameTrimmed) {
+      setError("Please enter your full name.");
+      return;
+    }
+    if (!emailTrimmed) {
+      setError("Please enter your email address.");
+      return;
+    }
+    if (!emailRegex.test(emailTrimmed)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!formData.password) {
+      setError("Please enter a password.");
+      return;
+    }
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+    if (!formData.agreeToTerms) {
+      setError("You must agree to the Terms of Use and Privacy Policy.");
+      return;
+    }
+
+    setLoading(true);
     const res = await registerUser({
-      fullName: formData.fullName,
-      email: formData.email,
+      fullName: nameTrimmed,
+      email: emailTrimmed,
       password: formData.password,
       role,
       agreeToTerms: formData.agreeToTerms,
@@ -36,7 +65,7 @@ export default function Register() {
     setLoading(false);
 
     if (res.success) {
-      navigate("/");
+      navigate("/onboarding");
     } else {
       setError(res.error || "Registration failed. Please try again.");
     }
@@ -69,87 +98,100 @@ export default function Register() {
       <div className="min-h-screen flex w-full bg-white font-sans selection:bg-angeltors-accent selection:text-white">
         {/* LEFT PANEL - Dark Branding Section */}
         <div className="hidden lg:flex w-[45%] bg-angeltors-ink relative flex-col justify-between overflow-hidden p-12 lg:p-16">
-          {/* Subtle Grid Background */}
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.05]" />
-
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-angeltors-accent/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-angeltors-cyan/15 rounded-full blur-3xl pointer-events-none" />
-
+          {/* Animated Background Gradients */}
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+          
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.3, 0.2]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-angeltors-accent rounded-full blur-[120px] mix-blend-screen pointer-events-none"
+          />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-angeltors-cyan rounded-full blur-[100px] mix-blend-screen pointer-events-none"
+          />
+          
           {/* Top Section */}
           <div className="relative z-10 flex justify-between items-center w-full">
-            <Link
-              to="/"
-              className="inline-flex items-center group text-slate-400 hover:text-white transition-colors text-sm font-bold"
-            >
+            <Link to="/" className="inline-flex items-center group text-slate-400 hover:text-white transition-colors text-sm font-bold">
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
               Back to website
             </Link>
           </div>
 
-          {/* Center Content - Typographic Minimal Modern Design */}
-          <div className="relative z-10 max-w-lg my-auto py-8">
+          {/* Center Content */}
+          <div className="relative z-10 max-w-lg mt-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.08] mb-6">
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.1] tracking-tight mb-6">
                 Fueling The Next <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-angeltors-accent">
-                  Wave of Growth.
-                </span>
+                Wave of Growth.
               </h2>
-
-              <p className="text-lg text-slate-400 font-medium leading-relaxed mb-12">
-                Join an exclusive network connecting high-signal founders with accredited angel investors and industry leaders.
+              
+              <p className="text-lg text-slate-400 font-medium leading-relaxed max-w-md">
+                Enter an exclusive ecosystem of high-signal founders, strategic investors, and industry experts building the future.
               </p>
+            </motion.div>
 
-              {/* Minimalist Icon Highlights (InvestWithUs style) */}
-              <div className="space-y-8">
-                {highlights.map((pt, idx) => {
-                  const Icon = pt.icon;
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 + idx * 0.1, duration: 0.5 }}
-                      className="flex items-start gap-5 group cursor-default"
+            {/* Glassmorphic Stats Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mt-12 p-6 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden group max-w-sm"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="flex items-center gap-6 relative z-10">
+                <div className="flex -space-x-4">
+                  {[1, 2, 3].map((i, idx) => (
+                    <div 
+                      key={i} 
+                      className="w-12 h-12 rounded-full border-2 border-angeltors-ink bg-slate-800 flex items-center justify-center overflow-hidden relative"
+                      style={{ zIndex: 10 - idx }}
                     >
-                      <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-angeltors-accent/10 text-angeltors-accent border border-angeltors-accent/20 group-hover:bg-angeltors-accent group-hover:text-white transition-all duration-500 shadow-sm">
-                        <Icon className="w-7 h-7" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-1 tracking-tight">
-                          {pt.title}
-                        </h3>
-                        <p className="text-sm text-slate-400 leading-relaxed font-medium">
-                          {pt.desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Member" className="w-full h-full object-cover opacity-90" />
+                    </div>
+                  ))}
+                  <div className="w-12 h-12 rounded-full border-2 border-angeltors-ink bg-angeltors-accent flex items-center justify-center relative z-0 text-white text-xs font-bold">
+                    +2k
+                  </div>
+                </div>
+                <div>
+                  <p className="text-white font-bold text-lg">Active Members</p>
+                  <p className="text-slate-400 text-sm font-medium">Founders & Investors</p>
+                </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Bottom Footer Section */}
-          <div className="relative z-10 flex items-center justify-between text-slate-500 text-sm font-medium pt-8 border-t border-white/10">
-            <p>© Angeltors Private Limited</p>
-            <div className="flex items-center gap-2 text-xs text-slate-400">
-              <Sparkles className="w-4 h-4 text-angeltors-accent" />
-              <span>Vetted Startup Ecosystem</span>
+          {/* Bottom Section */}
+          <div className="relative z-10 flex items-center justify-between text-slate-500 text-sm font-medium mt-12">
+            <p>Empowering global innovation.</p>
+            <div className="flex gap-2">
+              <span className="w-2 h-2 rounded-full bg-slate-700"></span>
+              <span className="w-2 h-2 rounded-full bg-slate-700"></span>
+              <span className="w-2 h-2 rounded-full bg-white"></span>
             </div>
           </div>
         </div>
 
         {/* RIGHT PANEL - Register Form Section */}
-        <div className="w-full lg:w-[55%] flex items-center justify-center p-8 sm:p-12 relative overflow-y-auto max-h-screen">
+        <div className="w-full lg:w-[55%] flex items-center justify-center p-6 sm:p-8 relative">
           {/* Mobile Back Button */}
           <Link
             to="/"
-            className="lg:hidden absolute top-8 left-8 text-slate-500 hover:text-angeltors-ink transition-colors flex items-center group font-medium text-sm"
+            className="lg:hidden absolute top-6 left-6 text-slate-500 hover:text-angeltors-ink transition-colors flex items-center group font-medium text-sm"
           >
             <ArrowLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
             Back
@@ -159,77 +201,77 @@ export default function Register() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full max-w-[440px] my-auto py-6"
+            className="w-full max-w-[420px] my-auto py-2"
           >
             {/* Form Logo */}
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-4">
               <img
                 src="/images/Angeltors_logo.png"
                 alt="Angeltors"
-                className="h-11 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </div>
 
             {/* Headers */}
-            <div className="text-center mb-7 space-y-2">
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-angeltors-ink">
+            <div className="text-center mb-5">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-angeltors-ink">
                 Create Your Account
               </h1>
             </div>
 
             {/* Registration Form */}
             <form className="space-y-4" onSubmit={handleSubmit}>
+              {error && (
+                <p className="text-xs font-bold text-red-500 text-center">{error}</p>
+              )}
+
               {/* Full Name */}
-              <div className="space-y-1.5">
-                <label htmlFor="fullName" className="block text-xs font-black uppercase tracking-wider text-angeltors-ink">
-                  Full Name <span className="text-angeltors-accent">*</span>
+              <div className="relative mt-2">
+                <label 
+                  htmlFor="fullName" 
+                  className="absolute -top-[9px] left-3.5 bg-white px-1.5 text-[12px] font-medium text-angeltors-ink tracking-wide z-10"
+                >
+                  Full Name<span className="text-angeltors-ink ml-0.5">*</span>
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                    <User className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="text"
-                    id="fullName"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    placeholder="e.g. Rahul Sharma"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-10 pr-4 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-angeltors-accent/10 transition-all"
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="fullName"
+                  required
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  placeholder="e.g. Rahul Sharma"
+                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:outline-none transition-colors"
+                />
               </div>
 
               {/* Email Address */}
-              <div className="space-y-1.5">
-                <label htmlFor="email" className="block text-xs font-black uppercase tracking-wider text-angeltors-ink">
-                  Email Address <span className="text-angeltors-accent">*</span>
+              <div className="relative mt-2">
+                <label 
+                  htmlFor="email" 
+                  className="absolute -top-[9px] left-3.5 bg-white px-1.5 text-[12px] font-medium text-angeltors-ink tracking-wide z-10"
+                >
+                  Email address<span className="text-angeltors-ink ml-0.5">*</span>
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="name@company.com"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-10 pr-4 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-angeltors-accent/10 transition-all"
-                  />
-                </div>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="name@company.com"
+                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:outline-none transition-colors"
+                />
               </div>
 
               {/* Password */}
-              <div className="space-y-1.5">
-                <label htmlFor="password" className="block text-xs font-black uppercase tracking-wider text-angeltors-ink">
-                  Password <span className="text-angeltors-accent">*</span>
+              <div className="relative mt-2">
+                <label 
+                  htmlFor="password" 
+                  className="absolute -top-[9px] left-3.5 bg-white px-1.5 text-[12px] font-medium text-angeltors-ink tracking-wide z-10"
+                >
+                  Password<span className="text-angeltors-ink ml-0.5">*</span>
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                    <Lock className="w-4 h-4" />
-                  </div>
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
@@ -237,7 +279,7 @@ export default function Register() {
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     placeholder="Minimum 8 characters"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-10 pr-11 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-angeltors-accent/10 transition-all"
+                    className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent pl-4 pr-11 py-3 text-sm text-angeltors-ink font-medium placeholder:text-slate-400 focus:border-angeltors-accent focus:outline-none transition-colors"
                   />
                   <button
                     type="button"
@@ -264,7 +306,7 @@ export default function Register() {
               </div>
 
               {/* Checkbox Terms */}
-              <div className="flex items-start gap-3 pt-2">
+              <div className="flex items-start gap-3 pt-1">
                 <input
                   type="checkbox"
                   id="terms"
@@ -289,15 +331,16 @@ export default function Register() {
               {/* Register Button */}
               <button
                 type="submit"
-                className="group w-full inline-flex items-center justify-center gap-2 rounded-full bg-angeltors-ink py-4 text-sm font-black text-white shadow-md transition-all duration-300 hover:bg-angeltors-accent hover:shadow-xl hover:shadow-angeltors-accent/20 hover:-translate-y-0.5 active:scale-[0.98] mt-2 cursor-pointer"
+                disabled={loading}
+                className="w-full rounded-full bg-angeltors-ink py-4 text-[15px] font-medium text-white transition-all hover:bg-angeltors-ink/90 active:scale-[0.98] shadow-sm disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 mt-2"
               >
-                <span>Create Account</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <span>{loading ? "Creating Account..." : "Create Account"}</span>
+                {!loading && <ArrowRight className="w-4 h-4" />}
               </button>
             </form>
 
             {/* Login Link */}
-            <div className="mt-6 text-center text-sm text-slate-500 font-medium">
+            <div className="mt-4 text-center text-sm text-slate-500 font-medium">
               Already have an account?{" "}
               <Link to="/login" className="font-bold text-angeltors-ink hover:text-angeltors-accent transition-colors">
                 Log in
@@ -305,7 +348,7 @@ export default function Register() {
             </div>
 
             {/* Divider */}
-            <div className="relative my-7 flex items-center justify-center">
+            <div className="relative my-4 flex items-center justify-center">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-slate-200" />
               </div>
@@ -315,20 +358,28 @@ export default function Register() {
             </div>
 
             {/* Social Sign Up Buttons */}
-            <div className="space-y-3">
-              <button className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white py-3.5 text-xs sm:text-sm font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50/80 hover:border-slate-300 shadow-xs cursor-pointer">
+            <div className="space-y-2.5">
+              <button
+                type="button"
+                onClick={() => navigate("/onboarding")}
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white py-3 text-xs sm:text-sm font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50 shadow-xs cursor-pointer"
+              >
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-4 h-4 sm:w-5 sm:h-5" alt="Google" />
                 <span>Continue with Google</span>
               </button>
 
-              <button className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white py-3.5 text-xs sm:text-sm font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50/80 hover:border-slate-300 shadow-xs cursor-pointer">
+              <button
+                type="button"
+                onClick={() => navigate("/onboarding")}
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white py-3 text-xs sm:text-sm font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50 shadow-xs cursor-pointer"
+              >
                 <img src="https://www.svgrepo.com/show/448234/linkedin.svg" className="w-4 h-4 sm:w-5 sm:h-5" alt="LinkedIn" />
                 <span>Continue with LinkedIn</span>
               </button>
             </div>
 
             {/* Footer Links */}
-            <div className="mt-10 text-center text-xs font-semibold text-slate-400 flex justify-center gap-3">
+            <div className="mt-6 text-center text-xs font-semibold text-slate-400 flex justify-center gap-3">
               <span>© Angeltors</span>
               <span>·</span>
               <Link to="/privacy-policy" className="hover:text-slate-600 transition-colors">

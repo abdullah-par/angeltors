@@ -20,6 +20,13 @@ const Learn = lazy(() => import("../pages/Learn"));
 const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
+const OnboardingProfile = lazy(() => import("../pages/OnboardingProfile"));
+
+// Dashboards
+const StartupDashboard = lazy(() => import("../pages/dashboards/StartupDashboard"));
+const InvestorDashboard = lazy(() => import("../pages/dashboards/InvestorDashboard"));
+const MentorDashboard = lazy(() => import("../pages/dashboards/MentorDashboard"));
+const FreemiumDashboard = lazy(() => import("../pages/dashboards/FreemiumDashboard"));
 
 function BuggyTestComponent(): React.ReactNode {
   throw new Error("Previewing ErrorBoundary UI");
@@ -31,6 +38,11 @@ export default function AppRoutes() {
       <Route path="/test-error" element={<BuggyTestComponent />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/onboarding" element={<OnboardingProfile />} />
+      <Route path="/dashboard/startup" element={<StartupDashboard />} />
+      <Route path="/dashboard/investor" element={<InvestorDashboard />} />
+      <Route path="/dashboard/mentor" element={<MentorDashboard />} />
+      <Route path="/dashboard/freemium" element={<FreemiumDashboard />} />
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

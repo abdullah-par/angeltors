@@ -8,21 +8,42 @@ import { loginUser } from "@/services/authService";
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
-    const res = await loginUser({ email, password: "demo-password" });
+    const emailTrimmed = email.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailTrimmed) {
+      setError("Please enter your email address.");
+      return;
+    }
+    if (!emailRegex.test(emailTrimmed)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!password) {
+      setError("Please enter your password.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
+    setLoading(true);
+    const res = await loginUser({ email: emailTrimmed, password });
     setLoading(false);
 
     if (res.success) {
       navigate("/");
     } else {
-      setError(res.error || "Login failed. Please try again.");
+      setError(res.error || "Invalid credentials. Please try again.");
     }
   };
   return (
@@ -155,15 +176,17 @@ export default function Login() {
               </p>
             </div>
 
-            {/* Email Input */}
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* Login Inputs */}
+            <form className="space-y-5" onSubmit={handleSubmit}>
               {error && (
                 <p className="text-xs font-bold text-red-500 text-center">{error}</p>
               )}
+
+              {/* Email Address */}
               <div className="relative mt-2">
                 <label 
                   htmlFor="email" 
-                  className="absolute -top-[9px] left-3 bg-white px-1.5 text-[13px] font-medium text-angeltors-ink tracking-wide"
+                  className="absolute -top-[9px] left-3.5 bg-white px-1.5 text-[13px] font-medium text-angeltors-ink tracking-wide z-10"
                 >
                   Email address<span className="text-angeltors-ink ml-0.5">*</span>
                 </label>
@@ -173,8 +196,37 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3.5 text-angeltors-ink focus:border-angeltors-accent focus:outline-none transition-colors"
+                  placeholder="name@company.com"
+                  className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent px-4 py-3.5 text-sm text-angeltors-ink focus:border-angeltors-accent focus:outline-none transition-colors"
                 />
+              </div>
+
+              {/* Password */}
+              <div className="relative mt-2">
+                <label 
+                  htmlFor="password" 
+                  className="absolute -top-[9px] left-3.5 bg-white px-1.5 text-[13px] font-medium text-angeltors-ink tracking-wide z-10"
+                >
+                  Password<span className="text-angeltors-ink ml-0.5">*</span>
+                </label>
+                <div className="relative">
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    id="password" 
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    className="w-full rounded-[14px] border-[1.5px] border-angeltors-ink bg-transparent pl-4 pr-11 py-3.5 text-sm text-angeltors-ink focus:border-angeltors-accent focus:outline-none transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-angeltors-ink transition-colors p-1"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
               </div>
 
               {/* Continue Button */}
