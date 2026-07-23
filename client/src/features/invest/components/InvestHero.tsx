@@ -1,17 +1,34 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { ArrowRight, ShieldCheck, TrendingUp, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, TrendingUp, Users, Sparkles, LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { fetchPlatformMetrics, PlatformMetric } from '@/services/metricsService';
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  Sparkles,
+  Users,
+  TrendingUp,
+  ShieldCheck,
+};
 
 export default function InvestHero() {
   const reducedMotion = useReducedMotion();
+  const [metrics, setMetrics] = useState<PlatformMetric[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const highlights = [
-    { label: "Curated Startup Access", val: "Top 1%", icon: Sparkles },
-    { label: "Active Investors", val: "500+", icon: Users },
-    { label: "Average Deal IRR", val: "32%+", icon: TrendingUp },
-    { label: "Structured Due Diligence", val: "100%", icon: ShieldCheck },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    fetchPlatformMetrics().then((data) => {
+      if (isMounted) {
+        setMetrics(data);
+        setLoading(false);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-white border-b border-slate-100">
@@ -68,30 +85,34 @@ export default function InvestHero() {
           </a>
         </motion.div>
 
-        {/* Feature Highlights Grid */}
+        {/* Dynamic Database Feature Highlights Grid */}
         <motion.div
           initial={reducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={reducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl"
         >
-          {highlights.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div 
-                key={idx}
-                className="bg-slate-50/80 border border-slate-200/60 rounded-2xl p-5 text-left flex flex-col justify-between hover:bg-white hover:shadow-md transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl sm:text-3xl font-black text-angeltors-ink">{item.val}</span>
-                  <div className="w-8 h-8 rounded-full bg-angeltors-accent/10 flex items-center justify-center text-angeltors-accent">
-                    <Icon className="w-4 h-4" />
+          {loading
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="bg-slate-100 rounded-2xl p-5 h-24 animate-pulse" />
+              ))
+            : metrics.map((item) => {
+                const Icon = ICON_MAP[item.iconName] || Sparkles;
+                return (
+                  <div 
+                    key={item.id}
+                    className="bg-slate-50/80 border border-slate-200/60 rounded-2xl p-5 text-left flex flex-col justify-between hover:bg-white hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-2xl sm:text-3xl font-black text-angeltors-ink">{item.val}</span>
+                      <div className="w-8 h-8 rounded-full bg-angeltors-accent/10 flex items-center justify-center text-angeltors-accent">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <span className="text-xs sm:text-sm font-semibold text-slate-500">{item.label}</span>
                   </div>
-                </div>
-                <span className="text-xs sm:text-sm font-semibold text-slate-500">{item.label}</span>
-              </div>
-            );
-          })}
+                );
+              })}
         </motion.div>
 
       </div>

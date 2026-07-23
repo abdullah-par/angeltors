@@ -23,8 +23,8 @@ export default function Footer() {
     {
       title: "Quick Links",
       links: [
-        { label: "Sign Up", href: "#contact" },
-        { label: "Pitch To Us", href: "#contact" },
+        { label: "Sign Up", href: "/register" },
+        { label: "Pitch To Us", href: "/membership" },
         { label: "Blog Post", href: "/learn" },
         { label: "Investor Relation", href: "/investor-relation" },
       ],

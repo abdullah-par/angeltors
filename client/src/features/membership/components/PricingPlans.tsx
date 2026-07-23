@@ -109,47 +109,59 @@ export function PlanCard({ plan }: { plan: typeof plans[0] }) {
   return (
     <motion.div variants={fadeIn} className="w-full flex">
       <SpotlightCard
-        className={`w-full flex flex-col p-6 ${
+        className={`w-full flex flex-col p-6 transition-all duration-500 group rounded-3xl border shadow-sm ${
           plan.highlighted
-            ? 'bg-angeltors-ink text-white rounded-3xl border border-angeltors-navy-light/30 shadow-xl z-10 relative'
-            : 'bg-white text-angeltors-ink rounded-3xl border border-slate-200/60 shadow-sm'
+            ? 'bg-angeltors-ink text-white border-angeltors-navy-light/30 shadow-xl z-10 relative hover:bg-white hover:text-angeltors-ink hover:border-slate-200/80 hover:shadow-2xl hover:-translate-y-1.5'
+            : 'bg-white text-angeltors-ink border-slate-200/80 hover:bg-angeltors-ink hover:text-white hover:border-angeltors-ink hover:shadow-2xl hover:-translate-y-1.5'
         }`}
-        spotlightColor={plan.highlighted ? 'rgba(255, 255, 255, 0.05)' : 'rgba(99, 91, 255, 0.04)'}
+        spotlightColor="rgba(99, 91, 255, 0.08)"
       >
         <div className="flex flex-col h-full">
           <div className="flex-1 mb-6">
-            <div className={`inline-flex items-center justify-center p-2 rounded-xl mb-4 ${
-              plan.highlighted ? 'bg-white/10 text-white' : 'bg-slate-50 text-angeltors-ink border border-slate-200/60'
+            <div className={`inline-flex items-center justify-center p-2 rounded-xl mb-4 transition-colors duration-500 ${
+              plan.highlighted 
+                ? 'bg-white/10 text-white group-hover:bg-slate-50 group-hover:text-angeltors-ink group-hover:border group-hover:border-slate-200/60' 
+                : 'bg-slate-50 text-angeltors-ink border border-slate-200/60 group-hover:bg-white/10 group-hover:text-white group-hover:border-white/10'
             }`}>
               <div className="scale-75 origin-center">{plan.icon}</div>
             </div>
-            <h3 className={`text-xl font-bold tracking-tight mb-1.5 ${plan.highlighted ? 'text-white' : 'text-angeltors-ink'}`}>
+            <h3 className={`text-xl font-bold tracking-tight mb-1.5 transition-colors duration-500 ${
+              plan.highlighted ? 'text-white group-hover:text-angeltors-ink' : 'text-angeltors-ink group-hover:text-white'
+            }`}>
               {plan.title}
             </h3>
-            <p className={`text-xs font-medium mb-4 min-h-[36px] ${plan.highlighted ? 'text-slate-400' : 'text-slate-500'}`}>
+            <p className={`text-xs font-medium mb-4 min-h-[36px] transition-colors duration-500 ${
+              plan.highlighted ? 'text-slate-400 group-hover:text-slate-500' : 'text-slate-500 group-hover:text-slate-300'
+            }`}>
               {plan.target}
             </p>
-            <p className={`text-xs leading-relaxed mb-6 min-h-[54px] ${plan.highlighted ? 'text-slate-300' : 'text-slate-600'}`}>
+            <p className={`text-xs leading-relaxed mb-6 min-h-[54px] transition-colors duration-500 ${
+              plan.highlighted ? 'text-slate-300 group-hover:text-slate-600' : 'text-slate-600 group-hover:text-slate-300'
+            }`}>
               {plan.description}
             </p>
             
             <div className="mb-6">
               <div className="flex items-baseline gap-1">
-                <span className={`text-3xl font-extrabold tracking-tight ${plan.highlighted ? 'text-white' : 'text-angeltors-ink'}`}>
+                <span className={`text-3xl font-extrabold tracking-tight transition-colors duration-500 ${
+                  plan.highlighted ? 'text-white group-hover:text-angeltors-ink' : 'text-angeltors-ink group-hover:text-white'
+                }`}>
                   {plan.price}
                 </span>
               </div>
-              <p className={`text-xs mt-1 font-medium ${plan.highlighted ? 'text-slate-400' : 'text-slate-500'}`}>
+              <p className={`text-xs mt-1 font-medium transition-colors duration-500 ${
+                plan.highlighted ? 'text-slate-400 group-hover:text-slate-500' : 'text-slate-500 group-hover:text-slate-400'
+              }`}>
                 {plan.suffix || '\u00A0'}
               </p>
             </div>
             
             <Link
-              to="/contact"
+              to="/register"
               className={`inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-xs font-bold transition-all duration-300 ${
                 plan.highlighted
-                  ? 'bg-angeltors-accent text-white hover:bg-angeltors-accent-light shadow-md hover:-translate-y-0.5'
-                  : 'bg-slate-100 text-angeltors-ink hover:bg-slate-200'
+                  ? 'bg-angeltors-accent text-white hover:bg-angeltors-accent-light shadow-md hover:-translate-y-0.5 group-hover:bg-slate-100 group-hover:text-angeltors-ink'
+                  : 'bg-slate-100 text-angeltors-ink hover:bg-slate-200 group-hover:bg-angeltors-accent group-hover:text-white'
               }`}
             >
               Apply now
@@ -157,17 +169,25 @@ export function PlanCard({ plan }: { plan: typeof plans[0] }) {
             </Link>
           </div>
 
-          <hr className={`border-t mb-5 ${plan.highlighted ? 'border-white/10' : 'border-slate-200/60'}`} />
+          <hr className={`border-t mb-5 transition-colors duration-500 ${
+            plan.highlighted ? 'border-white/10 group-hover:border-slate-200/60' : 'border-slate-200/60 group-hover:border-white/10'
+          }`} />
 
           <div className="flex flex-col">
-            <h4 className={`text-[10px] font-bold uppercase tracking-widest mb-4 ${plan.highlighted ? 'text-slate-400' : 'text-slate-500'}`}>
+            <h4 className={`text-[10px] font-bold uppercase tracking-widest mb-4 transition-colors duration-500 ${
+              plan.highlighted ? 'text-slate-400 group-hover:text-slate-500' : 'text-slate-500 group-hover:text-slate-400'
+            }`}>
               What's Included
             </h4>
             <ul className="space-y-3">
               {plan.topFeatures.map((feature, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <Check className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${plan.highlighted ? 'text-angeltors-cyan' : 'text-angeltors-accent'}`} />
-                  <span className={`text-xs font-medium leading-relaxed ${plan.highlighted ? 'text-slate-200' : 'text-slate-700'}`}>
+                  <Check className={`w-3.5 h-3.5 shrink-0 mt-0.5 transition-colors duration-500 ${
+                    plan.highlighted ? 'text-angeltors-cyan group-hover:text-angeltors-accent' : 'text-angeltors-accent group-hover:text-angeltors-cyan'
+                  }`} />
+                  <span className={`text-xs font-medium leading-relaxed transition-colors duration-500 ${
+                    plan.highlighted ? 'text-slate-200 group-hover:text-slate-700' : 'text-slate-700 group-hover:text-slate-200'
+                  }`}>
                     {feature}
                   </span>
                 </li>
@@ -177,8 +197,8 @@ export function PlanCard({ plan }: { plan: typeof plans[0] }) {
             <div className="mt-4">
               <button
                 onClick={() => setExpanded(!expanded)}
-                className={`flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider transition-colors cursor-pointer ${
-                  plan.highlighted ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-angeltors-ink'
+                className={`flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider transition-colors duration-500 cursor-pointer ${
+                  plan.highlighted ? 'text-slate-400 group-hover:text-slate-500 hover:text-angeltors-ink' : 'text-slate-500 group-hover:text-slate-400 hover:text-white'
                 }`}
               >
                 {expanded ? 'Hide full list' : 'View full list'}
@@ -196,8 +216,12 @@ export function PlanCard({ plan }: { plan: typeof plans[0] }) {
                   >
                     {plan.hiddenFeatures.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <Check className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${plan.highlighted ? 'text-angeltors-cyan' : 'text-angeltors-accent'}`} />
-                        <span className={`text-xs font-medium leading-relaxed ${plan.highlighted ? 'text-slate-200' : 'text-slate-700'}`}>
+                        <Check className={`w-3.5 h-3.5 shrink-0 mt-0.5 transition-colors duration-500 ${
+                          plan.highlighted ? 'text-angeltors-cyan group-hover:text-angeltors-accent' : 'text-angeltors-accent group-hover:text-angeltors-cyan'
+                        }`} />
+                        <span className={`text-xs font-medium leading-relaxed transition-colors duration-500 ${
+                          plan.highlighted ? 'text-slate-200 group-hover:text-slate-700' : 'text-slate-700 group-hover:text-slate-200'
+                        }`}>
                           {feature}
                         </span>
                       </li>
