@@ -50,9 +50,10 @@ const profileOptions: ProfileOption[] = [
 
 export default function OnboardingProfile() {
   const navigate = useNavigate();
-  const [selectedId, setSelectedId] = useState<string>("startup");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const handleContinue = () => {
+    if (!selectedId) return;
     const selected = profileOptions.find((p) => p.id === selectedId);
     if (selected) {
       navigate(selected.targetRoute);
@@ -108,54 +109,47 @@ export default function OnboardingProfile() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   onClick={() => setSelectedId(option.id)}
-                  className={`group relative p-7 rounded-2xl border text-left cursor-pointer flex flex-col justify-between transition-all duration-300 ${
-                    isSelected
-                      ? "bg-angeltors-ink text-white border-angeltors-ink shadow-2xl scale-[1.02]"
-                      : "bg-slate-50 text-angeltors-ink border-slate-200/70 hover:bg-white hover:shadow-xl hover:border-slate-300 hover:-translate-y-1.5"
-                  }`}
+                  className={`group relative p-7 rounded-2xl border text-left cursor-pointer flex flex-col justify-between transition-all duration-300 ${isSelected
+                    ? "bg-angeltors-ink text-white border-angeltors-ink shadow-2xl scale-[1.02]"
+                    : "bg-slate-50 text-angeltors-ink border-slate-200/70 hover:bg-white hover:shadow-xl hover:border-slate-300 hover:-translate-y-1.5"
+                    }`}
                 >
                   <div>
                     {/* Top Row: Number & Icon */}
                     <div className="flex items-center justify-between mb-6">
-                      <span className={`text-xl font-black transition-colors ${
-                        isSelected ? "text-angeltors-accent" : "text-angeltors-accent/60 group-hover:text-angeltors-accent"
-                      }`}>
+                      <span className={`text-xl font-black transition-colors ${isSelected ? "text-angeltors-accent" : "text-angeltors-accent/60 group-hover:text-angeltors-accent"
+                        }`}>
                         {option.num}
                       </span>
-                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center shadow-xs transition-all duration-300 ${
-                        isSelected
-                          ? "bg-white/10 text-white"
-                          : "bg-white text-angeltors-ink group-hover:bg-angeltors-ink group-hover:text-white"
-                      }`}>
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center shadow-xs transition-all duration-300 ${isSelected
+                        ? "bg-white/10 text-white"
+                        : "bg-white text-angeltors-ink group-hover:bg-angeltors-ink group-hover:text-white"
+                        }`}>
                         <Icon className="w-5 h-5" />
                       </div>
                     </div>
 
                     {/* Title */}
-                    <h3 className={`text-xl font-bold tracking-tight mb-2 transition-colors ${
-                      isSelected ? "text-white" : "text-angeltors-ink"
-                    }`}>
+                    <h3 className={`text-xl font-bold tracking-tight mb-2 transition-colors ${isSelected ? "text-white" : "text-angeltors-ink"
+                      }`}>
                       {option.title}
                     </h3>
 
                     {/* One Line Description */}
-                    <p className={`text-xs font-medium leading-relaxed transition-colors ${
-                      isSelected ? "text-slate-300" : "text-slate-500"
-                    }`}>
+                    <p className={`text-xs font-medium leading-relaxed transition-colors ${isSelected ? "text-slate-300" : "text-slate-500"
+                      }`}>
                       {option.desc}
                     </p>
                   </div>
 
                   {/* Selection Indicator Footer */}
                   <div className="mt-8 pt-4 border-t border-slate-200/40 flex items-center justify-between">
-                    <span className={`text-[11px] font-bold uppercase tracking-wider ${
-                      isSelected ? "text-angeltors-cyan" : "text-slate-400"
-                    }`}>
+                    <span className={`text-[11px] font-bold uppercase tracking-wider ${isSelected ? "text-angeltors-cyan" : "text-slate-400"
+                      }`}>
                       {isSelected ? "Selected" : "Select Option"}
                     </span>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
-                      isSelected ? "bg-angeltors-accent text-white" : "border border-slate-300 group-hover:border-angeltors-accent"
-                    }`}>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors ${isSelected ? "bg-angeltors-accent text-white" : "border border-slate-300 group-hover:border-angeltors-accent"
+                      }`}>
                       {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
                     </div>
                   </div>

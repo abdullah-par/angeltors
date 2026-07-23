@@ -59,7 +59,7 @@ export const plans = [
     title: 'Angel Investor',
     icon: <LineChart className="w-6 h-6" />,
     target: 'Individual Angel Investors, HNIs, Family Offices',
-    price: '₹9,999/  Year',
+    price: '₹9,999/Year',
     suffix: '+ 18% GST',
     description: 'Exclusive access to vetted, high-potential startups and a network of elite co-investors.',
     topFeatures: [
