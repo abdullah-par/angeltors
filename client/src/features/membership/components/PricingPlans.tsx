@@ -35,7 +35,7 @@ export const plans = [
     title: 'Startup',
     icon: <Rocket className="w-6 h-6" />,
     target: 'Registered Startups',
-    price: '₹14,999',
+    price: '₹14,999/  Year',
     suffix: '+ 18% GST',
     description: 'A comprehensive growth and fundraising ecosystem for early-stage startups aiming to scale rapidly.',
     topFeatures: [
@@ -59,7 +59,7 @@ export const plans = [
     title: 'Angel Investor',
     icon: <LineChart className="w-6 h-6" />,
     target: 'Individual Angel Investors, HNIs, Family Offices',
-    price: '₹9,999',
+    price: '₹9,999/  Year',
     suffix: '+ 18% GST',
     description: 'Exclusive access to vetted, high-potential startups and a network of elite co-investors.',
     topFeatures: [
@@ -83,7 +83,7 @@ export const plans = [
     title: 'Mentor',
     icon: <Network className="w-6 h-6" />,
     target: 'Industry Experts, CXOs, Startup Mentors',
-    price: '₹4,999',
+    price: '₹4,999/ Year',
     suffix: '+ 18% GST',
     description: 'Give back to the ecosystem while building your professional brand and consulting pipeline.',
     topFeatures: [
