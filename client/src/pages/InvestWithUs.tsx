@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import ScrollProgress from '../layouts/components/ScrollProgress';
-import InvestHero from '../features/invest/components/InvestHero';
-import WhyEarlyStageTimeline from '../features/invest/components/WhyEarlyStageTimeline';
-import InvestmentProcessSection from '../features/invest/components/InvestmentProcessSection';
+import InvestHero from '../features/invest/InvestHero';
+import WhyEarlyStageTimeline from '../features/invest/WhyEarlyStageTimeline';
+import InvestmentProcessSection from '../features/invest/InvestmentProcessSection';
 
 export default function InvestWithUs() {
   return (

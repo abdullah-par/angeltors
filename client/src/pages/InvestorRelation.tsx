@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import ScrollProgress from '../layouts/components/ScrollProgress';
-import InvestorRelationHero from '../features/investor-relation/components/InvestorRelationHero';
-import EthicalPrinciplesGrid from '../features/investor-relation/components/EthicalPrinciplesGrid';
-import GrievanceMechanismCard from '../features/investor-relation/components/GrievanceMechanismCard';
+import InvestorRelationHero from '../features/investor-relation/InvestorRelationHero';
+import EthicalPrinciplesGrid from '../features/investor-relation/EthicalPrinciplesGrid';
+import GrievanceMechanismCard from '../features/investor-relation/GrievanceMechanismCard';
 
 export default function InvestorRelation() {
   return (

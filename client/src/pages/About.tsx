@@ -1,6 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import ScrollProgress from '../layouts/components/ScrollProgress';
-import { AboutHero, AboutIntro, WeProvideSection, SectorsSection } from '../features/about';
+import AboutHero from '../features/about/components/AboutHero';
+import AboutIntro from '../features/about/components/AboutIntro';
+import WeProvideSection from '../features/about/components/WeProvideSection';
+import SectorsSection from '../features/about/components/SectorsSection';
 
 export default function About() {
   return (
