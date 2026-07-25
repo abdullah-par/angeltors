@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { BlogPost } from "../types/blog";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-interface FeaturedArticleProps {
-  post: BlogPost;
-}
+type FeaturedArticleProps = { post: BlogPost }
 
 export default function FeaturedArticle({ post }: FeaturedArticleProps) {
   const reducedMotion = useReducedMotion();

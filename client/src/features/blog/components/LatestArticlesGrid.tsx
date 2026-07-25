@@ -4,11 +4,7 @@ import { BlogPost } from "../types/blog";
 import BlogCard from "./BlogCard";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-interface LatestArticlesGridProps {
-  posts: BlogPost[];
-}
-
-export default function LatestArticlesGrid({ posts }: LatestArticlesGridProps) {
+export default function LatestArticlesGrid({ posts }: { posts: BlogPost[] }) {
   const reducedMotion = useReducedMotion();
   const [visibleCount, setVisibleCount] = useState(9);
 

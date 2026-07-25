@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { BlogPost } from "../types/blog";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-interface BlogCardProps {
-  post: BlogPost;
-  index?: number;
-}
-
-export default function BlogCard({ post, index = 0 }: BlogCardProps) {
+export default function BlogCard({ post, index = 0 }: { post: BlogPost; index?: number }) {
   const reducedMotion = useReducedMotion();
 
   const formatDate = (dateString: string) => {
