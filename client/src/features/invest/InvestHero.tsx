@@ -16,18 +16,24 @@ export default function InvestHero() {
   const reducedMotion = useReducedMotion();
   const [metrics, setMetrics] = useState<PlatformMetric[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    fetchPlatformMetrics().then((data) => {
-      if (isMounted) {
+  const loadMetrics = () => {
+    setLoading(true);
+    setError(null);
+    fetchPlatformMetrics()
+      .then((data) => {
         setMetrics(data);
         setLoading(false);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
+      })
+      .catch((err) => {
+        setError(err.message || 'Unable to load metrics.');
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    loadMetrics();
   }, []);
 
   return (
@@ -92,27 +98,39 @@ export default function InvestHero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl"
         >
-          {loading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="bg-slate-100 rounded-2xl p-5 h-24 animate-pulse" />
-              ))
-            : metrics.map((item) => {
-                const Icon = ICON_MAP[item.iconName] || Sparkles;
-                return (
-                  <div 
-                    key={item.id}
-                    className="bg-slate-50/80 border border-slate-200/60 rounded-2xl p-5 text-left flex flex-col justify-between hover:bg-white hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-2xl sm:text-3xl font-black text-angeltors-ink">{item.val}</span>
-                      <div className="w-8 h-8 rounded-full bg-angeltors-accent/10 flex items-center justify-center text-angeltors-accent">
-                        <Icon className="w-4 h-4" />
-                      </div>
+          {error ? (
+            <div className="col-span-full bg-red-50 border border-red-200/80 rounded-2xl p-6 text-center text-red-700">
+              <p className="font-semibold text-sm mb-3">{error}</p>
+              <button
+                onClick={loadMetrics}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition-colors"
+              >
+                Try Again
+              </button>
+            </div>
+          ) : loading ? (
+            Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="bg-slate-100 rounded-2xl p-5 h-24 animate-pulse" />
+            ))
+          ) : (
+            metrics.map((item) => {
+              const Icon = ICON_MAP[item.iconName] || Sparkles;
+              return (
+                <div 
+                  key={item.id}
+                  className="bg-slate-50/80 border border-slate-200/60 rounded-2xl p-5 text-left flex flex-col justify-between hover:bg-white hover:shadow-md transition-all duration-300"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl sm:text-3xl font-black text-angeltors-ink">{item.val}</span>
+                    <div className="w-8 h-8 rounded-full bg-angeltors-accent/10 flex items-center justify-center text-angeltors-accent">
+                      <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-xs sm:text-sm font-semibold text-slate-500">{item.label}</span>
                   </div>
-                );
-              })}
+                  <span className="text-xs sm:text-sm font-semibold text-slate-500">{item.label}</span>
+                </div>
+              );
+            })
+          )}
         </motion.div>
 
       </div>

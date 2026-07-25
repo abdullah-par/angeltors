@@ -14,18 +14,27 @@ const DEFAULT_METRICS: PlatformMetric[] = [
   { id: 'due_diligence', label: 'Structured Due Diligence', val: '100%', iconName: 'ShieldCheck' },
 ];
 
-export async function fetchPlatformMetrics(): Promise<PlatformMetric[]> {
-  if (USE_MOCK_FALLBACK) {
-    // Simulating database network fetch latency seam
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(DEFAULT_METRICS), 300);
-    });
+export async function fetchPlatformMetrics(shouldFail = false): Promise<PlatformMetric[]> {
+  if (shouldFail) {
+    throw new Error('Failed to reach metrics API server. Please check your internet connection.');
   }
 
-  const response = await apiFetch<PlatformMetric[]>('/metrics');
-  if (response.success && response.data && response.data.length > 0) {
-    return response.data;
-  }
+  try {
+    if (USE_MOCK_FALLBACK) {
+      // Simulating network fetch latency
+      return await new Promise((resolve) => {
+        setTimeout(() => resolve(DEFAULT_METRICS), 300);
+      });
+    }
 
-  return DEFAULT_METRICS;
+    const response = await apiFetch<PlatformMetric[]>('/metrics');
+    if (response.success && response.data && response.data.length > 0) {
+      return response.data;
+    }
+
+    return DEFAULT_METRICS;
+  } catch (err) {
+    console.error('Error in fetchPlatformMetrics:', err);
+    throw err;
+  }
 }

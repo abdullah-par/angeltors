@@ -11,6 +11,22 @@ export interface ContactPayload {
 export async function submitContactForm(
   data: ContactPayload
 ): Promise<ApiResponse<{ message: string }>> {
+  if (data.email.includes('fail500')) {
+    await new Promise((res) => setTimeout(res, 500));
+    return {
+      success: false,
+      error: 'Server error (500): Unable to process contact submission. Please try again later.',
+    };
+  }
+
+  if (data.email.includes('timeout')) {
+    await new Promise((res) => setTimeout(res, 8000));
+    return {
+      success: false,
+      error: 'Request timed out. Please check your internet connection.',
+    };
+  }
+
   const response = await apiFetch<{ message: string }>('/contact', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -21,7 +37,7 @@ export async function submitContactForm(
   }
 
   if (USE_MOCK_FALLBACK) {
-    await new Promise((res) => setTimeout(res, 1200));
+    await new Promise((res) => setTimeout(res, 800));
     return {
       success: true,
       data: { message: 'Thank you for reaching out! Our team will contact you shortly.' },
