@@ -20,7 +20,7 @@ const profileOptions: ProfileOption[] = [
     title: "Startup",
     desc: "Comprehensive growth, fundraising ecosystem, and mentorship to scale rapidly.",
     icon: Rocket,
-    targetRoute: "/dashboard/startup",
+    targetRoute: "/onboarding/startup",
   },
   {
     id: "investor",
