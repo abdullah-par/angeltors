@@ -22,6 +22,9 @@ const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
 const OnboardingProfile = lazy(() => import("../pages/OnboardingProfile"));
 const StartupOnboarding = lazy(() => import("../pages/StartupOnboarding"));
+const InvestorOnboarding = lazy(() => import("../pages/InvestorOnboarding"));
+const MentorOnboarding = lazy(() => import("../pages/MentorOnboarding"));
+const FreemiumOnboarding = lazy(() => import("../pages/FreemiumOnboarding"));
 
 // Dashboards
 const StartupDashboard = lazy(() => import("../pages/dashboards/StartupDashboard"));
@@ -41,6 +44,9 @@ export default function AppRoutes() {
       <Route path="/register" element={<Register />} />
       <Route path="/onboarding" element={<OnboardingProfile />} />
       <Route path="/onboarding/startup" element={<StartupOnboarding />} />
+      <Route path="/onboarding/investor" element={<InvestorOnboarding />} />
+      <Route path="/onboarding/mentor" element={<MentorOnboarding />} />
+      <Route path="/onboarding/freemium" element={<FreemiumOnboarding />} />
       <Route path="/dashboard/startup" element={<StartupDashboard />} />
       <Route path="/dashboard/investor" element={<InvestorDashboard />} />
       <Route path="/dashboard/mentor" element={<MentorDashboard />} />

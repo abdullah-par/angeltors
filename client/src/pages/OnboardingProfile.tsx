@@ -28,7 +28,7 @@ const profileOptions: ProfileOption[] = [
     title: "Angel Investor",
     desc: "Exclusive access to vetted, high-potential startups and co-investment syndicates.",
     icon: LineChart,
-    targetRoute: "/dashboard/investor",
+    targetRoute: "/onboarding/investor",
   },
   {
     id: "mentor",
@@ -36,7 +36,7 @@ const profileOptions: ProfileOption[] = [
     title: "Mentor",
     desc: "Guide promising founders, offer consultation, and build your consulting pipeline.",
     icon: Network,
-    targetRoute: "/dashboard/mentor",
+    targetRoute: "/onboarding/mentor",
   },
   {
     id: "freemium",
@@ -44,7 +44,7 @@ const profileOptions: ProfileOption[] = [
     title: "Freemium",
     desc: "Starting point for visionary founders validating business models before scaling.",
     icon: Zap,
-    targetRoute: "/dashboard/freemium",
+    targetRoute: "/onboarding/freemium",
   },
 ];
 
