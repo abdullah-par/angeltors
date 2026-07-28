@@ -312,6 +312,10 @@ export default function StartupOnboarding() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (currentStep < 4) {
+      handleNext();
+      return;
+    }
     setSubmittedSteps((prev) => ({ ...prev, [4]: true }));
     if (validateStep(4)) {
       navigate("/dashboard/startup");
