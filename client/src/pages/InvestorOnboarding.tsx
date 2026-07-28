@@ -253,10 +253,10 @@ export default function InvestorOnboarding() {
   };
 
   const steps = [
-    { number: 1, title: "Personal Profile", icon: UserRound, subtitle: "Your primary investor details" },
-    { number: 2, title: "Address & PAN", icon: Building2, subtitle: "Legal communication & verification details" },
-    { number: 3, title: "Sectors & DEMAT", icon: PieChart, subtitle: "Target sectors & DEMAT account info" },
-    { number: 4, title: "Review & Confirm", icon: FileCheck, subtitle: "Review details & complete investor profile" }
+    { number: 1, title: "Personal Info", icon: UserRound, subtitle: "Basic details to set up your profile" },
+    { number: 2, title: "Address & PAN", icon: Building2, subtitle: "Where should we send your documents?" },
+    { number: 3, title: "Sectors & DEMAT", icon: PieChart, subtitle: "What are you looking to invest in?" },
+    { number: 4, title: "Review", icon: FileCheck, subtitle: "Look over your details before submitting" }
   ];
 
   const currentStepMeta = steps[currentStep - 1];
@@ -369,8 +369,8 @@ export default function InvestorOnboarding() {
                         <UserRound className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="text-lg font-black text-angeltors-ink">Personal Profile</h2>
-                        <p className="text-xs text-slate-500">Your primary investor details</p>
+                        <h2 className="text-lg font-black text-angeltors-ink">Personal Info</h2>
+                        <p className="text-xs text-slate-500">Basic details to set up your profile</p>
                       </div>
                     </div>
 
@@ -384,14 +384,14 @@ export default function InvestorOnboarding() {
                             onBlur={() => markTouched("name")}
                             onChange={(e) => updateForm("name", e.target.value)}
                             className={getInputStyle("name", Boolean(form.name))}
-                            placeholder="Your full legal name"
+                            placeholder="First and last name"
                           />
                         </Field>
 
                         <Field
                           label="Email Address"
                           required
-                          badge="Hidden from startups"
+                          badge="Private (only admins can see this)"
                           error={shouldShowError("email") ? errors.email : undefined}
                         >
                           <input
@@ -401,14 +401,14 @@ export default function InvestorOnboarding() {
                             onBlur={() => markTouched("email")}
                             onChange={(e) => updateForm("email", e.target.value)}
                             className={getInputStyle("email", Boolean(form.email))}
-                            placeholder="investor@domain.com"
+                            placeholder="name@company.com"
                           />
                         </Field>
 
                         <Field
                           label="Contact Number"
                           required
-                          badge="Hidden from startups"
+                          badge="For registration only (Admin visible)"
                           error={shouldShowError("contact") ? errors.contact : undefined}
                         >
                           <div className="mt-1.5 flex gap-2">
@@ -478,10 +478,10 @@ export default function InvestorOnboarding() {
 
                             <div className="flex-1 text-center sm:text-left">
                               <p className="text-sm font-bold text-angeltors-ink">
-                                {form.photo ? form.photo.name : "Upload profile photo"}
+                                {form.photo ? form.photo.name : "Add a photo"}
                               </p>
                               <p className="mt-0.5 text-xs text-slate-400">
-                                JPG, PNG or WEBP up to 5MB. Professional headshot recommended.
+                                JPG or PNG under 5MB. A clear headshot works best.
                               </p>
                               <label className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-angeltors-ink shadow-2xs transition hover:border-angeltors-accent hover:text-angeltors-accent">
                                 <Upload className="h-3.5 w-3.5" />
@@ -516,7 +516,7 @@ export default function InvestorOnboarding() {
                       </span>
                       <div>
                         <h2 className="text-lg font-black text-angeltors-ink">Address & Legal Identification</h2>
-                        <p className="text-xs text-slate-500">Communication & tax identification details</p>
+                        <p className="text-xs text-slate-500">Where should we send your documents?</p>
                       </div>
                     </div>
 
@@ -568,7 +568,7 @@ export default function InvestorOnboarding() {
                       </span>
                       <div>
                         <h2 className="text-lg font-black text-angeltors-ink">Investment Sectors & DEMAT Details</h2>
-                        <p className="text-xs text-slate-500">Domains of interest & securities repository information</p>
+                        <p className="text-xs text-slate-500">What are you looking to invest in?</p>
                       </div>
                     </div>
 
@@ -576,7 +576,7 @@ export default function InvestorOnboarding() {
                       {/* Sector Multi-select Tags */}
                       <Field label="Sectors / Domains to Invest" required error={shouldShowError("sectors") ? errors.sectors : undefined}>
                         <p className="text-xs text-slate-500 mb-3">
-                          Select all sectors and startup categories you are interested in funding:
+                          Select all the startup categories you're interested in:
                         </p>
                         <div className="flex flex-wrap gap-2.5">
                           {SECTOR_OPTIONS.map((sector) => {
@@ -693,8 +693,8 @@ export default function InvestorOnboarding() {
                         <FileCheck className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="text-lg font-black text-angeltors-ink">Review & Confirm Profile</h2>
-                        <p className="text-xs text-slate-500">Verify your investor application before submitting</p>
+                        <h2 className="text-lg font-black text-angeltors-ink">Review your details</h2>
+                        <p className="text-xs text-slate-500">Look over your info before submitting</p>
                       </div>
                     </div>
 
@@ -714,9 +714,6 @@ export default function InvestorOnboarding() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <h3 className="text-base font-bold text-angeltors-ink truncate">{form.name || "Investor Name"}</h3>
-                            <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-extrabold text-emerald-800">
-                              Accredited Investor
-                            </span>
                           </div>
                           <p className="text-xs text-slate-500 truncate">{form.email} • {form.countryCode} {form.contact}</p>
                           <p className="text-xs text-slate-600 mt-1">{form.officeAddress}</p>

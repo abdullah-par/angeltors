@@ -244,10 +244,10 @@ export default function MentorOnboarding() {
   };
 
   const steps = [
-    { number: 1, title: "Mentor Profile", icon: UserRound, subtitle: "Personal & contact information" },
-    { number: 2, title: "Qualifications", icon: Award, subtitle: "Professional experience & education" },
-    { number: 3, title: "Skills & Bio", icon: Sparkles, subtitle: "Core expertise & mentor biography" },
-    { number: 4, title: "Review & Confirm", icon: FileCheck, subtitle: "Review details & publish mentor profile" }
+    { number: 1, title: "Personal Info", icon: UserRound, subtitle: "Basic details to set up your profile" },
+    { number: 2, title: "Background", icon: Award, subtitle: "Your experience and education" },
+    { number: 3, title: "Skills & Bio", icon: Sparkles, subtitle: "What are your core strengths?" },
+    { number: 4, title: "Review", icon: FileCheck, subtitle: "Look over your details before submitting" }
   ];
 
   const currentStepMeta = steps[currentStep - 1];
@@ -345,8 +345,8 @@ export default function MentorOnboarding() {
                         <UserRound className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="text-lg font-black text-angeltors-ink">Mentor Identity</h2>
-                        <p className="text-xs text-slate-500">Personal information & private contact details</p>
+                        <h2 className="text-lg font-black text-angeltors-ink">Personal Info</h2>
+                        <p className="text-xs text-slate-500">Basic details to set up your profile</p>
                       </div>
                     </div>
 
@@ -360,11 +360,11 @@ export default function MentorOnboarding() {
                             onBlur={() => markTouched("name")}
                             onChange={(e) => updateForm("name", e.target.value)}
                             className={getInputStyle("name", Boolean(form.name))}
-                            placeholder="Your full name"
+                            placeholder="First and last name"
                           />
                         </Field>
 
-                        <Field label="Email Address" required badge="Admin only" error={shouldShowError("email") ? errors.email : undefined}>
+                        <Field label="Email Address" required badge="Private (only admins can see this)" error={shouldShowError("email") ? errors.email : undefined}>
                           <input
                             type="email"
                             required
@@ -372,11 +372,11 @@ export default function MentorOnboarding() {
                             onBlur={() => markTouched("email")}
                             onChange={(e) => updateForm("email", e.target.value)}
                             className={getInputStyle("email", Boolean(form.email))}
-                            placeholder="mentor@example.com"
+                            placeholder="name@company.com"
                           />
                         </Field>
 
-                        <Field label="Contact Number" required badge="Admin only" error={shouldShowError("contact") ? errors.contact : undefined}>
+                        <Field label="Contact Number" required badge="Private (only admins can see this)" error={shouldShowError("contact") ? errors.contact : undefined}>
                           <div className="mt-1.5 flex gap-2">
                             <select
                               value={form.countryCode}
@@ -431,10 +431,10 @@ export default function MentorOnboarding() {
 
                             <div className="flex-1 text-center sm:text-left">
                               <p className="text-sm font-bold text-angeltors-ink">
-                                {form.photo ? form.photo.name : "Upload profile photo"}
+                                {form.photo ? form.photo.name : "Add a photo"}
                               </p>
                               <p className="mt-0.5 text-xs text-slate-400">
-                                JPG, PNG or WEBP up to 5MB. Professional headshot recommended.
+                                JPG or PNG under 5MB. A clear headshot works best.
                               </p>
                               <label className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-angeltors-ink shadow-2xs transition hover:border-angeltors-accent hover:text-angeltors-accent">
                                 <Upload className="h-3.5 w-3.5" />
@@ -457,8 +457,8 @@ export default function MentorOnboarding() {
                         <Award className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="text-lg font-black text-angeltors-ink">Qualifications & Experience</h2>
-                        <p className="text-xs text-slate-500">Your background & LinkedIn profile</p>
+                        <h2 className="text-lg font-black text-angeltors-ink">Your Background</h2>
+                        <p className="text-xs text-slate-500">Your experience and education</p>
                       </div>
                     </div>
 
@@ -484,7 +484,7 @@ export default function MentorOnboarding() {
                             onBlur={() => markTouched("linkedIn")}
                             onChange={(e) => updateForm("linkedIn", e.target.value)}
                             className={getInputStyle("linkedIn", Boolean(form.linkedIn))}
-                            placeholder="https://linkedin.com/in/mentorprofile"
+                            placeholder="https://linkedin.com/in/profile"
                           />
                         </Field>
 
@@ -496,7 +496,7 @@ export default function MentorOnboarding() {
                             onBlur={() => markTouched("qualification")}
                             onChange={(e) => updateForm("qualification", e.target.value)}
                             className={getInputStyle("qualification", Boolean(form.qualification))}
-                            placeholder="e.g. M.Tech, MBA, Ph.D in CS"
+                            placeholder="e.g. MBA, Ph.D in CS"
                           />
                         </Field>
 
@@ -508,7 +508,7 @@ export default function MentorOnboarding() {
                             onBlur={() => markTouched("experience")}
                             onChange={(e) => updateForm("experience", e.target.value)}
                             className={getInputStyle("experience", Boolean(form.experience))}
-                            placeholder="e.g. 10+ yrs Product VP & Founder"
+                            placeholder="e.g. 10+ years in product management"
                           />
                         </Field>
                       </div>
@@ -525,7 +525,7 @@ export default function MentorOnboarding() {
                       </span>
                       <div>
                         <h2 className="text-lg font-black text-angeltors-ink">Keyskills & Bio Summary</h2>
-                        <p className="text-xs text-slate-500">Expertise tags & brief professional summary</p>
+                        <p className="text-xs text-slate-500">What are your core strengths?</p>
                       </div>
                     </div>
 
@@ -593,7 +593,7 @@ export default function MentorOnboarding() {
                           onBlur={() => markTouched("briefSummary")}
                           onChange={(e) => updateForm("briefSummary", e.target.value)}
                           className={`${getInputStyle("briefSummary", Boolean(form.briefSummary))} min-h-[110px] resize-y`}
-                          placeholder="Summarize your mentoring style, achievements, and how you support founders..."
+                          placeholder="Share your mentoring philosophy, key achievements, and how you support founders..."
                         />
                       </Field>
                     </div>
@@ -608,8 +608,8 @@ export default function MentorOnboarding() {
                         <FileCheck className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="text-lg font-black text-angeltors-ink">Review & Confirm Profile</h2>
-                        <p className="text-xs text-slate-500">Verify your mentor application before publishing</p>
+                        <h2 className="text-lg font-black text-angeltors-ink">Review your details</h2>
+                        <p className="text-xs text-slate-500">Look over your info before submitting</p>
                       </div>
                     </div>
 
