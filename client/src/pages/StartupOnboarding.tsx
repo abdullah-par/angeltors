@@ -8,19 +8,16 @@ import {
   UserRound,
   Users,
   Image as ImageIcon,
+  Camera,
+  Upload,
+  FileUp,
 } from "lucide-react";
 import {
   OnboardingLayout,
   OnboardingStepper,
-  OnboardingSection,
   OnboardingFooter,
-  Field,
   OnboardingCard,
-  PhotoUploadField,
-  FileUploadField,
-  inputClass,
-  selectClass,
-  textareaClass,
+  OnboardingField,
 } from "@/features/onboarding";
 
 export type Founder = {
@@ -111,6 +108,16 @@ export default function StartupOnboarding() {
   };
 
   const fieldError = (key: string) => (shouldShowError(key) ? errors[key] : undefined);
+
+  const getInputStyle = (errorKey: string, isFilled: boolean) => {
+    if (shouldShowError(errorKey)) {
+      return "mt-1.5 w-full rounded-xl border border-red-300 bg-red-50/20 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10";
+    }
+    if (isFilled) {
+      return "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-angeltors-ink outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-angeltors-accent focus:ring-4 focus:ring-angeltors-accent/10";
+    }
+    return "mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-angeltors-ink outline-none transition placeholder:text-slate-400 focus:border-angeltors-accent focus:bg-white focus:ring-4 focus:ring-angeltors-accent/10";
+  };
 
   // Helper updates
   const updateFounder = (key: keyof Founder, value: any, index?: number) => {
