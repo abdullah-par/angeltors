@@ -1,22 +1,27 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft,
-  ArrowRight,
   Building2,
   FileText,
-  Upload,
   UserRound,
   Users,
-  Check,
-  ShieldCheck,
-  FileUp,
   Image as ImageIcon,
-  CheckCircle2,
-  Camera
 } from "lucide-react";
+import {
+  OnboardingLayout,
+  OnboardingStepper,
+  OnboardingSection,
+  OnboardingFooter,
+  Field,
+  OnboardingCard,
+  PhotoUploadField,
+  FileUploadField,
+  inputClass,
+  selectClass,
+  textareaClass,
+} from "@/features/onboarding";
 
 export type Founder = {
   name: string;
@@ -64,32 +69,6 @@ function LinkedInIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
   );
 }
 
-function Field({
-  label,
-  optional,
-  required,
-  children,
-  error
-}: {
-  label: string;
-  optional?: boolean;
-  required?: boolean;
-  children: React.ReactNode;
-  error?: string;
-}) {
-  return (
-    <div className="flex flex-col">
-      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-        {label}
-        {required && <span className="ml-1 text-red-500">*</span>}
-        {optional && <span className="ml-1 font-normal lowercase tracking-normal text-slate-400">(optional)</span>}
-      </label>
-      {children}
-      {error && <span className="mt-1.5 text-xs font-medium text-red-500">{error}</span>}
-    </div>
-  );
-}
-
 export default function StartupOnboarding() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -131,16 +110,7 @@ export default function StartupOnboarding() {
     return (isTouched || isSubmitted) && Boolean(errors[fieldKey]);
   };
 
-  // Helper function to return input styles with accent focus rings & error state
-  const getInputStyle = (errorKey: string, isFilled: boolean) => {
-    if (shouldShowError(errorKey)) {
-      return "mt-1.5 w-full rounded-xl border border-red-300 bg-red-50/20 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10";
-    }
-    if (isFilled) {
-      return "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-angeltors-ink outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-angeltors-accent focus:ring-4 focus:ring-angeltors-accent/10";
-    }
-    return "mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-angeltors-ink outline-none transition placeholder:text-slate-400 focus:border-angeltors-accent focus:bg-white focus:ring-4 focus:ring-angeltors-accent/10";
-  };
+  const fieldError = (key: string) => (shouldShowError(key) ? errors[key] : undefined);
 
   // Helper updates
   const updateFounder = (key: keyof Founder, value: any, index?: number) => {
@@ -338,95 +308,15 @@ export default function StartupOnboarding() {
         <title>Startup Onboarding | Angeltors</title>
       </Helmet>
 
-      <div className="min-h-screen bg-[#F8FAFC] font-sans text-angeltors-ink selection:bg-angeltors-accent selection:text-white">
-        {/* Minimal Navigation Header */}
-        <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 px-5 py-4 backdrop-blur-md sm:px-8">
-          <div className="mx-auto flex max-w-5xl items-center justify-between">
-            <Link
-              to="/onboarding"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 transition hover:text-angeltors-ink"
-            >
-              <ArrowLeft className="h-4 w-4" /> Change Profile
-            </Link>
-            <Link to="/">
-              <img src="/images/Angeltors_logo.png" alt="Angeltors" className="h-7 w-auto" />
-            </Link>
-            <div className="w-24" />
-          </div>
-        </header>
+      <OnboardingLayout
+        title="Tell us about your startup"
+        description="Share your founder profile and company details to start your Angeltors journey."
+      >
+        <OnboardingCard>
+          <OnboardingStepper steps={steps} currentStep={currentStep} onStepClick={handleStepClick} />
 
-        <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
-          {/* Page Title */}
-          <div className="mb-8 text-center sm:text-left">
-            <h1 className="text-3xl font-black tracking-tight text-angeltors-ink sm:text-4xl">
-              Tell us about your startup.
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-500 sm:text-base">
-              Share your founder profile and company details to start your Angeltors journey.
-            </p>
-          </div>
-
-          {/* ONE CONTINUOUS UNIFIED SURFACE PANEL */}
-          <div className="overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-sm">
-            {/* 1. Stepper Bar (Integrated Top Section with Brand Accent Progress Line) */}
-            <div className="border-b border-slate-100 bg-slate-50/40 p-5 sm:p-7">
-              <div className="relative flex items-center justify-between">
-                {/* Accent Fill Progress Line */}
-                <div className="absolute left-6 right-6 top-5 -z-0 h-1 rounded-full bg-slate-200">
-                  <div
-                    className="h-full rounded-full bg-angeltors-accent transition-all duration-500 ease-out"
-                    style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
-                  />
-                </div>
-
-                {steps.map((step) => {
-                  const isCompleted = currentStep > step.number;
-                  const isActive = currentStep === step.number;
-
-                  return (
-                    <button
-                      key={step.number}
-                      type="button"
-                      onClick={() => handleStepClick(step.number)}
-                      className="group relative z-10 flex flex-col items-center focus:outline-none"
-                    >
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
-                          isCompleted
-                            ? "cursor-pointer bg-angeltors-ink text-white ring-4 ring-white shadow-md"
-                            : isActive
-                            ? "scale-110 bg-angeltors-accent text-white ring-4 ring-angeltors-accent/15 shadow-md"
-                            : "border-2 border-slate-300 bg-white text-slate-400 group-hover:border-slate-400"
-                        }`}
-                      >
-                        {isCompleted ? <Check className="h-5 w-5 stroke-[3]" /> : step.number}
-                      </div>
-
-                      <span
-                        className={`mt-2 hidden text-xs font-bold transition-colors sm:block ${
-                          isActive
-                            ? "text-angeltors-accent"
-                            : isCompleted
-                            ? "text-slate-700"
-                            : "text-slate-400"
-                        }`}
-                      >
-                        {step.title}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Mobile Current Step Label */}
-              <div className="mt-4 text-center text-xs font-bold text-angeltors-accent sm:hidden">
-                Step {currentStep}: {steps[currentStep - 1].title}
-              </div>
-            </div>
-
-            {/* 2. Active Step Form Container */}
-            <form onSubmit={onSubmit}>
-              <AnimatePresence mode="wait">
+          <form onSubmit={onSubmit}>
+            <AnimatePresence mode="wait">
                 {/* STEP 1: PRIMARY FOUNDER */}
                 {currentStep === 1 && (
                   <motion.div
@@ -449,7 +339,7 @@ export default function StartupOnboarding() {
 
                     <div className="space-y-6 p-6 sm:p-8">
                       <div className="grid gap-5 sm:grid-cols-2">
-                        <Field label="Full Name" required error={shouldShowError("founderName") ? errors.founderName : undefined}>
+                        <OnboardingField label="Full Name" required error={shouldShowError("founderName") ? errors.founderName : undefined}>
                           <input
                             type="text"
                             required
@@ -459,9 +349,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("founderName", Boolean(founder.name))}
                             placeholder="Your full name"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Email Address" required error={shouldShowError("founderEmail") ? errors.founderEmail : undefined}>
+                        <OnboardingField label="Email Address" required error={shouldShowError("founderEmail") ? errors.founderEmail : undefined}>
                           <input
                             type="email"
                             required
@@ -471,10 +361,10 @@ export default function StartupOnboarding() {
                             className={getInputStyle("founderEmail", Boolean(founder.email))}
                             placeholder="you@example.com"
                           />
-                        </Field>
+                        </OnboardingField>
 
                         {/* Contact Number with Country Code Dropdown */}
-                        <Field label="Contact Number" required error={shouldShowError("founderContact") ? errors.founderContact : undefined}>
+                        <OnboardingField label="Contact Number" required error={shouldShowError("founderContact") ? errors.founderContact : undefined}>
                           <div className="mt-1.5 flex gap-2">
                             <select
                               value={founder.countryCode}
@@ -503,9 +393,9 @@ export default function StartupOnboarding() {
                               placeholder="98765 43210"
                             />
                           </div>
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="LinkedIn Profile" required error={shouldShowError("founderLinkedIn") ? errors.founderLinkedIn : undefined}>
+                        <OnboardingField label="LinkedIn Profile" required error={shouldShowError("founderLinkedIn") ? errors.founderLinkedIn : undefined}>
                           <input
                             type="url"
                             required
@@ -515,9 +405,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("founderLinkedIn", Boolean(founder.linkedIn))}
                             placeholder="https://linkedin.com/in/yourprofile"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Qualifications" required error={shouldShowError("founderQualifications") ? errors.founderQualifications : undefined}>
+                        <OnboardingField label="Qualifications" required error={shouldShowError("founderQualifications") ? errors.founderQualifications : undefined}>
                           <input
                             type="text"
                             required
@@ -527,9 +417,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("founderQualifications", Boolean(founder.qualifications))}
                             placeholder="e.g. B.Tech, MBA, MS in CS"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Experience" optional>
+                        <OnboardingField label="Experience" optional>
                           <input
                             type="text"
                             value={founder.experience}
@@ -538,12 +428,12 @@ export default function StartupOnboarding() {
                             className={getInputStyle("founderExperience", Boolean(founder.experience))}
                             placeholder="e.g. 5+ yrs Product & Engineering at FinTech"
                           />
-                        </Field>
+                        </OnboardingField>
                       </div>
 
                       {/* Considered Photo Upload Dropzone with Camera Icon & Accent Hover */}
                       <div className="pt-2">
-                        <Field label="Founder Profile Photo" required error={shouldShowError("founderPhoto") ? errors.founderPhoto : undefined}>
+                        <OnboardingField label="Founder Profile Photo" required error={shouldShowError("founderPhoto") ? errors.founderPhoto : undefined}>
                           <div className={`mt-2 flex flex-col items-center gap-5 rounded-2xl border-2 border-dashed p-6 transition sm:flex-row ${
                             shouldShowError("founderPhoto")
                               ? "border-red-300 bg-red-50/20"
@@ -582,7 +472,7 @@ export default function StartupOnboarding() {
                               </label>
                             </div>
                           </div>
-                        </Field>
+                        </OnboardingField>
                       </div>
                     </div>
                   </motion.div>
@@ -684,7 +574,7 @@ export default function StartupOnboarding() {
                                 </div>
 
                                 <div className="grid gap-5 sm:grid-cols-2">
-                                  <Field
+                                  <OnboardingField
                                     label="Full Name"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}name`) ? errors[`${errKeyPrefix}name`] : undefined}
@@ -698,9 +588,9 @@ export default function StartupOnboarding() {
                                       className={getInputStyle(`${errKeyPrefix}name`, Boolean(co.name))}
                                       placeholder="Co-founder full name"
                                     />
-                                  </Field>
+                                  </OnboardingField>
 
-                                  <Field
+                                  <OnboardingField
                                     label="Email Address"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}email`) ? errors[`${errKeyPrefix}email`] : undefined}
@@ -714,9 +604,9 @@ export default function StartupOnboarding() {
                                       className={getInputStyle(`${errKeyPrefix}email`, Boolean(co.email))}
                                       placeholder="cofounder@example.com"
                                     />
-                                  </Field>
+                                  </OnboardingField>
 
-                                  <Field
+                                  <OnboardingField
                                     label="Contact Number"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}contact`) ? errors[`${errKeyPrefix}contact`] : undefined}
@@ -749,9 +639,9 @@ export default function StartupOnboarding() {
                                         placeholder="98765 00000"
                                       />
                                     </div>
-                                  </Field>
+                                  </OnboardingField>
 
-                                  <Field
+                                  <OnboardingField
                                     label="LinkedIn Profile"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}linkedIn`) ? errors[`${errKeyPrefix}linkedIn`] : undefined}
@@ -765,9 +655,9 @@ export default function StartupOnboarding() {
                                       className={getInputStyle(`${errKeyPrefix}linkedIn`, Boolean(co.linkedIn))}
                                       placeholder="https://linkedin.com/in/cofounder"
                                     />
-                                  </Field>
+                                  </OnboardingField>
 
-                                  <Field
+                                  <OnboardingField
                                     label="Qualifications"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}qualifications`) ? errors[`${errKeyPrefix}qualifications`] : undefined}
@@ -781,9 +671,9 @@ export default function StartupOnboarding() {
                                       className={getInputStyle(`${errKeyPrefix}qualifications`, Boolean(co.qualifications))}
                                       placeholder="e.g. M.Tech, CA, Ph.D"
                                     />
-                                  </Field>
+                                  </OnboardingField>
 
-                                  <Field label="Experience" optional>
+                                  <OnboardingField label="Experience" optional>
                                     <input
                                       type="text"
                                       value={co.experience}
@@ -792,11 +682,11 @@ export default function StartupOnboarding() {
                                       className={getInputStyle(`${errKeyPrefix}experience`, Boolean(co.experience))}
                                       placeholder="e.g. Ex-Google Lead, 4+ yrs Startup Experience"
                                     />
-                                  </Field>
+                                  </OnboardingField>
                                 </div>
 
                                 <div className="pt-2">
-                                  <Field
+                                  <OnboardingField
                                     label="Co-Founder Photo"
                                     required
                                     error={shouldShowError(`${errKeyPrefix}photo`) ? errors[`${errKeyPrefix}photo`] : undefined}
@@ -836,7 +726,7 @@ export default function StartupOnboarding() {
                                         </label>
                                       </div>
                                     </div>
-                                  </Field>
+                                  </OnboardingField>
                                 </div>
                               </div>
                             );
@@ -868,7 +758,7 @@ export default function StartupOnboarding() {
 
                     <div className="space-y-5 p-6 sm:p-8">
                       <div className="grid gap-5 sm:grid-cols-2">
-                        <Field label="Startup Name" required error={shouldShowError("startupName") ? errors.startupName : undefined}>
+                        <OnboardingField label="Startup Name" required error={shouldShowError("startupName") ? errors.startupName : undefined}>
                           <input
                             type="text"
                             required
@@ -878,9 +768,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("startupName", Boolean(startup.name))}
                             placeholder="e.g. Angeltors"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Website / Domain" optional>
+                        <OnboardingField label="Website / Domain" optional>
                           <input
                             type="url"
                             value={startup.website}
@@ -889,9 +779,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("website", Boolean(startup.website))}
                             placeholder="https://angeltors.com"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Legal Entity Name" required error={shouldShowError("legalName") ? errors.legalName : undefined}>
+                        <OnboardingField label="Legal Entity Name" required error={shouldShowError("legalName") ? errors.legalName : undefined}>
                           <input
                             type="text"
                             required
@@ -901,9 +791,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("legalName", Boolean(startup.legalName))}
                             placeholder="e.g. GetMyIndia Technologies Pvt Ltd"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="CIN (Certificate of Incorporation)" required error={shouldShowError("cin") ? errors.cin : undefined}>
+                        <OnboardingField label="CIN (Certificate of Incorporation)" required error={shouldShowError("cin") ? errors.cin : undefined}>
                           <input
                             type="text"
                             required
@@ -913,9 +803,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("cin", Boolean(startup.cin))}
                             placeholder="U72900MH2023PTC123456"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="GST Number" optional>
+                        <OnboardingField label="GST Number" optional>
                           <input
                             type="text"
                             value={startup.gst}
@@ -924,9 +814,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("gst", Boolean(startup.gst))}
                             placeholder="27AAAAA0000A1Z5"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="DPIIT Recognition Number" optional>
+                        <OnboardingField label="DPIIT Recognition Number" optional>
                           <input
                             type="text"
                             value={startup.dpit}
@@ -935,9 +825,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("dpit", Boolean(startup.dpit))}
                             placeholder="DIPP12345"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Legal Entity Email ID" required error={shouldShowError("startupEmail") ? errors.startupEmail : undefined}>
+                        <OnboardingField label="Legal Entity Email ID" required error={shouldShowError("startupEmail") ? errors.startupEmail : undefined}>
                           <input
                             type="email"
                             required
@@ -947,9 +837,9 @@ export default function StartupOnboarding() {
                             className={getInputStyle("startupEmail", Boolean(startup.email))}
                             placeholder="contact@company.com"
                           />
-                        </Field>
+                        </OnboardingField>
 
-                        <Field label="Sector / Domain" required error={shouldShowError("sector") ? errors.sector : undefined}>
+                        <OnboardingField label="Sector / Domain" required error={shouldShowError("sector") ? errors.sector : undefined}>
                           <input
                             type="text"
                             required
@@ -959,10 +849,10 @@ export default function StartupOnboarding() {
                             className={getInputStyle("sector", Boolean(startup.sector))}
                             placeholder="e.g. FinTech, AI, SaaS, HealthTech"
                           />
-                        </Field>
+                        </OnboardingField>
 
                         <div className="sm:col-span-2">
-                          <Field label="Legal Entity Registered Address" required error={shouldShowError("address") ? errors.address : undefined}>
+                          <OnboardingField label="Legal Entity Registered Address" required error={shouldShowError("address") ? errors.address : undefined}>
                             <textarea
                               required
                               rows={3}
@@ -972,11 +862,11 @@ export default function StartupOnboarding() {
                               className={`${getInputStyle("address", Boolean(startup.address))} min-h-[80px] resize-y`}
                               placeholder="Full business address as per incorporation documents"
                             />
-                          </Field>
+                          </OnboardingField>
                         </div>
 
                         <div className="sm:col-span-2">
-                          <Field label="Brief Summary About Startup" required error={shouldShowError("summary") ? errors.summary : undefined}>
+                          <OnboardingField label="Brief Summary About Startup" required error={shouldShowError("summary") ? errors.summary : undefined}>
                             <textarea
                               required
                               rows={4}
@@ -986,7 +876,7 @@ export default function StartupOnboarding() {
                               className={`${getInputStyle("summary", Boolean(startup.summary))} min-h-[110px] resize-y`}
                               placeholder="What core problem do you solve? Who is your target market and value proposition?"
                             />
-                          </Field>
+                          </OnboardingField>
                         </div>
                       </div>
                     </div>
@@ -1016,7 +906,7 @@ export default function StartupOnboarding() {
                       {/* Document Uploads */}
                       <div className="grid gap-6 sm:grid-cols-2">
                         {/* Pitch Deck Upload */}
-                        <Field label="Pitch Deck Document" required error={shouldShowError("pitchDeck") ? errors.pitchDeck : undefined}>
+                        <OnboardingField label="Pitch Deck Document" required error={shouldShowError("pitchDeck") ? errors.pitchDeck : undefined}>
                           <div className="mt-2">
                             <label className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 text-center transition hover:border-angeltors-accent hover:bg-angeltors-accent/5 ${
                               shouldShowError("pitchDeck")
@@ -1040,10 +930,10 @@ export default function StartupOnboarding() {
                               />
                             </label>
                           </div>
-                        </Field>
+                        </OnboardingField>
 
                         {/* Startup Logo Upload */}
-                        <Field label="Startup Logo" required error={shouldShowError("logo") ? errors.logo : undefined}>
+                        <OnboardingField label="Startup Logo" required error={shouldShowError("logo") ? errors.logo : undefined}>
                           <div className="mt-2">
                             <label className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 text-center transition hover:border-angeltors-accent hover:bg-angeltors-accent/5 ${
                               shouldShowError("logo")
@@ -1075,7 +965,7 @@ export default function StartupOnboarding() {
                               />
                             </label>
                           </div>
-                        </Field>
+                        </OnboardingField>
                       </div>
 
                       {/* Founders & Co-Founders Team Display Section */}
@@ -1206,55 +1096,17 @@ export default function StartupOnboarding() {
                 )}
               </AnimatePresence>
 
-              {/* 3. Bottom Action Bar (Integrated Bottom Panel Section) */}
-              <div className="border-t border-slate-100 bg-slate-50/60 px-6 py-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center justify-between sm:justify-start gap-4 w-full sm:w-auto">
-                  {currentStep > 1 ? (
-                    <button
-                      type="button"
-                      onClick={handleBack}
-                      className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 shadow-2xs transition hover:bg-slate-50 sm:text-sm"
-                    >
-                      <ArrowLeft className="h-4 w-4" /> Back
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-100 px-5 py-2.5 text-xs font-bold text-slate-400 cursor-not-allowed opacity-60 sm:text-sm"
-                    >
-                      <ArrowLeft className="h-4 w-4" /> Back
-                    </button>
-                  )}
-                </div>
-
-                <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                  <span className="text-xs font-bold text-slate-500">
-                    Step {currentStep} of {steps.length}: <span className="font-normal text-slate-400">{currentStepMeta.title}</span>
-                  </span>
-
-                  {currentStep < 4 ? (
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="inline-flex items-center gap-2 rounded-xl bg-angeltors-ink px-6 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-slate-800 focus:ring-4 focus:ring-angeltors-ink/20 sm:text-sm"
-                    >
-                      Next <ArrowRight className="h-4 w-4" />
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className="inline-flex items-center gap-2 rounded-xl bg-angeltors-accent px-7 py-3 text-xs font-black text-white shadow-md transition hover:bg-angeltors-accent-light focus:ring-4 focus:ring-angeltors-accent/20 sm:text-sm"
-                    >
-                      <ShieldCheck className="h-4 w-4 text-emerald-300" /> Complete Profile <ArrowRight className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </form>
-          </div>
-        </main>
-      </div>
+            <OnboardingFooter
+              currentStep={currentStep}
+              totalSteps={steps.length}
+              stepTitle={currentStepMeta.title}
+              onBack={handleBack}
+              onNext={handleNext}
+              isLastStep={currentStep === 4}
+            />
+          </form>
+        </OnboardingCard>
+      </OnboardingLayout>
     </>
   );
 }
