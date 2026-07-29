@@ -4,6 +4,7 @@ export { OnboardingSection } from "./components/OnboardingSection";
 export { OnboardingFooter } from "./components/OnboardingFooter";
 export { OnboardingField } from "./components/OnboardingField";
 export { OnboardingCard } from "./components/OnboardingCard";
+export { OnboardingReviewDetails } from "./components/OnboardingReviewDetails";
 export { PhotoUploadField } from "./components/PhotoUploadField";
 export { FileUploadField } from "./components/FileUploadField";
 export { TagSelector } from "./components/TagSelector";

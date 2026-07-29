@@ -18,6 +18,7 @@ import {
   OnboardingFooter,
   OnboardingCard,
   OnboardingField,
+  OnboardingReviewDetails,
 } from "@/features/onboarding";
 
 export type Founder = {
@@ -259,10 +260,8 @@ export default function StartupOnboarding() {
 
   const handleNext = () => {
     setSubmittedSteps((prev) => ({ ...prev, [currentStep]: true }));
-    if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, 4));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    setCurrentStep((prev) => Math.min(prev + 1, 4));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBack = () => {
@@ -293,10 +292,15 @@ export default function StartupOnboarding() {
       handleNext();
       return;
     }
-    setSubmittedSteps((prev) => ({ ...prev, [4]: true }));
-    if (validateStep(4)) {
-      navigate("/dashboard/startup");
+    setSubmittedSteps({ 1: true, 2: true, 3: true, 4: true });
+    for (let step = 1; step <= 4; step++) {
+      if (!validateStep(step)) {
+        setCurrentStep(step);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
     }
+    navigate("/dashboard/startup");
   };
 
   const steps = [

@@ -16,6 +16,7 @@ import {
   Sparkles,
   FileCheck
 } from "lucide-react";
+import { OnboardingReviewDetails } from "@/features/onboarding";
 
 export type FreemiumForm = {
   name: string;
@@ -158,10 +159,8 @@ export default function FreemiumOnboarding() {
 
   const handleNext = () => {
     setSubmittedSteps((prev) => ({ ...prev, [currentStep]: true }));
-    if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, 3));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    setCurrentStep((prev) => Math.min(prev + 1, 3));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBack = () => {
@@ -188,6 +187,14 @@ export default function FreemiumOnboarding() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmittedSteps({ 1: true, 2: true });
+    for (let step = 1; step <= 2; step++) {
+      if (!validateStep(step)) {
+        setCurrentStep(step);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+    }
     navigate("/dashboard/freemium");
   };
 
@@ -537,6 +544,18 @@ export default function FreemiumOnboarding() {
                           </p>
                         )}
                       </div>
+
+                      <OnboardingReviewDetails
+                        title="Founder details"
+                        details={[
+                          { label: "Full Name", value: form.name },
+                          { label: "Email Address", value: form.email },
+                          { label: "Contact Number", value: `${form.countryCode} ${form.contact}` },
+                          { label: "Address", value: form.address },
+                          { label: "LinkedIn Profile", value: form.linkedIn },
+                          { label: "Profile Photo", value: form.photo?.name },
+                        ]}
+                      />
                     </div>
                   </motion.div>
                 )}

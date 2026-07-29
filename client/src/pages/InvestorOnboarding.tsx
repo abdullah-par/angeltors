@@ -17,6 +17,7 @@ import {
   FileCheck,
   Plus
 } from "lucide-react";
+import { OnboardingReviewDetails } from "@/features/onboarding";
 
 export type InvestorForm = {
   name: string;
@@ -219,10 +220,8 @@ export default function InvestorOnboarding() {
 
   const handleNext = () => {
     setSubmittedSteps((prev) => ({ ...prev, [currentStep]: true }));
-    if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, 4));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    setCurrentStep((prev) => Math.min(prev + 1, 4));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBack = () => {
@@ -249,6 +248,14 @@ export default function InvestorOnboarding() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmittedSteps({ 1: true, 2: true, 3: true });
+    for (let step = 1; step <= 3; step++) {
+      if (!validateStep(step)) {
+        setCurrentStep(step);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+    }
     navigate("/dashboard/investor");
   };
 
@@ -745,6 +752,19 @@ export default function InvestorOnboarding() {
                           <span className="font-bold text-angeltors-ink">{form.repositoryName}</span>
                         </div>
                       </div>
+
+                      <OnboardingReviewDetails
+                        title="Investor details"
+                        details={[
+                          { label: "Email Address", value: form.email },
+                          { label: "Contact Number", value: `${form.countryCode} ${form.contact}` },
+                          { label: "Office Address", value: form.officeAddress },
+                          { label: "LinkedIn Profile", value: form.linkedIn },
+                          { label: "PAN Number", value: form.panNumber },
+                          { label: "Investment Sectors", value: form.sectors.join(", ") },
+                          { label: "DP Name", value: form.dpName },
+                        ]}
+                      />
                     </div>
                   </motion.div>
                 )}

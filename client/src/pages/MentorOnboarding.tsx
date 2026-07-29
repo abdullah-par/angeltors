@@ -17,6 +17,7 @@ import {
   Briefcase,
   Plus
 } from "lucide-react";
+import { OnboardingReviewDetails } from "@/features/onboarding";
 
 export type MentorForm = {
   name: string;
@@ -210,10 +211,8 @@ export default function MentorOnboarding() {
 
   const handleNext = () => {
     setSubmittedSteps((prev) => ({ ...prev, [currentStep]: true }));
-    if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, 4));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    setCurrentStep((prev) => Math.min(prev + 1, 4));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBack = () => {
@@ -240,6 +239,14 @@ export default function MentorOnboarding() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmittedSteps({ 1: true, 2: true, 3: true });
+    for (let step = 1; step <= 3; step++) {
+      if (!validateStep(step)) {
+        setCurrentStep(step);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+    }
     navigate("/dashboard/mentor");
   };
 
@@ -639,6 +646,20 @@ export default function MentorOnboarding() {
                           ))}
                         </div>
                       </div>
+
+                      <OnboardingReviewDetails
+                        title="Mentor details"
+                        details={[
+                          { label: "Email Address", value: form.email },
+                          { label: "Contact Number", value: `${form.countryCode} ${form.contact}` },
+                          { label: "LinkedIn Profile", value: form.linkedIn },
+                          { label: "Sector", value: form.sector },
+                          { label: "Qualification", value: form.qualification },
+                          { label: "Experience", value: form.experience },
+                          { label: "Brief Summary", value: form.briefSummary },
+                          { label: "Profile Photo", value: form.photo?.name },
+                        ]}
+                      />
                     </div>
                   </motion.div>
                 )}
