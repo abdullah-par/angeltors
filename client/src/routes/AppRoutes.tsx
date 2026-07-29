@@ -32,14 +32,9 @@ const InvestorDashboard = lazy(() => import("../pages/dashboards/InvestorDashboa
 const MentorDashboard = lazy(() => import("../pages/dashboards/MentorDashboard"));
 const FreemiumDashboard = lazy(() => import("../pages/dashboards/FreemiumDashboard"));
 
-function BuggyTestComponent(): React.ReactNode {
-  throw new Error("Previewing ErrorBoundary UI");
-}
-
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/test-error" element={<BuggyTestComponent />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/onboarding" element={<OnboardingProfile />} />
