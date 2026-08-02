@@ -26,7 +26,7 @@ export default function RaiseCapitalHero() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
             <Link
-              to="/membership"
+              to="/onboarding/startup"
               className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-angeltors-ink px-8 py-4 text-[16px] font-bold text-white transition-all duration-300 hover:bg-slate-900 shadow-md hover:shadow-lg w-full sm:w-auto"
             >
               <span>Apply to raise capital</span>

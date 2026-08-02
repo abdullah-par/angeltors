@@ -8,21 +8,21 @@ const serviceCards = [
     image: "/images/Investor1.jpg",
     description: "Discover curated opportunities, diligence summaries, and portfolio signals in one place.",
     tag: "Growth",
-    actionLabel: "Sign Up",
+    actionLabel: "Start Investing",
   },
   {
     title: "Startup",
     image: "/images/Startup.jpg",
     description: "Access capital pathways, strategic support, and founder tools that accelerate momentum.",
     tag: "Success",
-    actionLabel: "Sign Up",
+    actionLabel: "Get Started",
   },
   {
     title: "Mentorship",
     image: "/images/Mentorship.jpg",
     description: "Pair with seasoned operators and advisors for strategy, execution, and milestone planning.",
     tag: "Potential",
-    actionLabel: "Sign Up",
+    actionLabel: "Become a Mentor",
   },
   {
     title: "In-House Support",
@@ -58,7 +58,7 @@ export default function ServicesGrid() {
               whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={reducedMotion ? { duration: 0 } : { duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group flex flex-col overflow-hidden rounded-[2.5rem] bg-white border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-out"
+              className="group flex flex-col overflow-hidden rounded-[2.5rem] bg-grey border border-black-10/3 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-out"
             >
               <div className="relative overflow-hidden h-56">
                 <span className="absolute top-6 right-6 z-10 rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[2px] text-angeltors-ink backdrop-blur-sm shadow-md">
@@ -80,7 +80,7 @@ export default function ServicesGrid() {
                 </p>
                 <div className="mt-10 pt-8 border-t border-slate-100">
                   <a
-                    href="/register"
+                    href="/onboarding/investor"
                     className="inline-flex w-full items-center justify-center rounded-full bg-angeltors-ink py-4 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_20px_-6px_rgba(0,0,0,0.5)] gap-2 group/btn"
                   >
                     <span>{service.actionLabel}</span>

@@ -157,7 +157,7 @@ export function PlanCard({ plan }: { plan: typeof plans[0] }) {
             </div>
             
             <Link
-              to="/register"
+              to="/onboarding"
               className={`inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-xs font-bold transition-all duration-300 ${
                 plan.highlighted
                   ? 'bg-angeltors-accent text-white hover:bg-angeltors-accent-light shadow-md hover:-translate-y-0.5 group-hover:bg-slate-100 group-hover:text-angeltors-ink'

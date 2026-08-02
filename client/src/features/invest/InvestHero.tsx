@@ -75,7 +75,7 @@ export default function InvestHero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16"
         >
           <Link 
-            to="/membership" 
+            to="/onboarding/investor" 
             className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-angeltors-ink px-8 py-4 text-base font-bold text-white overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg w-full sm:w-auto"
           >
             <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
