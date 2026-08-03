@@ -231,9 +231,6 @@ export default function ContactFormSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16 space-y-4"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-angeltors-accent/20 bg-angeltors-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-angeltors-accent shadow-sm backdrop-blur-sm">
-            Write Us
-          </div>
           <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-angeltors-ink">
             Don't hesitate to reach out<br className="hidden sm:block" /> with your questions.
           </h2>

@@ -8,16 +8,16 @@ export default function Footer() {
         { label: "About Us", href: "/about" },
         { label: "Invest with us", href: "/invest-with-us" },
         { label: "Raise Capital", href: "/raise-capital" },
-        { label: "Learn with us", href: "#faq" },
+        { label: "Learn with us", href: "/learn" },
       ],
     },
     {
       title: "Services",
       links: [
-        { label: "Investors", href: "#our-services" },
-        { label: "Startups", href: "#our-services" },
-        { label: "Mentorship", href: "#our-services" },
-        { label: "In-House Support", href: "#our-services" },
+        { label: "Investors", href: "/onboarding/investor" },
+        { label: "Startups", href: "/onboarding/startup" },
+        { label: "Mentorship", href: "/onboarding/mentor" },
+        { label: "In-House Support", href: "#" },
       ],
     },
     {
